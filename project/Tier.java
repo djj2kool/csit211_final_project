@@ -5,12 +5,12 @@
 
 public enum Tier
 {
-    ECONOMY,
-    COMPACT,
-    STANDARD,
-    FULL_SIZE,
-    PREMIUM,
-    LUXURY;
+    ECONOMY("Economy"),
+    COMPACT("Compact"),
+    STANDARD("Standard"),
+    FULL_SIZE("Full-Size"),
+    PREMIUM("Premium"),
+    LUXURY("Luxury");
 
     //  Database ID values
     static final int ECONOMY_INT   = 1;
@@ -27,6 +27,13 @@ public enum Tier
     static final double FULL_SIZE_PPM = 0.25;
     static final double PREMIUM_PPM   = 0.30;
     static final double LUXURY_PPM    = 0.40;
+
+    private final String string;
+
+    //  ------------------------------------------------------------------------
+    private Tier(String string) {
+        this.string = string;
+    }
 
     //  ------------------------------------------------------------------------
     static public Tier intToTier(int value) {
@@ -66,5 +73,11 @@ public enum Tier
             case LUXURY:
                 return LUXURY_PPM;
         }
+    }
+
+    //  ------------------------------------------------------------------------
+    @Override
+    public String toString() {
+        return this.string;
     }
 }
