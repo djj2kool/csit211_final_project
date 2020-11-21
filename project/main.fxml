@@ -52,6 +52,37 @@
       <children>
             <TabPane id="tabView" prefHeight="371.0" prefWidth="640.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
               <tabs>
+                  <Tab closable="false" text="Customers">
+                     <content>
+                        <BorderPane>
+                           <top>
+                              <HBox spacing="8.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button id="refreshButton" mnemonicParsing="false" text="Refresh">
+                                       <tooltip>
+                                          <Tooltip text="Refreshes customer list from database." />
+                                       </tooltip>
+                                    </Button>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                 </padding>
+                              </HBox>
+                           </top>
+                           <center>
+                              <TableView id="customerTableView" fx:id="customerTableView" BorderPane.alignment="CENTER">
+                                 <columns>
+                                    <TableColumn prefWidth="200.0" text="Name">
+                                       <cellValueFactory>
+                                          <PropertyValueFactory property="name" />
+                                       </cellValueFactory>
+                                    </TableColumn>
+                                 </columns>
+                              </TableView>
+                           </center>
+                        </BorderPane>
+                     </content>
+                  </Tab>
                 <Tab closable="false" text="Employees">
                      <content>
                         <BorderPane>
