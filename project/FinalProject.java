@@ -51,7 +51,7 @@ public class FinalProject extends Application
 
     //  ------------------------------------------------------------------------
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("FXML TableView Example");
+        primaryStage.setTitle("CDLR Corporation - Vehicle Rentals");
         Pane myPane = (Pane)FXMLLoader.load(getClass().getResource("main.fxml"));
         Scene myScene = new Scene(myPane);
         primaryStage.setScene(myScene);
