@@ -15,6 +15,12 @@ public class Customer
     }
 
     //  ------------------------------------------------------------------------
+    public Customer(String name) {
+        this.id = -1;
+        this.name = name;
+    }
+
+    //  ------------------------------------------------------------------------
     public int getId() {
         return id;
     }

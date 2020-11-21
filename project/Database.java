@@ -5,6 +5,7 @@
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 // import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,6 +14,22 @@ import java.util.List;
 
 public class Database
 {
+    //  ------------------------------------------------------------------------
+    public static void addCustomer(Customer customer) throws Exception {
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try {
+            connection = createConnection();
+            statement = connection.prepareStatement("INSERT INTO `customers`(name) VALUES (?)");
+            statement.setString(1, customer.getName());
+            statement.executeUpdate();
+        }
+        finally {
+            connection.close();
+        }
+    }
+
     //  ------------------------------------------------------------------------
     private static Connection createConnection() throws Exception {
         return DriverManager.getConnection("jdbc:sqlite:app.db");
