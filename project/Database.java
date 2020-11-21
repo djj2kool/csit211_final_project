@@ -19,6 +19,13 @@ public class Database
     }
 
     //  ------------------------------------------------------------------------
+    private static Customer createCustomer(ResultSet rs) throws Exception {
+        int id = rs.getInt("id");
+        String name = rs.getString("name");
+        return new Customer(id, name);
+    }
+
+    //  ------------------------------------------------------------------------
     private static Employee createEmployee(ResultSet rs) throws Exception {
         int id = rs.getInt("id");
         String name = rs.getString("name");
@@ -41,6 +48,29 @@ public class Database
         Tier tier = Tier.intToTier(rs.getInt("tier"));
         Status status = Status.intToStatus(rs.getInt("status"));
         return new Vehicle(id, make, model, tier, status);
+    }
+
+    //  ------------------------------------------------------------------------
+    public static List<Customer> queryCustomers() throws Exception {
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet rs = null;
+        List<Customer> customers = new ArrayList<Customer>();
+
+        try {
+            connection = createConnection();
+            statement = createStatement(connection);
+            rs = statement.executeQuery("SELECT * FROM Customers");
+
+            while(rs.next()) {
+                customers.add(createCustomer(rs));
+            }
+        }
+        finally {
+            connection.close();
+        }
+
+        return customers;
     }
 
     //  ------------------------------------------------------------------------

@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 
 public class MainController implements Initializable
 {
+    @FXML private TableView<Customer> customerTableView;
     @FXML private TableView<Employee> employeeTableView;
     @FXML private TableView<Vehicle> vehicleTableView;
 
@@ -18,6 +19,7 @@ public class MainController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
+            customerTableView.getItems().setAll(Database.queryCustomers());
             employeeTableView.getItems().setAll(Database.queryEmployees());
             vehicleTableView.getItems().setAll(Database.queryVehicles());
         }
