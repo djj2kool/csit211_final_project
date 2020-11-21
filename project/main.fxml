@@ -82,6 +82,11 @@
                     <PropertyValueFactory property="pricePerMile" />
                   </cellValueFactory>
                 </TableColumn>
+                <TableColumn prefWidth="110.0" text="Status">
+                  <cellValueFactory>
+                    <PropertyValueFactory property="status" />
+                  </cellValueFactory>
+                </TableColumn>
               </columns>
             </TableView>
       </children>

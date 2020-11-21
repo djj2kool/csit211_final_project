@@ -39,7 +39,8 @@ public class Database
         String make = rs.getString("make");
         String model = rs.getString("model");
         Tier tier = Tier.intToTier(rs.getInt("tier"));
-        return new Vehicle(id, make, model, tier);
+        Status status = Status.intToStatus(rs.getInt("status"));
+        return new Vehicle(id, make, model, tier, status);
     }
 
     //  ------------------------------------------------------------------------

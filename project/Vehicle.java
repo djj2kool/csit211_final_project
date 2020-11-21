@@ -13,13 +13,15 @@ public class Vehicle
     private int id;
     private StringProperty make;
     private StringProperty model;
+    private Status status;
 
     //  ------------------------------------------------------------------------
-    public Vehicle(int id, String make, String model, Tier tier) {
+    public Vehicle(int id, String make, String model, Tier tier, Status status) {
         this.id = id;
         this.tier = tier;
         this.make = new SimpleStringProperty(make);
         this.model = new SimpleStringProperty(model);
+        this.status = status;
     }
 
     //  ------------------------------------------------------------------------
@@ -48,7 +50,17 @@ public class Vehicle
     }
 
     //  ------------------------------------------------------------------------
+    public Status getStatus() {
+        return status;
+    }
+
+    //  ------------------------------------------------------------------------
     public Tier getTier() {
         return tier;
+    }
+
+    //  ------------------------------------------------------------------------
+    void setStatus(Status status) {
+        this.status = status;
     }
 }
