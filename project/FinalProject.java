@@ -18,10 +18,13 @@ public class FinalProject extends Application
 
     //  ------------------------------------------------------------------------
     public void start(Stage primaryStage) throws Exception {
+        Pane pane   = null;
+        Scene scene = null;
+
         primaryStage.setTitle("CDLR Corporation - Vehicle Rentals");
-        Pane myPane = (Pane)FXMLLoader.load(getClass().getResource("main.fxml"));
-        Scene myScene = new Scene(myPane);
-        primaryStage.setScene(myScene);
+        pane = (Pane)FXMLLoader.load(getClass().getResource("Main.fxml"));
+        scene = new Scene(pane);
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 }
