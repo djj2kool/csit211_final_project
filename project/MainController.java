@@ -39,4 +39,15 @@ public class MainController implements Initializable
             Database.addCustomer(customer.get());
         }
     }
+
+    //  ------------------------------------------------------------------------
+    @FXML
+    private void showAddEmployeeDialog(ActionEvent event) throws Exception {
+        AddDialog<Employee> dialog = new AddEmployeeDialog();
+        Optional<Employee> employee = dialog.showAndWait();
+
+        if (employee.isPresent()) {
+            Database.addEmployee(employee.get());
+        }
+    }
 }

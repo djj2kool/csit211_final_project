@@ -31,6 +31,24 @@ public class Database
     }
 
     //  ------------------------------------------------------------------------
+    public static void addEmployee(Employee employee) throws Exception {
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try {
+            connection = createConnection();
+            statement = connection.prepareStatement("INSERT INTO `employees`(name, title, level) VALUES (?, ?, ?)");
+            statement.setString(1, employee.getName());
+            statement.setString(2, employee.getTitle());
+            statement.setInt(3, employee.getLevel().toInt());
+            statement.executeUpdate();
+        }
+        finally {
+            connection.close();
+        }
+    }
+
+    //  ------------------------------------------------------------------------
     private static Connection createConnection() throws Exception {
         return DriverManager.getConnection("jdbc:sqlite:app.db");
     }
@@ -47,7 +65,7 @@ public class Database
         int id = rs.getInt("id");
         String name = rs.getString("name");
         String title = rs.getString("title");
-        UserLevel level = UserLevel.intToUserLevel(rs.getInt("level"));
+        UserLevel level = UserLevel.fromInt(rs.getInt("level"));
         return new Employee(id, name, title, level);
     }
 

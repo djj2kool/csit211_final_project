@@ -58,7 +58,7 @@
                            <top>
                               <HBox spacing="8.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Button id="refreshButton" mnemonicParsing="false" text="Refresh">
+                                    <Button id="refreshButton" fx:id="refreshCustomersButton" mnemonicParsing="false" text="Refresh">
                                        <tooltip>
                                           <Tooltip text="Refreshes customer list from database." />
                                        </tooltip>
@@ -90,12 +90,12 @@
                            <top>
                               <HBox spacing="8.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Button id="refreshButton" mnemonicParsing="false" text="Refresh">
+                                    <Button id="refreshButton" fx:id="refreshEmployeesButton" mnemonicParsing="false" text="Refresh">
                                        <tooltip>
                                           <Tooltip text="Refreshes employee list from database." />
                                        </tooltip>
                                     </Button>
-                                    <Button id="addEmployeeButton" mnemonicParsing="false" text="Add Employee" />
+                                    <Button id="addEmployeeButton" fx:id="addEmployeeButton" mnemonicParsing="false" onAction="#showAddEmployeeDialog" text="Add Employee" />
                                  </children>
                                  <padding>
                                     <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
@@ -132,7 +132,7 @@
                            <top>
                               <HBox spacing="8.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Button id="refreshButton" mnemonicParsing="false" text="Refresh">
+                                    <Button id="refreshButton" fx:id="refreshVehiclesButton" mnemonicParsing="false" text="Refresh">
                                        <tooltip>
                                           <Tooltip text="Refreshes vehicle list from database." />
                                        </tooltip>

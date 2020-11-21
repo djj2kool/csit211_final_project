@@ -22,7 +22,7 @@ public enum UserLevel
     }
 
     //  ------------------------------------------------------------------------
-    static public UserLevel intToUserLevel(int value) {
+    static public UserLevel fromInt(int value) {
         switch (value) {
             default:
             case ASSOCIATE_INT:
@@ -31,6 +31,19 @@ public enum UserLevel
                 return EXECUTIVE;
             case ADMIN_INT:
                 return ADMIN;
+        }
+    }
+
+    //  ------------------------------------------------------------------------
+    public int toInt() {
+        switch (this) {
+            default:
+            case ASSOCIATE:
+                return ASSOCIATE_INT;
+            case EXECUTIVE:
+                return EXECUTIVE_INT;
+            case ADMIN:
+                return ADMIN_INT;
         }
     }
 

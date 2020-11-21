@@ -19,6 +19,14 @@ public class Employee
     }
 
     //  ------------------------------------------------------------------------
+    public Employee(String name, String title, UserLevel level) {
+        this.id = -1;
+        this.name = name;
+        this.title = title;
+        this.level = level;
+    }
+
+    //  ------------------------------------------------------------------------
     public int getId() {
         return id;
     }
