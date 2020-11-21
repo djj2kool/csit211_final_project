@@ -43,6 +43,11 @@ public class Vehicle
     }
 
     //  ------------------------------------------------------------------------
+    public double getPricePerMile() {
+        return Tier.getPricePerMile(tier);
+    }
+
+    //  ------------------------------------------------------------------------
     public Tier getTier() {
         return tier;
     }
