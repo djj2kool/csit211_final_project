@@ -30,7 +30,8 @@ public class Database
         int id = rs.getInt("id");
         String name = rs.getString("name");
         String title = rs.getString("title");
-        return new Employee(id, name, title);
+        UserLevel level = UserLevel.intToUserLevel(rs.getInt("level"));
+        return new Employee(id, name, title, level);
     }
 
     //  ------------------------------------------------------------------------

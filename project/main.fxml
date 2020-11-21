@@ -95,6 +95,7 @@
                                           <Tooltip text="Refreshes employee list from database." />
                                        </tooltip>
                                     </Button>
+                                    <Button id="addEmployeeButton" mnemonicParsing="false" text="Add Employee" />
                                  </children>
                                  <padding>
                                     <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
@@ -112,6 +113,11 @@
                                     <TableColumn prefWidth="200.0" text="Title">
                                        <cellValueFactory>
                                           <PropertyValueFactory property="title" />
+                                       </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn prefWidth="100.0" text="Level">
+                                       <cellValueFactory>
+                                          <PropertyValueFactory property="level" />
                                        </cellValueFactory>
                                     </TableColumn>
                                  </columns>
