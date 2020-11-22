@@ -9,10 +9,13 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 
 public class MainController implements Initializable
 {
+    @FXML private Button refreshVehiclesButton;
+
     @FXML private TableView<Customer> customerTableView;
     @FXML private TableView<Employee> employeeTableView;
     @FXML private TableView<Vehicle> vehicleTableView;
@@ -21,11 +24,37 @@ public class MainController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
-            customerTableView.getItems().setAll(Database.queryCustomers());
-            employeeTableView.getItems().setAll(Database.queryEmployees());
-            vehicleTableView.getItems().setAll(Database.queryVehicles());
+            refreshCustomers();
+            refreshEmployees();
+            refreshVehicles();
+        } catch (Exception ex) {
         }
-        catch (Exception ex) {
+    }
+
+    //  ------------------------------------------------------------------------
+    @FXML
+    private void refreshCustomers() {
+        try {
+            customerTableView.getItems().setAll(Database.queryCustomers());
+        } catch (Exception ex) {
+        }
+    }
+
+    //  ------------------------------------------------------------------------
+    @FXML
+    private void refreshEmployees() {
+        try {
+            employeeTableView.getItems().setAll(Database.queryEmployees());
+        } catch (Exception ex) {
+        }
+    }
+
+    //  ------------------------------------------------------------------------
+    @FXML
+    private void refreshVehicles() {
+        try {
+            vehicleTableView.getItems().setAll(Database.queryVehicles());
+        } catch (Exception ex) {
         }
     }
 

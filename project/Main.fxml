@@ -58,7 +58,7 @@
                            <top>
                               <HBox spacing="8.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Button id="refreshButton" fx:id="refreshCustomersButton" mnemonicParsing="false" text="Refresh">
+                                    <Button id="refreshButton" fx:id="refreshCustomersButton" mnemonicParsing="false" onAction="#refreshCustomers" text="Refresh">
                                        <tooltip>
                                           <Tooltip text="Refreshes customer list from database." />
                                        </tooltip>
@@ -90,7 +90,7 @@
                            <top>
                               <HBox spacing="8.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Button id="refreshButton" fx:id="refreshEmployeesButton" mnemonicParsing="false" text="Refresh">
+                                    <Button id="refreshButton" fx:id="refreshEmployeesButton" mnemonicParsing="false" onAction="#refreshEmployees" text="Refresh">
                                        <tooltip>
                                           <Tooltip text="Refreshes employee list from database." />
                                        </tooltip>
@@ -132,7 +132,7 @@
                            <top>
                               <HBox spacing="8.0" BorderPane.alignment="CENTER">
                                  <children>
-                                    <Button id="refreshButton" fx:id="refreshVehiclesButton" mnemonicParsing="false" text="Refresh">
+                                    <Button id="refreshButton" fx:id="refreshVehiclesButton" mnemonicParsing="false" onAction="#refreshVehicles" text="Refresh">
                                        <tooltip>
                                           <Tooltip text="Refreshes vehicle list from database." />
                                        </tooltip>
