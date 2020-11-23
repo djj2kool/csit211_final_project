@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Region;
@@ -36,6 +37,12 @@ public class MainController implements Initializable
     @FXML private TableColumn<Rental, String> rentalModelTableColumn;
     @FXML private TableColumn<Rental, Double> rentalPricePerMileTableColumn;
     @FXML private TableColumn<Rental, Tier> rentalTierTableColumn;
+
+    //  Status bar
+    @FXML private Label customerCountLabel;
+    @FXML private Label employeeCountLabel;
+    @FXML private Label rentalCountLabel;
+    @FXML private Label vehicleCountLabel;
 
     //  ------------------------------------------------------------------------
     @SuppressWarnings("unchecked")  //  Array of generic types causes warning
@@ -87,7 +94,13 @@ public class MainController implements Initializable
     }
 
     //  ------------------------------------------------------------------------
-    private <T> void populateTableView(TableView<T> tableView, Query<T> query) {
+    private <T> void populateTableView(
+        TableView<T> tableView,
+        Label countLabel,
+        Query<T> query
+    ) {
+        String count = String.format("%d records fetched.", query.size());
+        countLabel.setText(count);
         tableView.getItems().setAll(query);
     }
 
@@ -95,7 +108,10 @@ public class MainController implements Initializable
     @FXML
     private void refreshCustomers() {
         try {
-            populateTableView(customerTableView, Database.queryCustomers());
+            populateTableView(
+                customerTableView,
+                customerCountLabel,
+                Database.queryCustomers());
         } catch (Exception ex) {
             showDatabaseErrorAlert(ex);
         }
@@ -105,7 +121,10 @@ public class MainController implements Initializable
     @FXML
     private void refreshEmployees() {
         try {
-            populateTableView(employeeTableView, Database.queryEmployees());
+            populateTableView(
+                employeeTableView,
+                employeeCountLabel,
+                Database.queryEmployees());
         } catch (Exception ex) {
             showDatabaseErrorAlert(ex);
         }
@@ -120,7 +139,7 @@ public class MainController implements Initializable
             rentals = Database.queryRentals();
             filter = rentalFilterComboBox.getValue();
             rentals = rentals.filter(filter);
-            populateTableView(rentalsTableView, rentals);
+            populateTableView(rentalsTableView, rentalCountLabel, rentals);
         } catch (Exception ex) {
             showDatabaseErrorAlert(ex);
         }
@@ -130,7 +149,10 @@ public class MainController implements Initializable
     @FXML
     private void refreshVehicles() {
         try {
-            populateTableView(vehicleTableView, Database.queryVehicles());
+            populateTableView(
+                vehicleTableView,
+                vehicleCountLabel,
+                Database.queryVehicles());
         } catch (Exception ex) {
             showDatabaseErrorAlert(ex);
         }
