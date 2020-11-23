@@ -4,10 +4,8 @@
 //  Visual Studio Code
 
 import java.net.URL;
-import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.Region;
 
 public class MainController implements Initializable
 {
@@ -88,10 +87,15 @@ public class MainController implements Initializable
     }
 
     //  ------------------------------------------------------------------------
+    private <T> void populateTableView(TableView<T> tableView, Query<T> query) {
+        tableView.getItems().setAll(query);
+    }
+
+    //  ------------------------------------------------------------------------
     @FXML
     private void refreshCustomers() {
         try {
-            customerTableView.getItems().setAll(Database.queryCustomers());
+            populateTableView(customerTableView, Database.queryCustomers());
         } catch (Exception ex) {
             showDatabaseErrorAlert(ex);
         }
@@ -101,7 +105,7 @@ public class MainController implements Initializable
     @FXML
     private void refreshEmployees() {
         try {
-            employeeTableView.getItems().setAll(Database.queryEmployees());
+            populateTableView(employeeTableView, Database.queryEmployees());
         } catch (Exception ex) {
             showDatabaseErrorAlert(ex);
         }
@@ -110,13 +114,13 @@ public class MainController implements Initializable
     //  ------------------------------------------------------------------------
     @FXML
     private void refreshRentals() {
-        List<Rental> rentals;
+        Query<Rental> rentals;
         Filter<Rental> filter;
         try {
             rentals = Database.queryRentals();
             filter = rentalFilterComboBox.getValue();
-            filter.apply(rentals);
-            rentalsTableView.getItems().setAll(rentals);
+            rentals = rentals.filter(filter);
+            populateTableView(rentalsTableView, rentals);
         } catch (Exception ex) {
             showDatabaseErrorAlert(ex);
         }
@@ -126,7 +130,7 @@ public class MainController implements Initializable
     @FXML
     private void refreshVehicles() {
         try {
-            vehicleTableView.getItems().setAll(Database.queryVehicles());
+            populateTableView(vehicleTableView, Database.queryVehicles());
         } catch (Exception ex) {
             showDatabaseErrorAlert(ex);
         }
@@ -159,6 +163,7 @@ public class MainController implements Initializable
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Database Connection Error");
         alert.setContentText(ex.getMessage());
+        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
         alert.showAndWait();
     }
 }

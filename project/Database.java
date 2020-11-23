@@ -9,8 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 // import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Database
 {
@@ -100,11 +98,11 @@ public class Database
     }
 
     //  ------------------------------------------------------------------------
-    public static List<Customer> queryCustomers() throws Exception {
+    public static Query<Customer> queryCustomers() throws Exception {
         Connection connection = null;
         Statement statement = null;
         ResultSet rs = null;
-        List<Customer> customers = new ArrayList<Customer>();
+        LinkedList<Customer> customers = new LinkedList<Customer>();
 
         try {
             connection = createConnection();
@@ -116,22 +114,22 @@ public class Database
                 "FROM Customers");
 
             while(rs.next()) {
-                customers.add(createCustomer(rs));
+                customers.append(createCustomer(rs));
             }
         }
         finally {
             connection.close();
         }
 
-        return customers;
+        return new Query<Customer>(customers);
     }
 
     //  ------------------------------------------------------------------------
-    public static List<Employee> queryEmployees() throws Exception {
+    public static Query<Employee> queryEmployees() throws Exception {
         Connection connection = null;
         Statement statement = null;
         ResultSet rs = null;
-        List<Employee> employees = new ArrayList<Employee>();
+        LinkedList<Employee> employees = new LinkedList<Employee>();
 
         try {
             connection = createConnection();
@@ -139,22 +137,22 @@ public class Database
             rs = statement.executeQuery("SELECT * FROM Employees");
 
             while(rs.next()) {
-                employees.add(createEmployee(rs));
+                employees.append(createEmployee(rs));
             }
         }
         finally {
             connection.close();
         }
 
-        return employees;
+        return new Query<Employee>(employees);
     }
 
     //  ------------------------------------------------------------------------
-    public static List<Rental> queryRentals() throws Exception {
+    public static Query<Rental> queryRentals() throws Exception {
         Connection connection = null;
         Statement statement = null;
         ResultSet rs = null;
-        List<Rental> rentals = new ArrayList<Rental>();
+        LinkedList<Rental> rentals = new LinkedList<Rental>();
 
         try {
             connection = createConnection();
@@ -178,22 +176,22 @@ public class Database
                 "ON r.vehicleId = v.id");
 
             while(rs.next()) {
-                rentals.add(createRental(rs));
+                rentals.append(createRental(rs));
             }
         }
         finally {
             connection.close();
         }
 
-        return rentals;
+        return new Query<Rental>(rentals);
     }
 
     //  ------------------------------------------------------------------------
-    public static List<Vehicle> queryVehicles() throws Exception {
+    public static Query<Vehicle> queryVehicles() throws Exception {
         Connection connection = null;
         Statement statement = null;
         ResultSet rs = null;
-        List<Vehicle> vehicles = new ArrayList<Vehicle>();
+        LinkedList<Vehicle> vehicles = new LinkedList<Vehicle>();
 
         try {
             connection = createConnection();
@@ -209,13 +207,13 @@ public class Database
             );
 
             while(rs.next()) {
-                vehicles.add(createVehicle(rs));
+                vehicles.append(createVehicle(rs));
             }
         }
         finally {
             connection.close();
         }
 
-        return vehicles;
+        return new Query<Vehicle>(vehicles);
     }
 }
