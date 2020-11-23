@@ -31,7 +31,7 @@
 - [ ] Restrict user access.
     * Associates can add rentals and add vehicles.
     * Executives can add new employees.
-- [ ] Add status bar to bottom of GUI
+- [x] Add status bar to bottom of GUI
     * Show record count (uses Query.size() which satisfies recursion requirement)
 - [ ] Complete menu bar (File, Help, etc.).
 
