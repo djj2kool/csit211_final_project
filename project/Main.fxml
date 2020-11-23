@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -126,6 +127,76 @@
                         </BorderPane>
                      </content>
                 </Tab>
+                  <Tab closable="false" text="Rentals">
+                     <content>
+                        <BorderPane>
+                           <top>
+                              <HBox spacing="8.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Button id="refreshButton" fx:id="refreshRentalsButton" mnemonicParsing="false" onAction="#refreshRentals" text="Refresh">
+                                       <tooltip>
+                                          <Tooltip text="Refreshes vehicle list from database." />
+                                       </tooltip>
+                                    </Button>
+                                    <Button id="addVehicleButton" fx:id="addRentalButton" mnemonicParsing="false" text="Add Rental" />
+                                    <Button id="addVehicleButton" fx:id="checkInButton" layoutX="194.0" layoutY="14.0" mnemonicParsing="false" text="Check-in">
+                                       <tooltip>
+                                          <Tooltip text="Opens a new rental agreement." />
+                                       </tooltip>
+                                    </Button>
+                                    <ComboBox id="rentalFilterComboBox" fx:id="rentalFilterComboBox" prefWidth="150.0">
+                                       <tooltip>
+                                          <Tooltip text="Filters rentals (requires refresh)." />
+                                       </tooltip>
+                                    </ComboBox>
+                                 </children>
+                                 <BorderPane.margin>
+                                    <Insets />
+                                 </BorderPane.margin>
+                                 <padding>
+                                    <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                 </padding>
+                              </HBox>
+                           </top>
+                           <center>
+                              <TableView fx:id="rentalsTableView" prefHeight="310.0" prefWidth="640.0" BorderPane.alignment="CENTER">
+                                 <columns>
+                                    <TableColumn fx:id="rentalCustomerTableColumn" minWidth="200.0" prefWidth="75.0" text="Customer">
+                                       <cellValueFactory>
+                                          <PropertyValueFactory property="customerName" />
+                                       </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn fx:id="rentalMakeTableColumn" prefWidth="75.0" text="Make">
+                                       <cellValueFactory>
+                                          <PropertyValueFactory property="make" />
+                                       </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn fx:id="rentalModelTableColumn" prefWidth="75.0" text="Model">
+                                       <cellValueFactory>
+                                          <PropertyValueFactory property="model" />
+                                       </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn fx:id="rentalTierTableColumn" prefWidth="75.0" text="Tier">
+                                       <cellValueFactory>
+                                          <PropertyValueFactory property="tier" />
+                                       </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn fx:id="rentalPricePerMileTableColumn" prefWidth="112.0" text="Price-per-mile">
+                                       <cellValueFactory>
+                                          <PropertyValueFactory property="pricePerMile" />
+                                       </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn prefWidth="110.0" text="Status">
+                                       <cellValueFactory>
+                                          <PropertyValueFactory property="status" />
+                                       </cellValueFactory>
+                                    </TableColumn>
+                                 </columns>
+                              </TableView>
+                           </center>
+                        </BorderPane>
+                     </content>
+                  </Tab>
                 <Tab closable="false" text="Vehicles">
                      <content>
                         <BorderPane>
@@ -138,11 +209,6 @@
                                        </tooltip>
                                     </Button>
                                     <Button id="addVehicleButton" fx:id="addVehicleButton" mnemonicParsing="false" text="Add Vehicle" />
-                                    <Button id="addVehicleButton" fx:id="checkInButton" layoutX="194.0" layoutY="14.0" mnemonicParsing="false" text="Check-in">
-                                       <tooltip>
-                                          <Tooltip text="Opens a new rental agreement." />
-                                       </tooltip>
-                                    </Button>
                                     <Button id="addVehicleButton" fx:id="checkOutButton" layoutX="90.0" layoutY="14.0" mnemonicParsing="false" text="Check-out">
                                        <tooltip>
                                           <Tooltip text="Closes an existing rental agreement." />
@@ -180,6 +246,11 @@
                                       <PropertyValueFactory property="tier" />
                                     </cellValueFactory>
                                   </TableColumn>
+                                    <TableColumn minWidth="100.0" prefWidth="75.0" text="VIN">
+                                       <cellValueFactory>
+                                          <PropertyValueFactory property="model" />
+                                       </cellValueFactory>
+                                    </TableColumn>
                                   <TableColumn prefWidth="112.0" text="Price-per-mile">
                                     <cellValueFactory>
                                       <PropertyValueFactory property="pricePerMile" />

@@ -55,8 +55,8 @@ public class Database
 
     //  ------------------------------------------------------------------------
     private static Customer createCustomer(ResultSet rs) throws Exception {
-        int id = rs.getInt("id");
-        String name = rs.getString("name");
+        int id = rs.getInt("customerID");
+        String name = rs.getString("customerName");
         return new Customer(id, name);
     }
 
@@ -70,6 +70,19 @@ public class Database
     }
 
     //  ------------------------------------------------------------------------
+    private static Rental createRental(ResultSet rs) throws Exception {
+        int id = rs.getInt("id");
+        RentalStatus status = RentalStatus.fromInt(rs.getInt("status"));
+        Customer customer = createCustomer(rs);
+        Vehicle vehicle = createVehicle(rs);
+        return new Rental(
+            id,
+            status,
+            customer,
+            vehicle);
+    }
+
+    //  ------------------------------------------------------------------------
     private static Statement createStatement(Connection connection) throws Exception {
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);
@@ -78,11 +91,11 @@ public class Database
 
     //  ------------------------------------------------------------------------
     private static Vehicle createVehicle(ResultSet rs) throws Exception {
-        int id = rs.getInt("id");
-        String make = rs.getString("make");
-        String model = rs.getString("model");
-        Tier tier = Tier.intToTier(rs.getInt("tier"));
-        Status status = Status.intToStatus(rs.getInt("status"));
+        int id = rs.getInt("vehicleId");
+        String make = rs.getString("vehicleMake");
+        String model = rs.getString("vehicleModel");
+        Tier tier = Tier.intToTier(rs.getInt("vehicleTier"));
+        Status status = Status.intToStatus(rs.getInt("vehicleStatus"));
         return new Vehicle(id, make, model, tier, status);
     }
 
@@ -96,7 +109,11 @@ public class Database
         try {
             connection = createConnection();
             statement = createStatement(connection);
-            rs = statement.executeQuery("SELECT * FROM Customers");
+            rs = statement.executeQuery(
+                "SELECT " +
+                "id AS customerID, " +
+                "name AS customerName " +
+                "FROM Customers");
 
             while(rs.next()) {
                 customers.add(createCustomer(rs));
@@ -133,6 +150,45 @@ public class Database
     }
 
     //  ------------------------------------------------------------------------
+    public static List<Rental> queryRentals() throws Exception {
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet rs = null;
+        List<Rental> rentals = new ArrayList<Rental>();
+
+        try {
+            connection = createConnection();
+            statement = createStatement(connection);
+            rs = statement.executeQuery(
+                "SELECT r.*, " +
+                //  Customer columns
+                "c.id AS customerId, " +
+                "c.name AS customerName, " +
+                //  Vehicle columns
+                "v.id AS vehicleID, " +
+                "v.make AS vehicleMake, " +
+                "v.model AS vehicleModel, " +
+                "v.tier AS vehicleTier, " +
+                "v.status AS vehicleStatus " +
+                //  Joins
+                "FROM Rentals AS r " +
+                "JOIN Customers AS c " +
+                "ON r.customerId = c.id " +
+                "JOIN Vehicles AS v " +
+                "ON r.vehicleId = v.id");
+
+            while(rs.next()) {
+                rentals.add(createRental(rs));
+            }
+        }
+        finally {
+            connection.close();
+        }
+
+        return rentals;
+    }
+
+    //  ------------------------------------------------------------------------
     public static List<Vehicle> queryVehicles() throws Exception {
         Connection connection = null;
         Statement statement = null;
@@ -142,7 +198,15 @@ public class Database
         try {
             connection = createConnection();
             statement = createStatement(connection);
-            rs = statement.executeQuery("SELECT * FROM Vehicles");
+            rs = statement.executeQuery(
+                "SELECT " +
+                "id AS vehicleID, " +
+                "make AS vehicleMake, " +
+                "model AS vehicleModel, " +
+                "tier AS vehicleTier, " +
+                "status AS vehicleStatus " +
+                "FROM Vehicles"
+            );
 
             while(rs.next()) {
                 vehicles.add(createVehicle(rs));
