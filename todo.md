@@ -3,9 +3,9 @@
 ## Project Requirements
 
 - [ ] Use of at least three Abstract Data Types
-    1. ListADT interface
-    2. Collection interface (java.util.Collection)
-    3. ?
+    1. [x] ListADT interface
+    2. [x] Collection interface (java.util.Collection)
+    3. [ ] ?
 - [x] Use of inheritance and polymorphism
 - [x] Use of recursion.
     * LinkedList.size() uses recusion.
