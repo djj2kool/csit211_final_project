@@ -7,7 +7,9 @@
     2. Collection interface (java.util.Collection)
     3. ?
 - [x] Use of inheritance and polymorphism
-- [ ] Use of recursion.
+- [x] Use of recursion.
+    * LinkedList.size() uses recusion.
+    * Used to display number of records fetched in GUI.
 - [x] Connection and use of a simple database
 - [ ] At least one sorting algorithm
 - [ ] At least one search algorithm
@@ -39,9 +41,6 @@ For the **three Abstract Data Types** requirement:
 1. ListADT interface -> LinkedList class
 2. Collection interface -> Query class
 3. ?
-
-For the **recursion** requirement:
-- LinkedList uses recursion for its size function (need to actually use it somewhere).
 
 For the **sorting and search algorithms** requirement:
 - Use sort and search algorithms to process database records and generate
