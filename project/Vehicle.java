@@ -14,14 +14,23 @@ public class Vehicle
     private StringProperty make;
     private StringProperty model;
     private Status status;
+    private String vin;
 
     //  ------------------------------------------------------------------------
-    public Vehicle(int id, String make, String model, Tier tier, Status status) {
+    public Vehicle(
+        int id,
+        String make,
+        String model,
+        String vin,
+        Tier tier,
+        Status status
+    ) {
         this.id = id;
         this.tier = tier;
         this.make = new SimpleStringProperty(make);
         this.model = new SimpleStringProperty(model);
         this.status = status;
+        this.vin = vin;
     }
 
     //  ------------------------------------------------------------------------
@@ -62,5 +71,10 @@ public class Vehicle
     //  ------------------------------------------------------------------------
     void setStatus(Status status) {
         this.status = status;
+    }
+
+    //  ------------------------------------------------------------------------
+    public String getVin() {
+        return vin;
     }
 }

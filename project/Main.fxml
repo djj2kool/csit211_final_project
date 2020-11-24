@@ -280,7 +280,7 @@
                                   </TableColumn>
                                     <TableColumn minWidth="100.0" prefWidth="75.0" text="VIN">
                                        <cellValueFactory>
-                                          <PropertyValueFactory property="model" />
+                                          <PropertyValueFactory property="vin" />
                                        </cellValueFactory>
                                     </TableColumn>
                                   <TableColumn prefWidth="112.0" text="Price-per-mile">

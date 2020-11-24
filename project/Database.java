@@ -110,9 +110,10 @@ public class Database
         int id = rs.getInt("vehicleId");
         String make = rs.getString("vehicleMake");
         String model = rs.getString("vehicleModel");
+        String vin = rs.getString("vehicleVin");
         Tier tier = Tier.fromInt(rs.getInt("vehicleTier"));
         Status status = Status.fromInt(rs.getInt("vehicleStatus"));
-        return new Vehicle(id, make, model, tier, status);
+        return new Vehicle(id, make, model, vin, tier, status);
     }
 
     //  ------------------------------------------------------------------------
@@ -184,6 +185,7 @@ public class Database
                 "v.id AS vehicleID, " +
                 "v.make AS vehicleMake, " +
                 "v.model AS vehicleModel, " +
+                "vin AS vehicleVin, " +
                 "v.tier AS vehicleTier, " +
                 "v.status AS vehicleStatus " +
                 //  Joins
@@ -219,6 +221,7 @@ public class Database
                 "id AS vehicleID, " +
                 "make AS vehicleMake, " +
                 "model AS vehicleModel, " +
+                "vin AS vehicleVin, " +
                 "tier AS vehicleTier, " +
                 "status AS vehicleStatus " +
                 "FROM Vehicles"
