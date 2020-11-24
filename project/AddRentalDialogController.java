@@ -4,6 +4,8 @@
 //  Visual Studio Code
 
 import java.net.URL;
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -123,12 +125,18 @@ public class AddRentalDialogController extends DialogController<Rental> implemen
     private void updateEstimatedPrice() {
         double mileage;
         double price;
+        Locale currentLocale;
+        NumberFormat numberFormat;
 
         try {
             if (vehicle != null) {
                 mileage = Double.parseDouble(this.mileageField.getText());
                 price = this.vehicle.calculatePrice(mileage);
-                priceField.setText(Double.toString(price));
+
+                currentLocale = Locale.getDefault();
+                numberFormat = NumberFormat.getCurrencyInstance(currentLocale);
+
+                priceField.setText(numberFormat.format(price));
             }
         } catch (NumberFormatException ex) {
             priceField.setText("");
