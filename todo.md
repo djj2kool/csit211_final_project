@@ -18,7 +18,7 @@
 ## Tasks
 
 - [ ] Add logon dialog.
-- [ ] Add dialog for opening new rental.
+- [x] Add dialog for opening new rental.
     * Enter customer.
     * Enter vehicle.
     * Enter estimated mileage.
