@@ -51,6 +51,8 @@ public class MainController implements Initializable
     @SuppressWarnings("unchecked")  //  Array of generic types causes warning
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<Filter<Rental>> rentalFilters = null;
+
         addRentalDialog = new AddRentalDialog();
 
         //  Rental table view columns
@@ -100,7 +102,7 @@ public class MainController implements Initializable
         });
 
         //  Initialize rental filter combo box
-        ObservableList<Filter<Rental>> rentalFilters =
+        rentalFilters =
             FXCollections.observableArrayList(
                 new Filter<Rental>(
                     "All Rentals",
