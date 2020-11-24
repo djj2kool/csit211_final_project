@@ -7,17 +7,20 @@ public class Customer
 {
     private int id;
     private String name;
+    private String phone;
 
     //  ------------------------------------------------------------------------
-    public Customer(int id, String name) {
+    public Customer(int id, String name, String phone) {
         this.id = id;
         this.name = name;
+        this.phone = phone;
     }
 
     //  ------------------------------------------------------------------------
-    public Customer(String name) {
+    public Customer(String name, String phone) {
         this.id = -1;
         this.name = name;
+        this.phone = phone;
     }
 
     //  ------------------------------------------------------------------------
@@ -28,5 +31,10 @@ public class Customer
     //  ------------------------------------------------------------------------
     public String getName() {
         return name;
+    }
+
+    //  ------------------------------------------------------------------------
+    public String getPhone() {
+        return phone;
     }
 }

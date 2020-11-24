@@ -19,8 +19,9 @@ public class Database
 
         try {
             connection = createConnection();
-            statement = connection.prepareStatement("INSERT INTO `customers`(name) VALUES (?)");
+            statement = connection.prepareStatement("INSERT INTO `customers`(name, phone) VALUES (?, ?)");
             statement.setString(1, customer.getName());
+            statement.setString(2, customer.getPhone());
             statement.executeUpdate();
         }
         finally {
@@ -73,7 +74,8 @@ public class Database
     private static Customer createCustomer(ResultSet rs) throws Exception {
         int id = rs.getInt("customerID");
         String name = rs.getString("customerName");
-        return new Customer(id, name);
+        String phone = rs.getString("customerPhone");
+        return new Customer(id, name, phone);
     }
 
     //  ------------------------------------------------------------------------
@@ -129,7 +131,8 @@ public class Database
             rs = statement.executeQuery(
                 "SELECT " +
                 "id AS customerID, " +
-                "name AS customerName " +
+                "name AS customerName, " +
+                "phone AS customerPhone " +
                 "FROM Customers");
 
             while(rs.next()) {
@@ -181,6 +184,7 @@ public class Database
                 //  Customer columns
                 "c.id AS customerId, " +
                 "c.name AS customerName, " +
+                "c.phone AS customerPhone, " +
                 //  Vehicle columns
                 "v.id AS vehicleID, " +
                 "v.make AS vehicleMake, " +

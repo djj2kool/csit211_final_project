@@ -67,6 +67,11 @@
                                           <PropertyValueFactory property="name" />
                                        </cellValueFactory>
                                     </TableColumn>
+                                    <TableColumn prefWidth="200.0" text="Phone">
+                                       <cellValueFactory>
+                                          <PropertyValueFactory property="phone" />
+                                       </cellValueFactory>
+                                    </TableColumn>
                                  </columns>
                               </TableView>
                            </center>
