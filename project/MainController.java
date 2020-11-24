@@ -6,6 +6,8 @@
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -122,6 +124,12 @@ public class MainController implements Initializable
         refreshEmployees();
         refreshRentals();
         refreshVehicles();
+    }
+
+    //  ------------------------------------------------------------------------
+    @FXML
+    private void onQuit() {
+        Platform.exit();
     }
 
     //  ------------------------------------------------------------------------
