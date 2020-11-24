@@ -21,7 +21,7 @@ public enum Status
     }
 
     //  ------------------------------------------------------------------------
-    static public Status intToStatus(int value) {
+    static public Status fromInt(int value) {
         switch (value) {
             default:
             case AVAILBLE_INT:

@@ -36,7 +36,7 @@ public enum Tier
     }
 
     //  ------------------------------------------------------------------------
-    static public Tier intToTier(int value) {
+    static public Tier fromInt(int value) {
         switch (value) {
             default:
             case ECONOMY_INT:
