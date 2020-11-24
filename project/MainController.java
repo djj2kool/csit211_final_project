@@ -197,6 +197,7 @@ public class MainController implements Initializable
 
         if (customer.isPresent()) {
             Database.addCustomer(customer.get());
+            refreshCustomers();
         }
     }
 
@@ -208,6 +209,7 @@ public class MainController implements Initializable
 
         if (employee.isPresent()) {
             Database.addEmployee(employee.get());
+            refreshEmployees();
         }
     }
 
