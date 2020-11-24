@@ -34,6 +34,7 @@ public class AddEmployeeDialogController extends DialogController<Employee> impl
             UserLevel.ADMIN
         );
         levelComboBox.setItems(levels);
+        levelComboBox.setValue(levels.get(0));
     }
 
     //  ------------------------------------------------------------------------
