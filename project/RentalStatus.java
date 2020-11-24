@@ -30,6 +30,16 @@ public enum RentalStatus
     }
 
     //  ------------------------------------------------------------------------
+    public int toInt() {
+        switch (this) {
+            default:
+            case OPEN:
+                return OPEN_INT;
+            case CLOSED:
+                return CLOSED_INT;        }
+    }
+
+    //  ------------------------------------------------------------------------
     @Override
     public String toString() {
         return this.string;

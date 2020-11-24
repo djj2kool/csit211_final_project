@@ -7,6 +7,6 @@ public class AddEmployeeDialog extends AddDialog<Employee>
 {
     //  ------------------------------------------------------------------------
     public AddEmployeeDialog() {
-        super("Add New Employee", "AddEmployeeDialog.fxml");
+        super("Add New Employee", "AddEmployeeDialog.fxml", true);
     }
 }

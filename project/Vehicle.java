@@ -26,7 +26,7 @@ public class Vehicle
 
     //  ------------------------------------------------------------------------
     public double calculatePrice(double miles) {
-        return miles * Tier.getPricePerMile(tier);
+        return Math.max(0, miles) * Tier.getPricePerMile(tier);
     }
 
     //  ------------------------------------------------------------------------

@@ -47,6 +47,24 @@ public class Database
     }
 
     //  ------------------------------------------------------------------------
+    public static void addRental(Rental rental) throws Exception {
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try {
+            connection = createConnection();
+            statement = connection.prepareStatement("INSERT INTO `rentals`(customerId, vehicleId, status) VALUES (?, ?, ?)");
+            statement.setInt(1, rental.getCustomer().getId());
+            statement.setInt(2, rental.getVehicle().getId());
+            statement.setInt(3, rental.getStatus().toInt());
+            statement.executeUpdate();
+        }
+        finally {
+            connection.close();
+        }
+    }
+
+    //  ------------------------------------------------------------------------
     private static Connection createConnection() throws Exception {
         return DriverManager.getConnection("jdbc:sqlite:app.db");
     }

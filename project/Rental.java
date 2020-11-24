@@ -24,6 +24,17 @@ public class Rental
     }
 
     //  ------------------------------------------------------------------------
+    public Rental(
+        Customer customer,
+        Vehicle vehicle
+    ) {
+        this.id = -1;
+        this.customer = customer;
+        this.status = RentalStatus.OPEN;
+        this.vehicle = vehicle;
+    }
+
+    //  ------------------------------------------------------------------------
     public int getId() {
         return id;
     }

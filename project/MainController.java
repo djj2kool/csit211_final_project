@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Region;
 
@@ -44,10 +45,14 @@ public class MainController implements Initializable
     @FXML private Label rentalCountLabel;
     @FXML private Label vehicleCountLabel;
 
+    AddRentalDialog addRentalDialog = null;
+
     //  ------------------------------------------------------------------------
     @SuppressWarnings("unchecked")  //  Array of generic types causes warning
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        addRentalDialog = new AddRentalDialog();
+
         //  Rental table view columns
         rentalCustomerTableColumn.setCellValueFactory(
             cellData -> Bindings.select(
@@ -69,6 +74,30 @@ public class MainController implements Initializable
             cellData -> Bindings.select(
                 cellData.getValue().getVehicle(),
                 "tier"));
+
+        //  Customer table view mouse click handler
+        customerTableView.setRowFactory( tv -> {
+            TableRow<Customer> row = new TableRow<Customer>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    Customer customer = row.getItem();
+                    addRentalDialog.setCustomer(customer);
+                }
+            });
+            return row ;
+        });
+
+       //  Vehicle table view mouse click handler
+       vehicleTableView.setRowFactory( tv -> {
+            TableRow<Vehicle> row = new TableRow<Vehicle>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    Vehicle vehicle = row.getItem();
+                    addRentalDialog.setVehicle(vehicle);
+                }
+            });
+            return row ;
+        });
 
         //  Initialize rental filter combo box
         ObservableList<Filter<Rental>> rentalFilters =
@@ -178,6 +207,12 @@ public class MainController implements Initializable
         if (employee.isPresent()) {
             Database.addEmployee(employee.get());
         }
+    }
+
+    //  ------------------------------------------------------------------------
+    @FXML
+    private void showAddRentalDialog(ActionEvent event) throws Exception {
+        addRentalDialog.show();
     }
 
     //  ------------------------------------------------------------------------

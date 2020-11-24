@@ -13,11 +13,11 @@ import javafx.stage.StageStyle;
 
 abstract class AddDialog<T>
 {
-    DialogController<T> controller = null;
-    Stage dialogStage = null;
+    protected DialogController<T> controller = null;
+    private Stage dialogStage = null;
 
     //  ------------------------------------------------------------------------
-    public AddDialog(String title, String fxml) {
+    public AddDialog(String title, String fxml, boolean modal) {
         FXMLLoader loader = null;
         Parent root       = null;
         Scene scene       = null;
@@ -29,7 +29,8 @@ abstract class AddDialog<T>
 
             dialogStage = new Stage();
             dialogStage.setTitle(title);
-            dialogStage.initModality(Modality.APPLICATION_MODAL);
+            dialogStage.initModality(
+                modal ? Modality.APPLICATION_MODAL : Modality.NONE);
             dialogStage.initStyle(StageStyle.DECORATED);
             dialogStage.setScene(scene);
 
@@ -47,6 +48,12 @@ abstract class AddDialog<T>
             return Optional.of(value);
         }
         return Optional.empty();
+    }
+
+    //  ------------------------------------------------------------------------
+    public void show() {
+        dialogStage.show();
+        dialogStage.requestFocus();
     }
 
     //  ------------------------------------------------------------------------
