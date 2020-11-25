@@ -6,6 +6,14 @@
 import javafx.stage.Stage;
 
 public abstract class DialogController<T> {
-    abstract T getValue();
-    abstract void setStage(Stage stage);
+    protected Database database;
+
+    public abstract T getValue();
+
+    //  ------------------------------------------------------------------------
+    public void setDatabase(Database database) {
+        this.database = database;
+    }
+
+    public abstract void setStage(Stage stage);
 }

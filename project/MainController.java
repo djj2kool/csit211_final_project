@@ -49,13 +49,17 @@ public class MainController implements Initializable
 
     AddRentalDialog addRentalDialog = null;
 
+    Database database;
+
     //  ------------------------------------------------------------------------
     @SuppressWarnings("unchecked")  //  Array of generic types causes warning
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        this.database = new Database();
+
         ObservableList<Filter<Rental>> rentalFilters = null;
 
-        addRentalDialog = new AddRentalDialog();
+        addRentalDialog = new AddRentalDialog(database);
 
         //  Rental table view columns
         rentalCustomerTableColumn.setCellValueFactory(
@@ -150,7 +154,7 @@ public class MainController implements Initializable
             populateTableView(
                 customerTableView,
                 customerCountLabel,
-                Database.queryCustomers());
+                database.queryCustomers());
         } catch (Exception ex) {
             showDatabaseErrorAlert(ex);
         }
@@ -163,7 +167,7 @@ public class MainController implements Initializable
             populateTableView(
                 employeeTableView,
                 employeeCountLabel,
-                Database.queryEmployees());
+                database.queryEmployees());
         } catch (Exception ex) {
             showDatabaseErrorAlert(ex);
         }
@@ -175,7 +179,7 @@ public class MainController implements Initializable
         Query<Rental> rentals;
         Filter<Rental> filter;
         try {
-            rentals = Database.queryRentals();
+            rentals = database.queryRentals();
             filter = rentalFilterComboBox.getValue();
             rentals = rentals.filter(filter);
             populateTableView(rentalsTableView, rentalCountLabel, rentals);
@@ -191,7 +195,7 @@ public class MainController implements Initializable
             populateTableView(
                 vehicleTableView,
                 vehicleCountLabel,
-                Database.queryVehicles());
+                database.queryVehicles());
         } catch (Exception ex) {
             showDatabaseErrorAlert(ex);
         }
@@ -200,11 +204,11 @@ public class MainController implements Initializable
     //  ------------------------------------------------------------------------
     @FXML
     private void showAddCustomerDialog(ActionEvent event) throws Exception {
-        AddDialog<Customer> dialog = new AddCustomerDialog();
+        AddDialog<Customer> dialog = new AddCustomerDialog(database);
         Optional<Customer> customer = dialog.showAndWait();
 
         if (customer.isPresent()) {
-            Database.addCustomer(customer.get());
+            database.addCustomer(customer.get());
             refreshCustomers();
         }
     }
@@ -212,11 +216,11 @@ public class MainController implements Initializable
     //  ------------------------------------------------------------------------
     @FXML
     private void showAddEmployeeDialog(ActionEvent event) throws Exception {
-        AddDialog<Employee> dialog = new AddEmployeeDialog();
+        AddDialog<Employee> dialog = new AddEmployeeDialog(database);
         Optional<Employee> employee = dialog.showAndWait();
 
         if (employee.isPresent()) {
-            Database.addEmployee(employee.get());
+            database.addEmployee(employee.get());
             refreshEmployees();
         }
     }

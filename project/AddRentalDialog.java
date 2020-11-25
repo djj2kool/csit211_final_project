@@ -6,8 +6,8 @@
 public class AddRentalDialog extends AddDialog<Rental>
 {
     //  ------------------------------------------------------------------------
-    public AddRentalDialog() {
-        super("Add New Rental", "AddRentalDialog.fxml", false);
+    public AddRentalDialog(Database database) {
+        super("Add New Rental", "AddRentalDialog.fxml", database, false);
     }
 
     //  ------------------------------------------------------------------------

@@ -6,7 +6,7 @@
 public class AddCustomerDialog extends AddDialog<Customer>
 {
     //  ------------------------------------------------------------------------
-    public AddCustomerDialog() {
-        super("Add New Customer", "AddCustomerDialog.fxml", true);
+    public AddCustomerDialog(Database database) {
+        super("Add New Customer", "AddCustomerDialog.fxml", database, true);
     }
 }

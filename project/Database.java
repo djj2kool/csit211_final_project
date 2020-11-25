@@ -13,7 +13,7 @@ import java.sql.Statement;
 public class Database
 {
     //  ------------------------------------------------------------------------
-    public static void addCustomer(Customer customer) throws Exception {
+    public void addCustomer(Customer customer) throws Exception {
         Connection connection = null;
         PreparedStatement statement = null;
 
@@ -30,7 +30,7 @@ public class Database
     }
 
     //  ------------------------------------------------------------------------
-    public static void addEmployee(Employee employee) throws Exception {
+    public void addEmployee(Employee employee) throws Exception {
         Connection connection = null;
         PreparedStatement statement = null;
 
@@ -48,7 +48,7 @@ public class Database
     }
 
     //  ------------------------------------------------------------------------
-    public static void addRental(Rental rental) throws Exception {
+    public void addRental(Rental rental) throws Exception {
         Connection connection = null;
         PreparedStatement statement = null;
 
@@ -66,12 +66,12 @@ public class Database
     }
 
     //  ------------------------------------------------------------------------
-    private static Connection createConnection() throws Exception {
+    private Connection createConnection() throws Exception {
         return DriverManager.getConnection("jdbc:sqlite:app.db");
     }
 
     //  ------------------------------------------------------------------------
-    private static Customer createCustomer(ResultSet rs) throws Exception {
+    private Customer createCustomer(ResultSet rs) throws Exception {
         int id = rs.getInt("customerID");
         String name = rs.getString("customerName");
         String phone = rs.getString("customerPhone");
@@ -79,7 +79,7 @@ public class Database
     }
 
     //  ------------------------------------------------------------------------
-    private static Employee createEmployee(ResultSet rs) throws Exception {
+    private Employee createEmployee(ResultSet rs) throws Exception {
         int id = rs.getInt("id");
         String name = rs.getString("name");
         String title = rs.getString("title");
@@ -88,7 +88,7 @@ public class Database
     }
 
     //  ------------------------------------------------------------------------
-    private static Rental createRental(ResultSet rs) throws Exception {
+    private Rental createRental(ResultSet rs) throws Exception {
         int id = rs.getInt("id");
         RentalStatus status = RentalStatus.fromInt(rs.getInt("status"));
         Customer customer = createCustomer(rs);
@@ -101,14 +101,14 @@ public class Database
     }
 
     //  ------------------------------------------------------------------------
-    private static Statement createStatement(Connection connection) throws Exception {
+    private Statement createStatement(Connection connection) throws Exception {
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);
         return statement;
     }
 
     //  ------------------------------------------------------------------------
-    private static Vehicle createVehicle(ResultSet rs) throws Exception {
+    private Vehicle createVehicle(ResultSet rs) throws Exception {
         int id = rs.getInt("vehicleId");
         String make = rs.getString("vehicleMake");
         String model = rs.getString("vehicleModel");
@@ -119,7 +119,7 @@ public class Database
     }
 
     //  ------------------------------------------------------------------------
-    public static Query<Customer> queryCustomers() throws Exception {
+    public Query<Customer> queryCustomers() throws Exception {
         Connection connection = null;
         Statement statement = null;
         ResultSet rs = null;
@@ -147,7 +147,7 @@ public class Database
     }
 
     //  ------------------------------------------------------------------------
-    public static Query<Employee> queryEmployees() throws Exception {
+    public Query<Employee> queryEmployees() throws Exception {
         Connection connection = null;
         Statement statement = null;
         ResultSet rs = null;
@@ -170,7 +170,7 @@ public class Database
     }
 
     //  ------------------------------------------------------------------------
-    public static Query<Rental> queryRentals() throws Exception {
+    public Query<Rental> queryRentals() throws Exception {
         Connection connection = null;
         Statement statement = null;
         ResultSet rs = null;
@@ -211,7 +211,7 @@ public class Database
     }
 
     //  ------------------------------------------------------------------------
-    public static Query<Vehicle> queryVehicles() throws Exception {
+    public Query<Vehicle> queryVehicles() throws Exception {
         Connection connection = null;
         Statement statement = null;
         ResultSet rs = null;

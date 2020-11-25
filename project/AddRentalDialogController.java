@@ -64,7 +64,7 @@ public class AddRentalDialogController extends DialogController<Rental> implemen
         try {
             if (customer != null && vehicle != null) {
                 rental = new Rental(customer, vehicle);
-                Database.addRental(rental);
+                database.addRental(rental);
 
                 close();
             }

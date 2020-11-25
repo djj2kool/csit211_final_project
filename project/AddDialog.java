@@ -17,7 +17,12 @@ abstract class AddDialog<T>
     private Stage dialogStage = null;
 
     //  ------------------------------------------------------------------------
-    public AddDialog(String title, String fxml, boolean modal) {
+    public AddDialog(
+        String title,
+        String fxml,
+        Database database,
+        boolean modal
+    ) {
         FXMLLoader loader = null;
         Parent root       = null;
         Scene scene       = null;
@@ -35,6 +40,7 @@ abstract class AddDialog<T>
             dialogStage.setScene(scene);
 
             controller = loader.getController();
+            controller.setDatabase(database);
             controller.setStage(dialogStage);
         }
         catch (Exception ex) {
