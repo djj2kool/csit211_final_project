@@ -55,7 +55,7 @@ public class MainController implements Initializable
     @SuppressWarnings("unchecked")  //  Array of generic types causes warning
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.database = new Database();
+        this.database = new MockDatabase();
 
         ObservableList<Filter<Rental>> rentalFilters = null;
 

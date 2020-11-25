@@ -10,6 +10,14 @@ public class LinkedList<T> implements Iterable<T>, ListADT<T> {
     LinkedNode<T> tail = null;
 
     // ------------------------------------------------------------------------
+    @SafeVarargs
+    LinkedList(T ... elements) {
+        for (T element : elements) {
+            append(element);
+        }
+    }
+
+    // ------------------------------------------------------------------------
     public void append(T element) {
         LinkedNode<T> node = new LinkedNode<>(element);
 
