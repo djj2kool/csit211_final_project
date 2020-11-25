@@ -1,5 +1,6 @@
 # CSIT211 Final Project
 
-## Dependencies
+## Notes
 
-[SQLite JDBC Driver](https://github.com/xerial/sqlite-jdbc)
+The unused SqlLiteDatabase class requires the
+[SQLite JDBC Driver](https://github.com/xerial/sqlite-jdbc).
