@@ -41,56 +41,56 @@ public class MockDatabase implements Database
             "RLX",
             "VIN0001",
             Tier.PREMIUM,
-            Status.AVAILABLE),
+            VehicleStatus.AVAILABLE),
         new Vehicle(
             2,
             "Toyota",
             "Corolla",
             "VIN0002",
             Tier.ECONOMY,
-            Status.AVAILABLE),
+            VehicleStatus.AVAILABLE),
         new Vehicle(
             3,
             "Ford",
             "Focus",
             "VIN0003",
             Tier.ECONOMY,
-            Status.AVAILABLE),
+            VehicleStatus.AVAILABLE),
         new Vehicle(
             4,
             "Peugeot",
             "205 T16",
             "VIN0004",
             Tier.PREMIUM,
-            Status.AVAILABLE),
+            VehicleStatus.AVAILABLE),
         new Vehicle(
             5,
             "Citroen",
             "C4",
             "VIN0005",
             Tier.STANDARD,
-            Status.AVAILABLE),
+            VehicleStatus.AVAILABLE),
         new Vehicle(
             6,
             "Lancia",
             "Stratos",
             "VIN0006",
             Tier.LUXURY,
-            Status.AVAILABLE),
+            VehicleStatus.AVAILABLE),
         new Vehicle(
             7,
             "Opel",
             "Ascona",
             "VIN0007",
             Tier.STANDARD,
-            Status.AVAILABLE),
+            VehicleStatus.AVAILABLE),
         new Vehicle(
             8,
             "Toyota",
             "4Runner",
             "VIN0008",
             Tier.FULL_SIZE,
-            Status.AVAILABLE)
+            VehicleStatus.AVAILABLE)
         );
 
     LinkedList<DatabaseListener> listeners = new LinkedList<DatabaseListener>();
@@ -122,11 +122,11 @@ public class MockDatabase implements Database
             throw new DatabaseException("Rental status is invalid.");
         }
 
-        if (rental.getVehicle().getStatus() != Status.AVAILABLE) {
+        if (rental.getVehicle().getStatus() != VehicleStatus.AVAILABLE) {
             throw new DatabaseException("Vehicle status is invalid.");
         }
 
-        rental.getVehicle().setStatus(Status.CHECKED_OUT);
+        rental.getVehicle().setStatus(VehicleStatus.CHECKED_OUT);
 
         rentals.append(rental);
 

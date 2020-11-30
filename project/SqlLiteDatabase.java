@@ -123,7 +123,7 @@ public class SqlLiteDatabase implements Database
         String model = rs.getString("vehicleModel");
         String vin = rs.getString("vehicleVin");
         Tier tier = Tier.fromInt(rs.getInt("vehicleTier"));
-        Status status = Status.fromInt(rs.getInt("vehicleStatus"));
+        VehicleStatus status = VehicleStatus.fromInt(rs.getInt("vehicleStatus"));
         return new Vehicle(id, make, model, vin, tier, status);
     }
 

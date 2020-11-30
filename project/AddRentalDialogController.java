@@ -107,7 +107,7 @@ public class AddRentalDialogController extends DialogController<Rental> implemen
     void setVehicle(Vehicle vehicle) {
         String description;
 
-        if (vehicle != null && vehicle.getStatus() == Status.AVAILABLE) {
+        if (vehicle != null && vehicle.getStatus() == VehicleStatus.AVAILABLE) {
             description = String.format(
                 "%s %s",
                 vehicle.getMake(),

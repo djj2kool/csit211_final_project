@@ -1,9 +1,9 @@
 //  Darren Jackson, Chintan Rami, Louis Slavotinek, Raymond Zegles
-//  Status.java
+//  VehicleStatus.java
 //  Rental vehicle status.
 //  Visual Studio Code
 
-public enum Status
+public enum VehicleStatus
 {
     AVAILABLE("Available"),
     MAINTENANCE("Maintenance"),
@@ -16,12 +16,12 @@ public enum Status
     private final String string;
 
     //  ------------------------------------------------------------------------
-    private Status(String string) {
+    private VehicleStatus(String string) {
         this.string = string;
     }
 
     //  ------------------------------------------------------------------------
-    static public Status fromInt(int value) {
+    static public VehicleStatus fromInt(int value) {
         switch (value) {
             default:
             case AVAILBLE_INT:

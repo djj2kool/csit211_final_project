@@ -9,7 +9,7 @@ public class Vehicle
     private int id;
     private String make;
     private String model;
-    private Status status;
+    private VehicleStatus status;
     private String vin;
 
     /**
@@ -27,7 +27,7 @@ public class Vehicle
         String model,
         String vin,
         Tier tier,
-        Status status
+        VehicleStatus status
     ) {
         this.id = id;
         this.tier = tier;
@@ -83,7 +83,7 @@ public class Vehicle
      * i.e. if it's available, in maintaince, rented, etc.
      * @return  status
      */
-    public Status getStatus() {
+    public VehicleStatus getStatus() {
         return status;
     }
 
@@ -100,7 +100,7 @@ public class Vehicle
      * @param status new status of vehicle
      * @return  status
      */
-    void setStatus(Status status) {
+    void setStatus(VehicleStatus status) {
         this.status = status;
     }
 
