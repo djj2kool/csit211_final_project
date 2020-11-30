@@ -103,6 +103,16 @@ public class MockDatabase implements Database
 
     //  ------------------------------------------------------------------------
     public void addRental(Rental rental) throws Exception {
+        if (rental.getStatus() != RentalStatus.OPEN) {
+            throw new DatabaseException("Rental status is invalid.");
+        }
+
+        if (rental.getVehicle().getStatus() != Status.AVAILABLE) {
+            throw new DatabaseException("Vehicle status is invalid.");
+        }
+
+        rental.getVehicle().setStatus(Status.CHECKED_OUT);
+
         rentals.append(rental);
     }
 
