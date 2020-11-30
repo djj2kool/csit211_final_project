@@ -1,5 +1,3 @@
-import java.net.http.WebSocket.Listener;
-
 //  Darren Jackson, Chintan Rami, Louis Slavotinek, Raymond Zegles
 //  MockDatabase.java
 //  Mock application database.
