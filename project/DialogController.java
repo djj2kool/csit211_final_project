@@ -6,14 +6,30 @@
 import javafx.stage.Stage;
 
 public abstract class DialogController<T> {
-    protected Database database;
+    protected Database database = null;
+    protected Stage stage = null;
 
+    /**
+     * Gets the value this dialog should return.
+     * (e.g. a dialog to create a new Customer should return the resulting
+     * Customer instance)
+     * @return
+     */
     public abstract T getValue();
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Sets the database instance available to this dialog.
+     * @param database
+     */
     public void setDatabase(Database database) {
         this.database = database;
     }
 
-    public abstract void setStage(Stage stage);
+    /**
+     * Sets the stage instance available to this dialog.
+     * @param stage
+     */
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
 }

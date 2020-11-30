@@ -13,7 +13,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 public class AddEmployeeDialogController extends DialogController<Employee> implements Initializable
 {
@@ -21,7 +20,6 @@ public class AddEmployeeDialogController extends DialogController<Employee> impl
     @FXML private TextField titleField;
     @FXML private ComboBox<UserLevel> levelComboBox;
 
-    Stage stage;
     Employee employee = null;
 
     //  ------------------------------------------------------------------------
@@ -56,10 +54,5 @@ public class AddEmployeeDialogController extends DialogController<Employee> impl
     @FXML
     private void onCancelButton(ActionEvent event) {
         stage.close();
-    }
-
-    //  ------------------------------------------------------------------------
-    public void setStage(Stage stage) {
-        this.stage = stage;
     }
 }

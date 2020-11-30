@@ -9,14 +9,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 public class AddCustomerDialogController extends DialogController<Customer> implements Initializable
 {
     @FXML private TextField nameField;
     @FXML private TextField phoneField;
 
-    Stage stage;
     Customer customer = null;
 
     //  ------------------------------------------------------------------------
@@ -42,10 +40,5 @@ public class AddCustomerDialogController extends DialogController<Customer> impl
     @FXML
     private void onCancelButton(ActionEvent event) {
         stage.close();
-    }
-
-    //  ------------------------------------------------------------------------
-    public void setStage(Stage stage) {
-        this.stage = stage;
     }
 }

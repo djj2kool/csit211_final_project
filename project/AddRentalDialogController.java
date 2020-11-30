@@ -13,7 +13,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 public class AddRentalDialogController extends DialogController<Rental> implements Initializable
 {
@@ -22,7 +21,6 @@ public class AddRentalDialogController extends DialogController<Rental> implemen
     @FXML private TextField priceField;
     @FXML private TextField vehicleField;
 
-    Stage stage;
     Customer customer = null;
     Rental rental = null;
     Vehicle vehicle = null;
@@ -96,11 +94,6 @@ public class AddRentalDialogController extends DialogController<Rental> implemen
         this.customer = customer;
         description = customer != null ? customer.getName() : "";
         this.customerField.setText(description);
-    }
-
-    //  ------------------------------------------------------------------------
-    public void setStage(Stage stage) {
-        this.stage = stage;
     }
 
     //  ------------------------------------------------------------------------
