@@ -23,7 +23,7 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Region;
 
-public class MainController implements Initializable
+public class MainController implements DatabaseListener, Initializable
 {
     @FXML private Button refreshVehiclesButton;
 
@@ -56,6 +56,7 @@ public class MainController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.database = new MockDatabase();
+        this.database.addListener(this);
 
         ObservableList<Filter<Rental>> rentalFilters = null;
 
@@ -123,17 +124,18 @@ public class MainController implements Initializable
         rentalFilterComboBox.setItems(rentalFilters);
         rentalFilterComboBox.setValue(rentalFilters.get(0));
 
-        //  Refresh table views
-        refreshCustomers();
-        refreshEmployees();
-        refreshRentals();
-        refreshVehicles();
+        refreshTableViews();
     }
 
     //  ------------------------------------------------------------------------
     @FXML
     private void onQuit() {
         Platform.exit();
+    }
+
+    //  ------------------------------------------------------------------------
+    public void onRecordAdded() {
+        refreshTableViews();
     }
 
     //  ------------------------------------------------------------------------
@@ -186,6 +188,14 @@ public class MainController implements Initializable
         } catch (Exception ex) {
             showDatabaseErrorAlert(ex);
         }
+    }
+
+    //  ------------------------------------------------------------------------
+    private void refreshTableViews() {
+        refreshCustomers();
+        refreshEmployees();
+        refreshRentals();
+        refreshVehicles();
     }
 
     //  ------------------------------------------------------------------------

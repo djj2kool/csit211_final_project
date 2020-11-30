@@ -1,3 +1,5 @@
+import java.net.http.WebSocket.Listener;
+
 //  Darren Jackson, Chintan Rami, Louis Slavotinek, Raymond Zegles
 //  MockDatabase.java
 //  Mock application database.
@@ -91,14 +93,27 @@ public class MockDatabase implements Database
             Status.AVAILABLE)
         );
 
+    LinkedList<DatabaseListener> listeners = new LinkedList<DatabaseListener>();
+
     //  ------------------------------------------------------------------------
     public void addCustomer(Customer customer) throws Exception {
         customers.append(customer);
+
+        onRecordAdded();
     }
 
     //  ------------------------------------------------------------------------
     public void addEmployee(Employee employee) throws Exception {
         employees.append(employee);
+
+        onRecordAdded();
+    }
+
+    //  ------------------------------------------------------------------------
+    public void addListener(DatabaseListener listener) {
+        if (listener != null) {
+            listeners.append(listener);
+        }
     }
 
     //  ------------------------------------------------------------------------
@@ -114,6 +129,8 @@ public class MockDatabase implements Database
         rental.getVehicle().setStatus(Status.CHECKED_OUT);
 
         rentals.append(rental);
+
+        onRecordAdded();
     }
 
     //  ------------------------------------------------------------------------
@@ -134,5 +151,12 @@ public class MockDatabase implements Database
     //  ------------------------------------------------------------------------
     public Query<Vehicle> queryVehicles() throws Exception {
         return new Query<Vehicle>(vehicles);
+    }
+
+    //  ------------------------------------------------------------------------
+    private void onRecordAdded() {
+        for (DatabaseListener listener : listeners) {
+            listener.onRecordAdded();
+        }
     }
 }

@@ -12,6 +12,8 @@ import java.sql.Statement;
 
 public class SqlLiteDatabase implements Database
 {
+    LinkedList<DatabaseListener> listeners = new LinkedList<DatabaseListener>();
+
     //  ------------------------------------------------------------------------
     public void addCustomer(Customer customer) throws Exception {
         Connection connection = null;
@@ -44,6 +46,13 @@ public class SqlLiteDatabase implements Database
         }
         finally {
             connection.close();
+        }
+    }
+
+    //  ------------------------------------------------------------------------
+    public void addListener(DatabaseListener listener) {
+        if (listener != null) {
+            listeners.append(listener);
         }
     }
 
