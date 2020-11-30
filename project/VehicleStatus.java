@@ -5,22 +5,42 @@
 
 public enum VehicleStatus
 {
+    /**
+     * Vehicle is available for rental.
+     */
     AVAILABLE("Available"),
+    /**
+     * Vehicle is under maintainence and not available for rental.
+     */
     MAINTENANCE("Maintenance"),
+    /**
+     * Vehicle is currently being rented.
+     */
     CHECKED_OUT("Checked-Out");
 
+    //  Database ID values
     final static int AVAILBLE_INT    = 0;
     final static int MAINTENANCE_INT = 1;
     final static int CHECKED_OUT_INT = 2;
 
+    /**
+     * Display string describing this enum.
+     */
     private final String string;
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Constructs a VehicleStatus enum.
+     * @param string String for toString method to return
+     */
     private VehicleStatus(String string) {
         this.string = string;
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Converts an int to a VehicleStatus enum.
+     * @param value int value to convert from
+     * @return status VehicleStatus matching specified int
+     */
     static public VehicleStatus fromInt(int value) {
         switch (value) {
             default:
@@ -33,7 +53,10 @@ public enum VehicleStatus
         }
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Returns a display String for this enum.
+     * @return string
+     */
     @Override
     public String toString() {
         return this.string;
