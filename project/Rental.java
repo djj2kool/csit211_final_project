@@ -5,12 +5,23 @@
 
 public class Rental
 {
+    /** Used when database generated ID is not yet assigned */
+    private final static int ID_UNASSIGNED = -1;
+
+    /** Unique ID (database key) */
     private int id;
     private RentalStatus status;
     private Customer customer;
     private Vehicle vehicle;
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Constructs a Rental instance when the ID is known (e.g. from a database
+     * record)
+     * @param id Unique ID (database key)
+     * @param status
+     * @param customer
+     * @param vehicle
+     */
     public Rental(
         int id,
         RentalStatus status,
@@ -23,38 +34,55 @@ public class Rental
         this.vehicle = vehicle;
     }
 
-    //  ------------------------------------------------------------------------
-    public Rental(
-        Customer customer,
-        Vehicle vehicle
-    ) {
-        this.id = -1;
+    /**
+     * Constructs a Rental instance when the ID is not yet known (e.g. when
+     * creating an object that will be added to the database later)
+     * @param customer
+     * @param vehicle
+     */
+    public Rental(Customer customer, Vehicle vehicle) {
+        this.id = ID_UNASSIGNED;
         this.customer = customer;
         this.status = RentalStatus.OPEN;
         this.vehicle = vehicle;
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Gets the unique ID (database key)
+     * @return ID
+     */
     public int getId() {
         return id;
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Gets the customer.
+     * @return Customer
+     */
     public Customer getCustomer() {
         return customer;
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Gets the rental status.
+     * @return RentalStatus
+     */
     public RentalStatus getStatus() {
         return status;
     }
 
-    //  ------------------------------------------------------------------------
-    void setStatus(RentalStatus status) {
+    /**
+     * Sets the rental status.
+     * @param status
+     */
+    public void setStatus(RentalStatus status) {
         this.status = status;
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     *  Gets the vehicle.
+     *  @return Vehicle
+     */
     public Vehicle getVehicle() {
         return vehicle;
     }
