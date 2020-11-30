@@ -26,8 +26,8 @@
 - [ ] Add dialog for closing a rental.
     * Enter mileage.
     * Calculates total price.
-- [ ] Add dialog for entering new customers.
-- [ ] Add dialog for entering new employees.
+- [x] Add dialog for entering new customers.
+- [x] Add dialog for entering new employees.
 - [ ] Restrict user access.
     * Associates can add rentals and add vehicles.
     * Executives can add new employees.
