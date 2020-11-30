@@ -232,16 +232,6 @@
                                        </tooltip>
                                     </Button>
                                     <Button id="addVehicleButton" fx:id="addVehicleButton" mnemonicParsing="false" onAction="#showAddVehicleDialog" text="Add Vehicle" />
-                                    <Button id="addVehicleButton" fx:id="checkOutButton" layoutX="90.0" layoutY="14.0" mnemonicParsing="false" text="Check-out">
-                                       <tooltip>
-                                          <Tooltip text="Closes an existing rental agreement." />
-                                       </tooltip>
-                                    </Button>
-                                    <Button id="addVehicleButton" fx:id="maintenanceButton" layoutX="277.0" layoutY="14.0" mnemonicParsing="false" text="Maintenance">
-                                       <tooltip>
-                                          <Tooltip text="Opens or closes a vehicle service ticket." />
-                                       </tooltip>
-                                    </Button>
                                  </children>
                                  <BorderPane.margin>
                                     <Insets />

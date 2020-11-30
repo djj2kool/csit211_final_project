@@ -25,8 +25,6 @@ import javafx.scene.layout.Region;
 
 public class MainController implements DatabaseListener, Initializable
 {
-    @FXML private Button refreshVehiclesButton;
-
     @FXML private ComboBox<Filter<Rental>> rentalFilterComboBox;
 
     @FXML private TableView<Customer> customerTableView;
