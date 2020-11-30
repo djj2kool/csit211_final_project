@@ -29,6 +29,12 @@ public interface Database
      */
     public void addRental(Rental rental) throws Exception;
     /**
+     * Adds a new Vehicle record.
+     * @param vehicle Vehicle to add to database
+     * @throws Exception
+     */
+    public void addVehicle(Vehicle vehicle) throws Exception;
+    /**
      * Returns a Query containing Customer records from the database.
      * @return Query containing Customer records from the database.
      * @throws Exception

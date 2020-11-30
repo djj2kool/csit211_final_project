@@ -242,6 +242,18 @@ public class MainController implements DatabaseListener, Initializable
     }
 
     //  ------------------------------------------------------------------------
+    @FXML
+    private void showAddVehicleDialog(ActionEvent event) throws Exception {
+        AddDialog<Vehicle> dialog = new AddVehicleDialog(database);
+        Optional<Vehicle> vehicle = dialog.showAndWait();
+
+        if (vehicle.isPresent()) {
+            database.addVehicle(vehicle.get());
+            refreshVehicles();
+        }
+    }
+
+    //  ------------------------------------------------------------------------
     private void showDatabaseErrorAlert(Exception ex) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Database Connection Error");

@@ -5,7 +5,11 @@
 
 public class Vehicle
 {
+    /** Used when database generated ID is not yet assigned */
+    private final static int ID_UNASSIGNED = -1;
+
     private Tier tier;
+    /** Unique ID (database key) */
     private int id;
     private String make;
     private String model;
@@ -13,7 +17,8 @@ public class Vehicle
     private String vin;
 
     /**
-     * Constructs a Vehicle.
+     * Constructs a Vehicle instance when the ID is known (e.g. from a database
+     * record)
      * @param   id   Unique vehicle ID (database key)
      * @param   make Vehicle make (manufacturer)
      * @param   model Vehicle model
@@ -34,6 +39,28 @@ public class Vehicle
         this.make = make;
         this.model = model;
         this.status = status;
+        this.vin = vin;
+    }
+
+    /**
+     * Constructs a Vehicle instance when the ID is not yet known (e.g. when
+     * creating an object that will be added to the database later)
+     * @param   make Vehicle make (manufacturer)
+     * @param   model Vehicle model
+     * @param   vin Vehicle Identification Number
+     * @param   tier
+     */
+    public Vehicle(
+        String make,
+        String model,
+        String vin,
+        Tier tier
+    ) {
+        this.id = ID_UNASSIGNED;
+        this.tier = tier;
+        this.make = make;
+        this.model = model;
+        this.status = VehicleStatus.AVAILABLE;
         this.vin = vin;
     }
 

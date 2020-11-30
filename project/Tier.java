@@ -76,6 +76,25 @@ public enum Tier
     }
 
     //  ------------------------------------------------------------------------
+    public int toInt() {
+        switch (this) {
+            default:
+            case ECONOMY:
+                return ECONOMY_INT;
+            case COMPACT:
+                return COMPACT_INT;
+            case STANDARD:
+                return STANDARD_INT;
+            case FULL_SIZE:
+                return FULL_SIZE_INT;
+            case PREMIUM:
+                return PREMIUM_INT;
+            case LUXURY:
+                return LUXURY_INT;
+        }
+    }
+
+    //  ------------------------------------------------------------------------
     @Override
     public String toString() {
         return this.string;

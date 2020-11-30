@@ -231,7 +231,7 @@
                                           <Tooltip text="Refreshes vehicle list from database." />
                                        </tooltip>
                                     </Button>
-                                    <Button id="addVehicleButton" fx:id="addVehicleButton" mnemonicParsing="false" text="Add Vehicle" />
+                                    <Button id="addVehicleButton" fx:id="addVehicleButton" mnemonicParsing="false" onAction="#showAddVehicleDialog" text="Add Vehicle" />
                                     <Button id="addVehicleButton" fx:id="checkOutButton" layoutX="90.0" layoutY="14.0" mnemonicParsing="false" text="Check-out">
                                        <tooltip>
                                           <Tooltip text="Closes an existing rental agreement." />

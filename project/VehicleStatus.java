@@ -54,6 +54,22 @@ public enum VehicleStatus
     }
 
     /**
+     * Converts this VehicleStatus enum to an int.
+     * @return int value matching this enum
+     */
+    public int toInt() {
+        switch (this) {
+            default:
+            case AVAILABLE:
+                return AVAILBLE_INT;
+            case MAINTENANCE:
+                return MAINTENANCE_INT;
+            case CHECKED_OUT:
+                return CHECKED_OUT_INT;
+        }
+    }
+
+    /**
      * Returns a display String for this enum.
      * @return string
      */

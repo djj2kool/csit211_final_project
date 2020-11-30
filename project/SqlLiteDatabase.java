@@ -75,6 +75,26 @@ public class SqlLiteDatabase implements Database
     }
 
     //  ------------------------------------------------------------------------
+    public void addVehicle(Vehicle vehicle) throws Exception {
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try {
+            connection = createConnection();
+            statement = connection.prepareStatement("INSERT INTO `vehicles`(make, model, tier, status, vin) VALUES (?, ?, ?, ?, ?)");
+            statement.setString(1, vehicle.getMake());
+            statement.setString(2, vehicle.getModel());
+            statement.setInt(3, vehicle.getTier().toInt());
+            statement.setInt(4, vehicle.getStatus().toInt());
+            statement.setString(5, vehicle.getVin());
+            statement.executeUpdate();
+        }
+        finally {
+            connection.close();
+        }
+    }
+
+    //  ------------------------------------------------------------------------
     private Connection createConnection() throws Exception {
         return DriverManager.getConnection("jdbc:sqlite:app.db");
     }

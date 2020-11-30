@@ -132,6 +132,13 @@ public class MockDatabase implements Database
     }
 
     //  ------------------------------------------------------------------------
+    public void addVehicle(Vehicle vehicle) throws Exception {
+        vehicles.append(vehicle);
+
+        onRecordAdded();
+    }
+
+    //  ------------------------------------------------------------------------
     public Query<Customer> queryCustomers() throws Exception {
         return new Query<Customer>(customers);
     }
