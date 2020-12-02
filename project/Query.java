@@ -3,6 +3,7 @@
 //  Query collection: filterable read-only collection of elements.
 //  Visual Studio Code
 
+import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -117,5 +118,19 @@ public class Query<T> implements Collection<T>
         //  For Collection interface.
         //  Query should be read-only.
         throw new UnsupportedOperationException();
+    }
+
+    //  ------------------------------------------------------------------------
+    @SuppressWarnings("unchecked")
+    public T[] toArrayT(Class<T> clazz) {
+        int index = 0;
+        int length = size();
+        T[] a = (T[])(Array.newInstance(clazz, length));
+
+        for (T element : this) {
+            a[index++] = element;
+        }
+
+        return a;
     }
 }

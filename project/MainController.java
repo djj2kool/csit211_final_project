@@ -145,6 +145,25 @@ public class MainController implements DatabaseListener, Initializable
     }
 
     /**
+     * Exports a rental report.
+     */
+    @FXML
+    private void onExportRentalsReport() {
+        try {
+            RentalComparator comparator = new RentalComparator();
+            Query<Rental> query = database.queryRentals();
+            Rental[] sorted = Sort.mergeSort(Rental.class, query, comparator);
+
+            //  TODO: Export to report
+            for (Rental rental : sorted) {
+                System.out.println(rental.getId());
+            }
+        } catch (Exception ex) {
+            showDatabaseErrorAlert(ex);
+        }
+    }
+
+    /**
      * Quits the application.
      */
     @FXML
