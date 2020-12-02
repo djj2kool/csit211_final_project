@@ -23,17 +23,17 @@ public class AddCustomerDialogController extends DialogController<Customer> impl
     }
 
     //  ------------------------------------------------------------------------
+    public Customer getValue() {
+        return customer;
+    }
+
+    //  ------------------------------------------------------------------------
     @FXML
     private void onAddButton(ActionEvent event) {
         String name = nameField.getText();
         String phone = phoneField.getText();
         customer = new Customer(name, phone);
         stage.close();
-    }
-
-    //  ------------------------------------------------------------------------
-    public Customer getValue() {
-        return customer;
     }
 
     //  ------------------------------------------------------------------------
