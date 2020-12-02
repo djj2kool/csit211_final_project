@@ -20,7 +20,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
+<VBox prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainController">
   <children>
     <MenuBar VBox.vgrow="NEVER">
       <menus>
@@ -197,6 +197,16 @@
                                     <TableColumn fx:id="rentalPricePerMileTableColumn" prefWidth="112.0" text="Price-per-mile">
                                        <cellValueFactory>
                                           <PropertyValueFactory property="pricePerMile" />
+                                       </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn prefWidth="112.0" text="Mileage">
+                                       <cellValueFactory>
+                                          <PropertyValueFactory property="mileage" />
+                                       </cellValueFactory>
+                                    </TableColumn>
+                                    <TableColumn prefWidth="112.0" text="Price">
+                                       <cellValueFactory>
+                                          <PropertyValueFactory property="price" />
                                        </cellValueFactory>
                                     </TableColumn>
                                     <TableColumn prefWidth="110.0" text="Status">
