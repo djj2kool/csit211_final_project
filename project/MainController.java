@@ -44,11 +44,15 @@ public class MainController implements DatabaseListener, Initializable
     @FXML private Label rentalCountLabel;
     @FXML private Label vehicleCountLabel;
 
+    //  Modeless dialog used to add new rentals
     AddRentalDialog addRentalDialog = null;
 
+    //  Application database
     Database database;
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Initializes the controller.
+     */
     @SuppressWarnings("unchecked")  //  Array of generic types causes warning
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -60,6 +64,7 @@ public class MainController implements DatabaseListener, Initializable
         addRentalDialog = new AddRentalDialog(database);
 
         //  Rental table view columns
+        //  To access the customer and vehicle properties
         rentalCustomerTableColumn.setCellValueFactory(
             cellData -> Bindings.select(
                 cellData.getValue().getCustomer(),
@@ -82,6 +87,7 @@ public class MainController implements DatabaseListener, Initializable
                 "tier"));
 
         //  Customer table view mouse click handler
+        //  When a customer is double-clicked use it in the add rental dialog
         customerTableView.setRowFactory(tv -> {
             TableRow<Customer> row = new TableRow<Customer>();
             row.setOnMouseClicked(event -> {
@@ -94,6 +100,7 @@ public class MainController implements DatabaseListener, Initializable
         });
 
         //  Rental table view mouse click handler
+        //  When a rental is double-clicked use it in the edit rental dialog
         rentalsTableView.setRowFactory(tv -> {
             TableRow<Rental> row = new TableRow<Rental>();
             row.setOnMouseClicked(event -> {
@@ -105,8 +112,8 @@ public class MainController implements DatabaseListener, Initializable
             return row;
         });
 
-
         //  Vehicle table view mouse click handler
+        //  When a vehicle is double-clicked use it in the add rental dialog
         vehicleTableView.setRowFactory(tv -> {
             TableRow<Vehicle> row = new TableRow<Vehicle>();
             row.setOnMouseClicked(event -> {
@@ -137,18 +144,28 @@ public class MainController implements DatabaseListener, Initializable
         refreshTableViews();
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Quits the application.
+     */
     @FXML
     private void onQuit() {
         Platform.exit();
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Refreshes all table views after a new database record is added.
+     */
     public void onRecordAdded() {
         refreshTableViews();
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Sets the items of a table view and updates the status bar.
+     * @param <T> table view item type
+     * @param tableView table view to populate
+     * @param countLabel status bar label to update
+     * @param query elements to populate table view with
+     */
     private <T> void populateTableView(
         TableView<T> tableView,
         Label countLabel,
@@ -159,7 +176,9 @@ public class MainController implements DatabaseListener, Initializable
         tableView.getItems().setAll(query);
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Refreshes the customer table view with records from the database.
+     */
     @FXML
     private void refreshCustomers() {
         try {
@@ -172,7 +191,9 @@ public class MainController implements DatabaseListener, Initializable
         }
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Refreshes the employee table view with records from the database.
+     */
     @FXML
     private void refreshEmployees() {
         try {
@@ -185,7 +206,9 @@ public class MainController implements DatabaseListener, Initializable
         }
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Refreshes the rentals table view with records from the database.
+     */
     @FXML
     private void refreshRentals() {
         Query<Rental> rentals;
@@ -200,7 +223,9 @@ public class MainController implements DatabaseListener, Initializable
         }
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Refreshes all table views with records from the database.
+     */
     private void refreshTableViews() {
         refreshCustomers();
         refreshEmployees();
@@ -208,7 +233,9 @@ public class MainController implements DatabaseListener, Initializable
         refreshVehicles();
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Refreshes the vehicles table view with records from the database.
+     */
     @FXML
     private void refreshVehicles() {
         try {
@@ -221,7 +248,9 @@ public class MainController implements DatabaseListener, Initializable
         }
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Displays the dialog box used to add a new customer record.
+     */
     @FXML
     private void showAddCustomerDialog(ActionEvent event) throws Exception {
         AddDialog<Customer> dialog = new AddCustomerDialog(database);
@@ -233,7 +262,9 @@ public class MainController implements DatabaseListener, Initializable
         }
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Displays the dialog box used to add a new employee record.
+     */
     @FXML
     private void showAddEmployeeDialog(ActionEvent event) throws Exception {
         AddDialog<Employee> dialog = new AddEmployeeDialog(database);
@@ -245,13 +276,17 @@ public class MainController implements DatabaseListener, Initializable
         }
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Displays the dialog box used to add a new rental record.
+     */
     @FXML
     private void showAddRentalDialog(ActionEvent event) throws Exception {
         addRentalDialog.show();
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Displays the dialog box used to add a new vehicle record.
+     */
     @FXML
     private void showAddVehicleDialog(ActionEvent event) throws Exception {
         AddDialog<Vehicle> dialog = new AddVehicleDialog(database);
@@ -263,14 +298,18 @@ public class MainController implements DatabaseListener, Initializable
         }
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Displays the dialog box used to edit an existing rental record.
+     */
     private void showEditRentalDialog(Rental rental) {
         EditDialog<Rental> dialog = new EditRentalDialog(database, rental);
         dialog.showAndWait();
         refreshRentals();
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Displays an alert box for exceptions thrown during database operations.
+     */
     private void showDatabaseErrorAlert(Exception ex) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Database Connection Error");
