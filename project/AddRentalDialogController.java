@@ -59,9 +59,13 @@ public class AddRentalDialogController extends DialogController<Rental> implemen
     //  ------------------------------------------------------------------------
     @FXML
     private void onAddButton(ActionEvent event) {
+        int mileage;
+
         try {
-            if (customer != null && vehicle != null) {
-                rental = new Rental(customer, vehicle);
+            mileage = Integer.parseInt(mileageField.getText());
+
+            if (customer != null && vehicle != null && mileage >= 0) {
+                rental = new Rental(mileage, customer, vehicle);
                 database.addRental(rental);
 
                 close();
@@ -116,14 +120,14 @@ public class AddRentalDialogController extends DialogController<Rental> implemen
 
     //  ------------------------------------------------------------------------
     private void updateEstimatedPrice() {
-        double mileage;
+        int mileage;
         double price;
         Locale currentLocale;
         NumberFormat numberFormat;
 
         try {
             if (vehicle != null) {
-                mileage = Double.parseDouble(this.mileageField.getText());
+                mileage = Integer.parseInt(mileageField.getText());
                 price = this.vehicle.calculatePrice(mileage);
 
                 currentLocale = Locale.getDefault();

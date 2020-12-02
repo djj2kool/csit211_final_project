@@ -63,10 +63,13 @@ public class SqlLiteDatabase implements Database
 
         try {
             connection = createConnection();
-            statement = connection.prepareStatement("INSERT INTO `rentals`(customerId, vehicleId, status) VALUES (?, ?, ?)");
+            statement = connection.prepareStatement(
+                "INSERT INTO `rentals`(customerId, vehicleId, status, mileage) " +
+                "VALUES (?, ?, ?, ?)");
             statement.setInt(1, rental.getCustomer().getId());
             statement.setInt(2, rental.getVehicle().getId());
             statement.setInt(3, rental.getStatus().toInt());
+            statement.setInt(4, rental.getMileage());
             statement.executeUpdate();
         }
         finally {
@@ -119,11 +122,13 @@ public class SqlLiteDatabase implements Database
     //  ------------------------------------------------------------------------
     private Rental createRental(ResultSet rs) throws Exception {
         int id = rs.getInt("id");
+        int mileage = rs.getInt("mileage");
         RentalStatus status = RentalStatus.fromInt(rs.getInt("status"));
         Customer customer = createCustomer(rs);
         Vehicle vehicle = createVehicle(rs);
         return new Rental(
             id,
+            mileage,
             status,
             customer,
             vehicle);

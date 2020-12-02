@@ -25,12 +25,13 @@ public class Rental
      */
     public Rental(
         int id,
+        int mileage,
         RentalStatus status,
         Customer customer,
         Vehicle vehicle
     ) {
         this.id = id;
-        this.mileage = 0;
+        this.mileage = mileage;
         this.customer = customer;
         this.status = status;
         this.vehicle = vehicle;
@@ -42,9 +43,9 @@ public class Rental
      * @param customer
      * @param vehicle
      */
-    public Rental(Customer customer, Vehicle vehicle) {
+    public Rental(int mileage, Customer customer, Vehicle vehicle) {
         this.id = ID_UNASSIGNED;
-        this.mileage = 0;
+        this.mileage = mileage;
         this.customer = customer;
         this.status = RentalStatus.OPEN;
         this.vehicle = vehicle;
