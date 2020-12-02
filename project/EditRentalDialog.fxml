@@ -36,8 +36,8 @@
             <TextField fx:id="priceField" layoutX="144.0" layoutY="80.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <HBox spacing="8.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="BOTTOM">
                <children>
-                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancelButton" text="Cancel" />
-                  <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddButton" text="Submit" />
+                  <Button mnemonicParsing="false" onAction="#onCancelButton" text="Cancel" />
+                  <Button mnemonicParsing="false" onAction="#onSubmitButton" text="Submit" />
                </children>
             </HBox>
          </children>

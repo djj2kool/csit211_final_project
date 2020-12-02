@@ -30,7 +30,7 @@ public class EditRentalDialogController extends RentalDialogController
 
     //  ------------------------------------------------------------------------
     @FXML
-    private void onAddButton(ActionEvent event) {
+    private void onSubmitButton(ActionEvent event) {
         int mileage;
 
         try {
