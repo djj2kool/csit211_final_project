@@ -10,6 +10,7 @@ public class Rental
 
     /** Unique ID (database key) */
     private int id;
+    private double price;
     private RentalStatus status;
     private Customer customer;
     private Vehicle vehicle;
@@ -29,6 +30,7 @@ public class Rental
         Vehicle vehicle
     ) {
         this.id = id;
+        this.price = 0;
         this.customer = customer;
         this.status = status;
         this.vehicle = vehicle;
@@ -42,6 +44,7 @@ public class Rental
      */
     public Rental(Customer customer, Vehicle vehicle) {
         this.id = ID_UNASSIGNED;
+        this.price = 0;
         this.customer = customer;
         this.status = RentalStatus.OPEN;
         this.vehicle = vehicle;
@@ -64,11 +67,27 @@ public class Rental
     }
 
     /**
+     * Gets the rental price.
+     * @return
+     */
+    public double getPrice() {
+        return price;
+    }
+
+    /**
      * Gets the rental status.
      * @return RentalStatus
      */
     public RentalStatus getStatus() {
         return status;
+    }
+
+    /**
+     * Sets the rental price.
+     * @param price
+     */
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     /**
