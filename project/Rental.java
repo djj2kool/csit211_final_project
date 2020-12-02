@@ -10,7 +10,7 @@ public class Rental
 
     /** Unique ID (database key) */
     private int id;
-    private double price;
+    private int mileage;
     private RentalStatus status;
     private Customer customer;
     private Vehicle vehicle;
@@ -30,7 +30,7 @@ public class Rental
         Vehicle vehicle
     ) {
         this.id = id;
-        this.price = 0;
+        this.mileage = 0;
         this.customer = customer;
         this.status = status;
         this.vehicle = vehicle;
@@ -44,7 +44,7 @@ public class Rental
      */
     public Rental(Customer customer, Vehicle vehicle) {
         this.id = ID_UNASSIGNED;
-        this.price = 0;
+        this.mileage = 0;
         this.customer = customer;
         this.status = RentalStatus.OPEN;
         this.vehicle = vehicle;
@@ -67,11 +67,19 @@ public class Rental
     }
 
     /**
-     * Gets the rental price.
+     * Gets the number of miles driven during this rental.
+     * @return
+     */
+    public int getMileage() {
+        return mileage;
+    }
+
+    /**
+     * Gets the rental price based on mileage.
      * @return
      */
     public double getPrice() {
-        return price;
+        return vehicle.calculatePrice(mileage);
     }
 
     /**
@@ -83,11 +91,11 @@ public class Rental
     }
 
     /**
-     * Sets the rental price.
-     * @param price
+     * Sets the mileage driven during this rental.
+     * @param mileage
      */
-    public void setPrice(double price) {
-        this.price = price;
+    public void setMileage(int mileage) {
+        this.mileage = mileage;
     }
 
     /**
