@@ -23,7 +23,8 @@
     * Enter vehicle.
     * Enter estimated mileage.
     * Calculates estimated price.
-- [ ] Add dialog for closing a rental.
+- [ ] Add dialog for editing a rental.
+    * Change rental status.
     * Enter mileage.
     * Calculates total price.
 - [x] Add dialog for entering new customers.
