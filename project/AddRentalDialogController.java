@@ -3,57 +3,22 @@
 //  Controller for new rental dialog.
 //  Visual Studio Code
 
-import java.net.URL;
-import java.text.NumberFormat;
-import java.util.Locale;
-import java.util.ResourceBundle;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.TextField;
 
-public class AddRentalDialogController extends DialogController<Rental> implements Initializable
+public class AddRentalDialogController extends RentalDialogController
 {
-    @FXML private TextField customerField;
-    @FXML private TextField mileageField;
-    @FXML private TextField priceField;
-    @FXML private TextField vehicleField;
-
     Customer customer = null;
     Rental rental = null;
     Vehicle vehicle = null;
 
     //  ------------------------------------------------------------------------
-    private void clear() {
-        rental = null;
-        mileageField.setText("");
-        priceField.setText("");
-        setCustomer(null);
-        setVehicle(null);
-    }
-
-    //  ------------------------------------------------------------------------
-    public void close() {
-        clear();
-        stage.close();
-    }
-
-    //  ------------------------------------------------------------------------
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        //  Estimated mileage text field changed listener
-        mileageField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(
-                ObservableValue<? extends String> observable,
-                String oldValue,
-                String newValue
-            ) {
-                updateEstimatedPrice();
-            }
-        });
+    protected void clear() {
+        rental = null;
+        customer = null;
+        vehicle = null;
+        super.clear();
     }
 
     //  ------------------------------------------------------------------------
@@ -62,7 +27,7 @@ public class AddRentalDialogController extends DialogController<Rental> implemen
         int mileage;
 
         try {
-            mileage = Integer.parseInt(mileageField.getText());
+            mileage = getMileage();
 
             if (customer != null && vehicle != null && mileage >= 0) {
                 rental = new Rental(mileage, customer, vehicle);
@@ -80,63 +45,21 @@ public class AddRentalDialogController extends DialogController<Rental> implemen
     }
 
     //  ------------------------------------------------------------------------
-    @FXML
-    private void onCancelButton(ActionEvent event) {
-        close();
+    protected Vehicle getVehicle() {
+        return vehicle;
     }
 
     //  ------------------------------------------------------------------------
-    @FXML
-    void onMileageFieldChanged(ActionEvent event) {
-        updateEstimatedPrice();
-    }
-
-    //  ------------------------------------------------------------------------
-    void setCustomer(Customer customer) {
-        String description;
-
+    public void setCustomer(Customer customer) {
         this.customer = customer;
-        description = customer != null ? customer.getName() : "";
-        this.customerField.setText(description);
+        populateCustomer(customer);
     }
 
     //  ------------------------------------------------------------------------
-    void setVehicle(Vehicle vehicle) {
-        String description;
-
+    public void setVehicle(Vehicle vehicle) {
         if (vehicle != null && vehicle.getStatus() == VehicleStatus.AVAILABLE) {
-            description = String.format(
-                "%s %s",
-                vehicle.getMake(),
-                vehicle.getModel());
             this.vehicle = vehicle;
-            this.vehicleField.setText(description);
-        } else {
-            this.vehicleField.setText("");
-        }
-
-        updateEstimatedPrice();
-    }
-
-    //  ------------------------------------------------------------------------
-    private void updateEstimatedPrice() {
-        int mileage;
-        double price;
-        Locale currentLocale;
-        NumberFormat numberFormat;
-
-        try {
-            if (vehicle != null) {
-                mileage = Integer.parseInt(mileageField.getText());
-                price = this.vehicle.calculatePrice(mileage);
-
-                currentLocale = Locale.getDefault();
-                numberFormat = NumberFormat.getCurrencyInstance(currentLocale);
-
-                priceField.setText(numberFormat.format(price));
-            }
-        } catch (NumberFormatException ex) {
-            priceField.setText("");
+            populateVehicle(vehicle);
         }
     }
 }
