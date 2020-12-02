@@ -32,4 +32,11 @@ public abstract class DialogController<T> {
     public void setStage(Stage stage) {
         this.stage = stage;
     }
+
+    /**
+     * Sets the value this dialog should return.
+     * @param value
+     */
+    public void setValue(T value) {
+    }
 }

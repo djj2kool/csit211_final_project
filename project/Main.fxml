@@ -152,11 +152,6 @@
                                        </tooltip>
                                     </Button>
                                     <Button id="addVehicleButton" fx:id="addRentalButton" mnemonicParsing="false" onAction="#showAddRentalDialog" text="Add Rental" />
-                                    <Button id="addVehicleButton" fx:id="checkInButton" layoutX="194.0" layoutY="14.0" mnemonicParsing="false" text="Check-in">
-                                       <tooltip>
-                                          <Tooltip text="Opens a new rental agreement." />
-                                       </tooltip>
-                                    </Button>
                                     <ComboBox id="rentalFilterComboBox" fx:id="rentalFilterComboBox" prefWidth="150.0">
                                        <tooltip>
                                           <Tooltip text="Filters rentals (requires refresh)." />

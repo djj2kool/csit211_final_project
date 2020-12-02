@@ -15,7 +15,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -83,7 +82,7 @@ public class MainController implements DatabaseListener, Initializable
                 "tier"));
 
         //  Customer table view mouse click handler
-        customerTableView.setRowFactory( tv -> {
+        customerTableView.setRowFactory(tv -> {
             TableRow<Customer> row = new TableRow<Customer>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
@@ -91,11 +90,24 @@ public class MainController implements DatabaseListener, Initializable
                     addRentalDialog.setCustomer(customer);
                 }
             });
-            return row ;
+            return row;
         });
 
-       //  Vehicle table view mouse click handler
-       vehicleTableView.setRowFactory( tv -> {
+        //  Rental table view mouse click handler
+        rentalsTableView.setRowFactory(tv -> {
+            TableRow<Rental> row = new TableRow<Rental>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    Rental rental = row.getItem();
+                    showEditRentalDialog(rental);
+                }
+            });
+            return row;
+        });
+
+
+        //  Vehicle table view mouse click handler
+        vehicleTableView.setRowFactory(tv -> {
             TableRow<Vehicle> row = new TableRow<Vehicle>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == 2 && (!row.isEmpty())) {
@@ -103,7 +115,7 @@ public class MainController implements DatabaseListener, Initializable
                     addRentalDialog.setVehicle(vehicle);
                 }
             });
-            return row ;
+            return row;
         });
 
         //  Initialize rental filter combo box
@@ -249,6 +261,13 @@ public class MainController implements DatabaseListener, Initializable
             database.addVehicle(vehicle.get());
             refreshVehicles();
         }
+    }
+
+    //  ------------------------------------------------------------------------
+    private void showEditRentalDialog(Rental rental) {
+        EditDialog<Rental> dialog = new EditRentalDialog(database, rental);
+        dialog.showAndWait();
+        refreshRentals();
     }
 
     //  ------------------------------------------------------------------------
