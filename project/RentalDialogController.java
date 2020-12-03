@@ -21,7 +21,9 @@ public abstract class RentalDialogController extends DialogController<Rental> im
     @FXML private TextField priceField;
     @FXML private TextField vehicleField;
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Clears dialog fields.
+     */
     protected void clear() {
         mileageField.setText("");
         priceField.setText("");
@@ -29,13 +31,18 @@ public abstract class RentalDialogController extends DialogController<Rental> im
         populateVehicle(null);
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Closes the dialog.
+     */
     public void close() {
         clear();
         stage.close();
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Returns the user-entered mileage.
+     * @return mileage or zero if the user-entered value could not be parsed
+     */
     protected int getMileage() {
         int mileage = 0;
 
@@ -47,10 +54,18 @@ public abstract class RentalDialogController extends DialogController<Rental> im
         return Math.max(0, mileage);
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Gets the current vehicle.
+     * This could be the selected vehicle in the add rental dialog, or the
+     * nested vehicle member of the rental being edited (in the edit dialog).
+     * @return
+     */
     protected abstract Vehicle getVehicle();
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Called to initialize a controller after its root element has been
+     * completely processed.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //  Estimated mileage text field changed listener
@@ -66,13 +81,18 @@ public abstract class RentalDialogController extends DialogController<Rental> im
         });
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Called when the cancel button is activated.
+     * @param event
+     */
     @FXML
     private void onCancelButton(ActionEvent event) {
         close();
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Called after dialog is closed using window close button.
+     */
     @Override
     protected void onCloseRequest() {
         //  Clear the dialog if the closed button was used to dismiss it
@@ -80,25 +100,38 @@ public abstract class RentalDialogController extends DialogController<Rental> im
         clear();
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Called after the user changes the mileage field.
+     * Updates the estimated price.
+     * @param event
+     */
     @FXML
     private void onMileageFieldChanged(ActionEvent event) {
         updateEstimatedPrice(getVehicle());
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Populates the customer related fields.
+     * @param customer
+     */
     protected void populateCustomer(Customer customer) {
         String description;
         description = customer != null ? customer.getName() : "";
         customerField.setText(description);
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Populates the mileage field.
+     * @param mileage
+     */
     protected void populateMileage(int mileage) {
         mileageField.setText(Integer.toString(mileage));
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Populates fields with values from a rental record.
+     * @param rental
+     */
     protected void populateRental(Rental rental) {
         int mileage = rental == null ? 0 : rental.getMileage();
         Customer customer = rental == null ? null : rental.getCustomer();
@@ -109,7 +142,10 @@ public abstract class RentalDialogController extends DialogController<Rental> im
         populateVehicle(vehicle);
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Populates the vehicle related fields.
+     * @param vehicle
+     */
     protected void populateVehicle(Vehicle vehicle) {
         String description;
 
@@ -126,7 +162,10 @@ public abstract class RentalDialogController extends DialogController<Rental> im
         updateEstimatedPrice(vehicle);
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Updates the estimated price based on mileage and vehicle tier.
+     * @param vehicle
+     */
     private void updateEstimatedPrice(Vehicle vehicle) {
         int mileage;
         double price;
