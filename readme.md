@@ -2,5 +2,5 @@
 
 ## Notes
 
-The unused SqlLiteDatabase class requires the
+The unused SqliteDatabase class requires the
 [SQLite JDBC Driver](https://github.com/xerial/sqlite-jdbc).

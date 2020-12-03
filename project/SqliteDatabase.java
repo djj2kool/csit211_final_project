@@ -1,6 +1,6 @@
 //  Darren Jackson, Chintan Rami, Louis Slavotinek, Raymond Zegles
-//  SqlLiteDatabase.java
-//  SQLLite application database.
+//  SqliteDatabase.java
+//  SQLite application database.
 //  Visual Studio Code
 
 import java.sql.Connection;
@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 // import java.sql.SQLException;
 import java.sql.Statement;
 
-public class SqlLiteDatabase implements Database
+public class SqliteDatabase implements Database
 {
     LinkedList<DatabaseListener> listeners = new LinkedList<DatabaseListener>();
 
