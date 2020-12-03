@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -24,6 +25,8 @@ import javafx.scene.layout.Region;
 
 public class MainController implements DatabaseListener, Initializable
 {
+    @FXML private TabPane tabPane;
+
     @FXML private ComboBox<Filter<Rental>> rentalFilterComboBox;
 
     @FXML private TableView<Customer> customerTableView;
@@ -45,10 +48,27 @@ public class MainController implements DatabaseListener, Initializable
     @FXML private Label vehicleCountLabel;
 
     //  Modeless dialog used to add new rentals
-    AddRentalDialog addRentalDialog = null;
+    private AddRentalDialog addRentalDialog = null;
 
     //  Application database
-    Database database;
+    private Database database;
+
+    //  Index of the rentals view tab
+    private final int RENTAL_TAB_INDEX = 2;
+    private final int DOUBLE_CLICK = 2;
+
+    /**
+     * Changes GUI focus to an item in a table view.
+     * @param <T>
+     * @param item the item to focus on
+     * @param tableView the table view containing the item
+     * @param tabIndex the index of the parent tab of the table view
+     */
+    private <T> void focusItem(T item, TableView<T> tableView, int tabIndex) {
+        tabPane.getSelectionModel().select(tabIndex);
+        tableView.scrollTo(item);
+        tableView.getSelectionModel().select(item);
+    }
 
     /**
      * Initializes the controller.
@@ -91,7 +111,7 @@ public class MainController implements DatabaseListener, Initializable
         customerTableView.setRowFactory(tv -> {
             TableRow<Customer> row = new TableRow<Customer>();
             row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                if (event.getClickCount() == DOUBLE_CLICK && (!row.isEmpty())) {
                     Customer customer = row.getItem();
                     addRentalDialog.setCustomer(customer);
                 }
@@ -104,7 +124,7 @@ public class MainController implements DatabaseListener, Initializable
         rentalsTableView.setRowFactory(tv -> {
             TableRow<Rental> row = new TableRow<Rental>();
             row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                if (event.getClickCount() == DOUBLE_CLICK && (!row.isEmpty())) {
                     Rental rental = row.getItem();
                     showEditRentalDialog(rental);
                 }
@@ -117,7 +137,7 @@ public class MainController implements DatabaseListener, Initializable
         vehicleTableView.setRowFactory(tv -> {
             TableRow<Vehicle> row = new TableRow<Vehicle>();
             row.setOnMouseClicked(event -> {
-                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                if (event.getClickCount() == DOUBLE_CLICK && (!row.isEmpty())) {
                     Vehicle vehicle = row.getItem();
                     addRentalDialog.setVehicle(vehicle);
                 }
@@ -174,8 +194,13 @@ public class MainController implements DatabaseListener, Initializable
     /**
      * Refreshes all table views after a new database record is added.
      */
-    public void onRecordAdded() {
+    public void onRecordAdded(Object record) {
         refreshTableViews();
+
+        //  Focus on new rental
+        if (record instanceof Rental) {
+            focusItem((Rental)record, rentalsTableView, RENTAL_TAB_INDEX);
+        }
     }
 
     /**

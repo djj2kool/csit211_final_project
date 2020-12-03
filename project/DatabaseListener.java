@@ -8,5 +8,5 @@ public interface DatabaseListener
     /**
      * Called after a database adds a new record.
      */
-    void onRecordAdded();
+    void onRecordAdded(Object record);
 }

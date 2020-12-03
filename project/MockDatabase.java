@@ -97,14 +97,14 @@ public class MockDatabase implements Database
     public void addCustomer(Customer customer) throws Exception {
         customers.append(customer);
 
-        onRecordAdded();
+        onRecordAdded(customer);
     }
 
     //  ------------------------------------------------------------------------
     public void addEmployee(Employee employee) throws Exception {
         employees.append(employee);
 
-        onRecordAdded();
+        onRecordAdded(employee);
     }
 
     //  ------------------------------------------------------------------------
@@ -128,14 +128,14 @@ public class MockDatabase implements Database
 
         rentals.append(rental);
 
-        onRecordAdded();
+        onRecordAdded(rental);
     }
 
     //  ------------------------------------------------------------------------
     public void addVehicle(Vehicle vehicle) throws Exception {
         vehicles.append(vehicle);
 
-        onRecordAdded();
+        onRecordAdded(vehicle);
     }
 
     //  ------------------------------------------------------------------------
@@ -159,9 +159,9 @@ public class MockDatabase implements Database
     }
 
     //  ------------------------------------------------------------------------
-    private void onRecordAdded() {
+    private void onRecordAdded(Object record) {
         for (DatabaseListener listener : listeners) {
-            listener.onRecordAdded();
+            listener.onRecordAdded(record);
         }
     }
 }
