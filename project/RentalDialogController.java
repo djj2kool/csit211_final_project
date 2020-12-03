@@ -73,6 +73,14 @@ public abstract class RentalDialogController extends DialogController<Rental> im
     }
 
     //  ------------------------------------------------------------------------
+    @Override
+    protected void onCloseRequest() {
+        //  Clear the dialog if the closed button was used to dismiss it
+        //  so the old contents are not seen the next time the dialog is shown.
+        clear();
+    }
+
+    //  ------------------------------------------------------------------------
     @FXML
     private void onMileageFieldChanged(ActionEvent event) {
         updateEstimatedPrice(getVehicle());

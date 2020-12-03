@@ -3,7 +3,9 @@
 //  Abstract controller class for dialog controllers.
 //  Visual Studio Code
 
+import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public abstract class DialogController<T> {
     protected Database database = null;
@@ -16,6 +18,11 @@ public abstract class DialogController<T> {
      * @return
      */
     public abstract T getValue();
+
+    /**
+     * Called after dialog is closed using window close button.
+     */
+    protected void onCloseRequest() {}
 
     /**
      * Sets the database instance available to this dialog.
@@ -31,6 +38,13 @@ public abstract class DialogController<T> {
      */
     public void setStage(Stage stage) {
         this.stage = stage;
+
+        //  Clear fields if the dialog close button is used
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            public void handle(WindowEvent we) {
+                onCloseRequest();
+            }
+        });
     }
 
     /**
