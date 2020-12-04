@@ -21,9 +21,9 @@ public class FinalProject extends Application
     public static Stage primaryStage;
 
     //  ------------------------------------------------------------------------
-    public static void main(String[] args) {
-        launch(args);
-    }
+    //public static void main(String[] args) {
+    //    launch(args);
+    //}
 
     //  ------------------------------------------------------------------------
     @Override
