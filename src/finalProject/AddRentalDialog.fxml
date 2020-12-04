@@ -23,6 +23,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints prefHeight="30.0" />
             <RowConstraints />
+            <RowConstraints />
         </rowConstraints>
          <children>
             <Label text="Customer:" />
@@ -32,7 +33,7 @@
             <Label layoutX="10.0" layoutY="51.0" text="Estimated Mileage:" GridPane.rowIndex="2" />
             <TextField fx:id="mileageField" layoutX="144.0" layoutY="46.0" onAction="#onMileageFieldChanged" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label layoutX="10.0" layoutY="85.0" text="Estimated Price:" GridPane.rowIndex="3" />
-            <TextField fx:id="priceField" layoutX="144.0" layoutY="80.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="priceField" editable="false" layoutX="144.0" layoutY="80.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <HBox spacing="8.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="BOTTOM">
                <children>
                   <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancelButton" text="Cancel" />
