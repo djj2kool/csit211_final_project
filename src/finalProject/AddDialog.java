@@ -18,7 +18,13 @@ abstract class AddDialog<T>
     protected DialogController<T> controller = null;
     private Stage dialogStage = null;
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Constructs a dialog for adding new database records.
+     * @param title the title to display in the dialog titlebar
+     * @param fxml FXML location
+     * @param database the database this controller can access
+     * @param modal true if modal, false if modeless
+     */
     public AddDialog(
         String title,
         String fxml,
@@ -50,7 +56,10 @@ abstract class AddDialog<T>
         }
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Gets the optional database record this dialog added.
+     * @return
+     */
     public Optional<T> result() {
         T value = controller.getValue();
         if (value != null) {
@@ -59,13 +68,20 @@ abstract class AddDialog<T>
         return Optional.empty();
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Shows the dialog box.
+     * For use with modeless dialogs.
+     */
     public void show() {
         dialogStage.show();
         dialogStage.requestFocus();
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Shows the dialog box and waits for it to close.
+     * For use with modal dialogs.
+     * @return
+     */
     public Optional<T> showAndWait() {
         dialogStage.showAndWait();
         return result();
