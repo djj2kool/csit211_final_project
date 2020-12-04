@@ -72,16 +72,17 @@ public abstract class RentalDialogController extends DialogController<Rental>
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize(location, resources);
 
-        //  Estimated mileage text field changed listener
-        mileageField.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(
-                ObservableValue<? extends String> observable,
-                String oldValue,
-                String newValue
-            ) {
-                updateEstimatedPrice(getVehicle());
-            }
+        customerField.textProperty().addListener((observable, oldValue, newValue) -> {
+            onFieldChanged();
+        });
+
+        vehicleField.textProperty().addListener((observable, oldValue, newValue) -> {
+            onFieldChanged();
+        });
+
+        mileageField.textProperty().addListener((observable, oldValue, newValue) -> {
+            updateEstimatedPrice(getVehicle());
+            onFieldChanged();
         });
 
         populateMileage(0);

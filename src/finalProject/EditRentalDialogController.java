@@ -5,16 +5,11 @@
 
 package finalProject;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
 
 public class EditRentalDialogController extends RentalDialogController
 {
-    @FXML private TextField mileageField;
-
     Rental rental = null;
 
     /**
@@ -41,15 +36,6 @@ public class EditRentalDialogController extends RentalDialogController
     @Override
     protected Vehicle getVehicle() {
         return rental == null ? null : rental.getVehicle();
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        super.initialize(location, resources);
-
-        mileageField.textProperty().addListener((observable, oldValue, newValue) -> {
-            onFieldChanged();
-        });
     }
 
     /**
