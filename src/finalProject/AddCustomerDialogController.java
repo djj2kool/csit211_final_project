@@ -5,31 +5,29 @@
 
 package finalProject;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 
-public class AddCustomerDialogController extends DialogController<Customer> implements Initializable
+public class AddCustomerDialogController extends DialogController<Customer>
 {
     @FXML private TextField nameField;
     @FXML private TextField phoneField;
 
     Customer customer = null;
 
-    //  ------------------------------------------------------------------------
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-    }
-
-    //  ------------------------------------------------------------------------
+    /**
+     * Gets the customer this dialog should return.
+     * @return
+     */
     public Customer getValue() {
         return customer;
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Called after the add button is activated.
+     * @param event
+     */
     @FXML
     private void onAddButton(ActionEvent event) {
         String name = nameField.getText();
@@ -38,7 +36,10 @@ public class AddCustomerDialogController extends DialogController<Customer> impl
         stage.close();
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Called after the cancel button is pressed
+     * @param event
+     */
     @FXML
     private void onCancelButton(ActionEvent event) {
         stage.close();
