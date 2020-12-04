@@ -1,3 +1,4 @@
+package finalProject;
 //  Darren Jackson, Chintan Rami, Louis Slavotinek, Raymond Zegles
 //  SqliteDatabase.java
 //  SQLite application database.

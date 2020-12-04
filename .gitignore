@@ -1,5 +1,7 @@
+.metadata/*
 .vscode/*
 bin/*
 
 *.class
-/bin/
+
+/target/
