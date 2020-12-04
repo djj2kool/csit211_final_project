@@ -11,8 +11,9 @@
     * LinkedList.size() uses recusion.
     * Used to display number of records fetched in GUI.
 - [x] Connection and use of a simple database
-- [ ] At least one sorting algorithm
-- [ ] At least one search algorithm
+- [x] At least one sorting algorithm
+- [x] At least one search algorithm
+    * Query.filter() uses linear search
 - [x] Use of a graphical user interface
 
 ## Tasks
@@ -23,7 +24,7 @@
     * Enter vehicle.
     * Enter estimated mileage.
     * Calculates estimated price.
-- [ ] Add dialog for editing a rental.
+- [x] Add dialog for editing a rental.
     * Change rental status.
     * Enter mileage.
     * Calculates total price.
@@ -37,6 +38,7 @@
 - [x] Add status bar to bottom of GUI
     * Show record count (uses Query.size() which satisfies recursion requirement)
 - [ ] Complete menu bar (File, Help, etc.).
+- [ ] Improve exception handling.
 
 ## Ideas
 
