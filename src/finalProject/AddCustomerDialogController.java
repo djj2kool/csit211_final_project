@@ -5,8 +5,12 @@
 
 package finalProject;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 public class AddCustomerDialogController extends DialogController<Customer>
@@ -22,6 +26,24 @@ public class AddCustomerDialogController extends DialogController<Customer>
      */
     public Customer getValue() {
         return customer;
+    }
+
+    /**
+     * Initializes the controller.
+     * @param location
+     * @param resources
+     */
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        super.initialize(location, resources);
+
+        nameField.textProperty().addListener((observable, oldValue, newValue) -> {
+            onFieldChanged();
+        });
+
+        phoneField.textProperty().addListener((observable, oldValue, newValue) -> {
+            onFieldChanged();
+        });
     }
 
     /**
@@ -43,5 +65,16 @@ public class AddCustomerDialogController extends DialogController<Customer>
     @FXML
     private void onCancelButton(ActionEvent event) {
         stage.close();
+    }
+
+    /**
+     * Called after a field changes.
+     */
+    @Override
+    protected boolean validateFields() {
+        return (
+            !nameField.getText().isBlank() &&
+            !phoneField.getText().isBlank()
+        );
     }
 }

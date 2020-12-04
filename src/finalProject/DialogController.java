@@ -5,13 +5,22 @@
 
 package finalProject;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-public abstract class DialogController<T> {
+public abstract class DialogController<T>  implements Initializable
+{
     protected Database database = null;
     protected Stage stage = null;
+
+    @FXML protected Button addButton;
 
     /**
      * Gets the value this dialog should return.
@@ -22,9 +31,28 @@ public abstract class DialogController<T> {
     public abstract T getValue();
 
     /**
+     * Initializes the controller.
+     * @param location
+     * @param resources
+     */
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        //  Add button is disabled while fields are empty
+        addButton.setDisable(true);
+    }
+
+    /**
      * Called after dialog is closed using window close button.
      */
     protected void onCloseRequest() {}
+
+    /**
+     * Called after a field changes.
+     * Should be called by listeners.
+     */
+    protected void onFieldChanged() {
+        addButton.setDisable(!validateFields());
+    }
 
     /**
      * Sets the database instance available to this dialog.
@@ -53,6 +81,11 @@ public abstract class DialogController<T> {
      * Sets the value this dialog should return.
      * @param value
      */
-    public void setValue(T value) {
-    }
+    public void setValue(T value) {}
+
+    /**
+     * Checks if all fields required to create a new database object are valid.
+     * @return true if fields are all valid, false if fields are invalid
+     */
+    protected abstract boolean validateFields();
 }

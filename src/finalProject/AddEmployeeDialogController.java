@@ -23,13 +23,13 @@ public class AddEmployeeDialogController extends DialogController<Employee> impl
     @FXML private TextField titleField;
     @FXML private ComboBox<UserLevel> levelComboBox;
 
-    @FXML private Button addButton;
-
     Employee employee = null;
 
     //  ------------------------------------------------------------------------
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        super.initialize(location, resources);
+
         //  Populate user levels combobox
         ObservableList<UserLevel> levels =
             FXCollections.observableArrayList(
@@ -40,15 +40,12 @@ public class AddEmployeeDialogController extends DialogController<Employee> impl
         levelComboBox.setItems(levels);
         levelComboBox.setValue(levels.get(0));
 
-        //  Add button is disabled while fields are empty
-        addButton.setDisable(true);
-
         nameField.textProperty().addListener((observable, oldValue, newValue) -> {
-            onFieldsChanged();
+            onFieldChanged();
         });
 
         titleField.textProperty().addListener((observable, oldValue, newValue) -> {
-            onFieldsChanged();
+            onFieldChanged();
         });
     }
 
@@ -74,11 +71,11 @@ public class AddEmployeeDialogController extends DialogController<Employee> impl
     }
 
     //  ------------------------------------------------------------------------
-    private void onFieldsChanged() {
-        //  Add button is disabled while fields are empty
-        addButton.setDisable(
-            nameField.getText().isBlank() ||
-            titleField.getText().isBlank()
+    @Override
+    protected boolean validateFields() {
+        return (
+            !nameField.getText().isBlank() &&
+            !titleField.getText().isBlank()
         );
     }
 }

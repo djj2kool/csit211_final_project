@@ -13,7 +13,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
@@ -24,13 +23,13 @@ public class AddVehicleDialogController extends DialogController<Vehicle> implem
     @FXML private TextField vinField;
     @FXML private ComboBox<Tier> tierComboBox;
 
-    @FXML private Button addButton;
-
     Vehicle vehicle = null;
 
     //  ------------------------------------------------------------------------
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        super.initialize(location, resources);
+
         //  Populate tiers combobox
         ObservableList<Tier> tiers =
             FXCollections.observableArrayList(
@@ -44,19 +43,16 @@ public class AddVehicleDialogController extends DialogController<Vehicle> implem
         tierComboBox.setItems(tiers);
         tierComboBox.setValue(tiers.get(0));
 
-        //  Add button is disabled while fields are empty
-        addButton.setDisable(true);
-
         makeField.textProperty().addListener((observable, oldValue, newValue) -> {
-            onFieldsChanged();
+            onFieldChanged();
         });
 
         modelField.textProperty().addListener((observable, oldValue, newValue) -> {
-            onFieldsChanged();
+            onFieldChanged();
         });
 
         vinField.textProperty().addListener((observable, oldValue, newValue) -> {
-            onFieldsChanged();
+            onFieldChanged();
         });
     }
 
@@ -83,12 +79,12 @@ public class AddVehicleDialogController extends DialogController<Vehicle> implem
     }
 
     //  ------------------------------------------------------------------------
-    private void onFieldsChanged() {
-        //  Add button is disabled while fields are empty
-        addButton.setDisable(
-            makeField.getText().isBlank() ||
-            modelField.getText().isBlank() ||
-            vinField.getText().isBlank()
+    @Override
+    protected boolean validateFields() {
+        return (
+            !makeField.getText().isBlank() &&
+            !modelField.getText().isBlank() &&
+            !vinField.getText().isBlank()
         );
     }
 }

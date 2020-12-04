@@ -16,7 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 
-public abstract class RentalDialogController extends DialogController<Rental> implements Initializable
+public abstract class RentalDialogController extends DialogController<Rental>
 {
     @FXML private TextField customerField;
     @FXML private TextField mileageField;
@@ -71,6 +71,8 @@ public abstract class RentalDialogController extends DialogController<Rental> im
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        super.initialize(location, resources);
+
         //  Estimated mileage text field changed listener
         mileageField.textProperty().addListener(new ChangeListener<String>() {
             @Override

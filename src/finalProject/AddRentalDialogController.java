@@ -5,14 +5,22 @@
 
 package finalProject;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 
 public class AddRentalDialogController extends RentalDialogController
 {
-    Customer customer = null;
-    Rental rental = null;
-    Vehicle vehicle = null;
+    @FXML private TextField customerField;
+    @FXML private TextField vehicleField;
+    @FXML private TextField mileageField;
+
+    private Customer customer = null;
+    private Rental rental = null;
+    private Vehicle vehicle = null;
 
     //  ------------------------------------------------------------------------
     @Override
@@ -21,6 +29,24 @@ public class AddRentalDialogController extends RentalDialogController
         customer = null;
         vehicle = null;
         super.clear();
+    }
+
+    //  ------------------------------------------------------------------------
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        super.initialize(location, resources);
+
+        customerField.textProperty().addListener((observable, oldValue, newValue) -> {
+            onFieldChanged();
+        });
+
+        vehicleField.textProperty().addListener((observable, oldValue, newValue) -> {
+            onFieldChanged();
+        });
+
+        mileageField.textProperty().addListener((observable, oldValue, newValue) -> {
+            onFieldChanged();
+        });
     }
 
     //  ------------------------------------------------------------------------
@@ -63,5 +89,14 @@ public class AddRentalDialogController extends RentalDialogController
             this.vehicle = vehicle;
             populateVehicle(vehicle);
         }
+    }
+
+    /**
+     * Checks if all fields required to create a new database object are valid.
+     * @return true if fields are all valid, false if fields are invalid
+     */
+    @Override
+    protected boolean validateFields() {
+        return customer != null && vehicle != null && getMileage() >= 0;
     }
 }
