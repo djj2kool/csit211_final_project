@@ -12,25 +12,36 @@ public class EditRentalDialogController extends RentalDialogController
 {
     Rental rental = null;
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Clears dialog fields.
+     */
     @Override
     protected void clear() {
         super.clear();
         rental = null;
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Gets the rental instance being edited.
+     * @return
+     */
     public Rental getValue() {
         return rental;
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Gets the rental vehicle.
+     * @return
+     */
     @Override
     protected Vehicle getVehicle() {
         return rental == null ? null : rental.getVehicle();
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Called when the submit button is activated.
+     * @param event
+     */
     @FXML
     private void onSubmitButton(ActionEvent event) {
         int mileage;
@@ -48,7 +59,10 @@ public class EditRentalDialogController extends RentalDialogController
         }
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Sets the value this dialog should return.
+     * @param value
+     */
     @Override
     public void setValue(Rental rental) {
         this.rental = rental;

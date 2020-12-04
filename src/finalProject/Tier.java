@@ -30,14 +30,24 @@ public enum Tier
     static final double PREMIUM_PPM   = 0.30;
     static final double LUXURY_PPM    = 0.40;
 
+    /**
+     * Display string describing this enum.
+     */
     private final String string;
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Constructs a Tier enum.
+     * @param string String for toString method to return
+     */
     private Tier(String string) {
         this.string = string;
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Converts an int to a Tier enum.
+     * @param value int value to convert from
+     * @return Tier matching specified int
+     */
     static public Tier fromInt(int value) {
         switch (value) {
             default:
@@ -56,7 +66,11 @@ public enum Tier
         }
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Gets the price-per-mile for the specified tier.
+     * @param tier
+     * @return price-per-mile
+     */
     static public double getPricePerMile(Tier tier)
     {
         switch (tier)
@@ -77,7 +91,10 @@ public enum Tier
         }
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Converts this Tier enum to an int.
+     * @return int value matching this enum
+     */
     public int toInt() {
         switch (this) {
             default:
@@ -96,7 +113,10 @@ public enum Tier
         }
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Returns a display String for this enum.
+     * @return string
+     */
     @Override
     public String toString() {
         return this.string;
