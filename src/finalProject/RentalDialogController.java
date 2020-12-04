@@ -29,6 +29,7 @@ public abstract class RentalDialogController extends DialogController<Rental> im
     protected void clear() {
         mileageField.setText("");
         priceField.setText("");
+        populateMileage(0);
         populateCustomer(null);
         populateVehicle(null);
     }
@@ -81,6 +82,8 @@ public abstract class RentalDialogController extends DialogController<Rental> im
                 updateEstimatedPrice(getVehicle());
             }
         });
+
+        populateMileage(0);
     }
 
     /**
