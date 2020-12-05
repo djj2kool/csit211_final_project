@@ -8,10 +8,15 @@ package finalProject;
 public class MockDatabase implements Database
 {
     LinkedList<Customer> customers = new LinkedList<Customer>(
-        new Customer(1, "George Washington", "555-555-0001"),
-        new Customer(2, "John Adams", "555-555-0002"),
-        new Customer(3, "Thomas Jefferson", "555-555-0003"),
-        new Customer(4, "James Madison", "555-555-0003")
+        new Customer(1, "Carlos Sainz", "555-555-0001"),
+        new Customer(2, "Juha Kankkunen", "555-555-0002"),
+        new Customer(3, "Walter Rohrl", "555-555-0003"),
+        new Customer(4, "Colin McRae", "555-555-0004"),
+        new Customer(5, "Sébastien Loeb", "555-555-0005"),
+        new Customer(6, "Henri Toivonen", "555-555-0006"),
+        new Customer(7, "Markku Alén", "555-555-0007"),
+        new Customer(8, "Michèle Mouton", "555-555-0008"),
+        new Customer(9, "Tommi Mäkinen", "555-555-0009")
     );
 
     LinkedList<Employee> employees = new LinkedList<Employee>(
