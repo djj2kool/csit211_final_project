@@ -303,9 +303,13 @@ public class MainController implements DatabaseListener, Initializable
      */
     @FXML
     private void showAddCustomerDialog(ActionEvent event) throws Exception {
-        AddDialog<Customer> dialog = new AddCustomerDialog(database);
-        Optional<Customer> customer = dialog.showAndWait();
+        Optional<Customer> customer = null;
+        Dialog<Customer> dialog = null;
 
+        dialog = new AddCustomerDialog(database);
+        dialog.showAndWait();
+
+        customer = dialog.result();
         if (customer.isPresent()) {
             database.addCustomer(customer.get());
             refreshCustomers();
@@ -317,9 +321,13 @@ public class MainController implements DatabaseListener, Initializable
      */
     @FXML
     private void showAddEmployeeDialog(ActionEvent event) throws Exception {
-        AddDialog<Employee> dialog = new AddEmployeeDialog(database);
-        Optional<Employee> employee = dialog.showAndWait();
+        Optional<Employee> employee = null;
+        Dialog<Employee> dialog = null;
 
+        dialog = new AddEmployeeDialog(database);
+        dialog.showAndWait();
+
+        employee = dialog.result();
         if (employee.isPresent()) {
             database.addEmployee(employee.get());
             refreshEmployees();
@@ -339,9 +347,13 @@ public class MainController implements DatabaseListener, Initializable
      */
     @FXML
     private void showAddVehicleDialog(ActionEvent event) throws Exception {
-        AddDialog<Vehicle> dialog = new AddVehicleDialog(database);
-        Optional<Vehicle> vehicle = dialog.showAndWait();
+        Dialog<Vehicle> dialog = null;
+        Optional<Vehicle> vehicle = null;
 
+        dialog = new AddVehicleDialog(database);
+        dialog.showAndWait();
+
+        vehicle = dialog.result();
         if (vehicle.isPresent()) {
             database.addVehicle(vehicle.get());
             refreshVehicles();
@@ -352,7 +364,7 @@ public class MainController implements DatabaseListener, Initializable
      * Displays the dialog box used to edit an existing rental record.
      */
     private void showEditRentalDialog(Rental rental) {
-        EditDialog<Rental> dialog = new EditRentalDialog(database, rental);
+        Dialog<Rental> dialog = new EditRentalDialog(database, rental);
         dialog.showAndWait();
         refreshRentals();
     }

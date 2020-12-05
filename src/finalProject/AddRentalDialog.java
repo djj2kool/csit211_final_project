@@ -5,7 +5,7 @@
 
 package finalProject;
 
-public class AddRentalDialog extends AddDialog<Rental>
+public class AddRentalDialog extends Dialog<Rental>
 {
     /**
      * Constructs an AddRentalDialog instance.

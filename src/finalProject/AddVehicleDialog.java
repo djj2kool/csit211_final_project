@@ -5,7 +5,7 @@
 
 package finalProject;
 
-public class AddVehicleDialog extends AddDialog<Vehicle>
+public class AddVehicleDialog extends Dialog<Vehicle>
 {
     /**
      * Constructs an AddVehicleDialog instance.

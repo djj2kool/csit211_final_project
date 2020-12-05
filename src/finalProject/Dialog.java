@@ -1,11 +1,12 @@
 //  Darren Jackson, Chintan Rami, Louis Slavotinek, Raymond Zegles
-//  AddDialog.java
-//  Generic class for dialogs that create new database objects.
+//  Dialog.java
+//  Generic class for dialog boxes.
 //  Eclipse, Visual Studio Code
 
 package finalProject;
 
 import java.util.Optional;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,19 +14,19 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-abstract class AddDialog<T>
+public class Dialog<T>
 {
     protected DialogController<T> controller = null;
     private Stage dialogStage = null;
 
     /**
-     * Constructs a dialog for adding new database records.
+     * Constructs a dialog.
      * @param title the title to display in the dialog titlebar
-     * @param fxml FXML location
-     * @param database the database this controller can access
+     * @param fxml FXML
+     * @param database
      * @param modal true if modal, false if modeless
      */
-    public AddDialog(
+    public Dialog(
         String title,
         String fxml,
         Database database,
@@ -45,7 +46,6 @@ abstract class AddDialog<T>
             dialogStage.initModality(
                 modal ? Modality.APPLICATION_MODAL : Modality.NONE);
             dialogStage.initStyle(StageStyle.DECORATED);
-            dialogStage.initOwner(App.primaryStage);
             dialogStage.setScene(scene);
 
             controller = loader.getController();
@@ -57,7 +57,15 @@ abstract class AddDialog<T>
     }
 
     /**
-     * Whether or not this dialog is visible.
+     * Gets the database record this dialog interacts with.
+     * @return
+     */
+    public T getValue() {
+        return controller.getValue();
+    }
+
+    /**
+     * Whether or not this dialog is currentlyopen.
      * @return
      */
     public boolean isShowing() {
@@ -77,8 +85,15 @@ abstract class AddDialog<T>
     }
 
     /**
-     * Shows the dialog box.
-     * For use with modeless dialogs.
+     * Sets the database record this dialog interacts with.
+     * @param value
+     */
+    public void setValue(T value) {
+        controller.setValue(value);
+    }
+
+    /**
+     * Shows and focuses this dialog box.
      */
     public void show() {
         dialogStage.show();
@@ -86,12 +101,9 @@ abstract class AddDialog<T>
     }
 
     /**
-     * Shows the dialog box and waits for it to close.
-     * For use with modal dialogs.
-     * @return
+     * Shows dialog box and then waits for user to close it before returning.
      */
-    public Optional<T> showAndWait() {
+    public void showAndWait() {
         dialogStage.showAndWait();
-        return result();
     }
 }
