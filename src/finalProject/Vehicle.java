@@ -124,6 +124,22 @@ public class Vehicle
         return tier;
     }
 
+    public void setMake(String make) {
+        this.make = make;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public void setTier(Tier tier) {
+        this.tier = tier;
+    }
+
+    public void setVin(String vin) {
+        this.vin = vin;
+    }
+
     /**
      * Sets the status of this vehicle.
      * @param status new status of vehicle
