@@ -1,6 +1,6 @@
 //  Darren Jackson, Chintan Rami, Louis Slavotinek, Raymond Zegles
-//  AddEmployeeDialogController.java
-//  Controller for new employee dialog.
+//  EditEmployeeDialogController.java
+//  Controller for employee edit dialog.
 //  Eclipse, Visual Studio Code
 
 package finalProject;
@@ -8,10 +8,10 @@ package finalProject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-public class AddEmployeeDialogController extends EmployeeDialogController
+public class EditEmployeeDialogController extends EmployeeDialogController
 {
     @FXML
     private void onAddButton(ActionEvent event) {
-        createEmployee();
+        editEmployee();
     }
 }

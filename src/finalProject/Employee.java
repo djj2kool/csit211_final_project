@@ -76,4 +76,16 @@ public class Employee
     public String getTitle() {
         return title;
     }
+
+    public void setLevel(UserLevel level) {
+        this.level = level;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }

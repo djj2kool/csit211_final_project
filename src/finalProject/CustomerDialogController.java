@@ -52,7 +52,6 @@ public class CustomerDialogController extends DialogController<Customer>
         stage.close();
     }
 
-
     protected void editCustomer() {
         String name = nameField.getText();
         String phone = phoneField.getText();

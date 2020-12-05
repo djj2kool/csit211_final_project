@@ -125,6 +125,21 @@ public class MainController implements DatabaseListener, Initializable
             return row;
         });
 
+        //  Customer table view mouse click handler
+        //  When a customer is double-clicked use it in the add rental dialog
+        employeeTableView.setRowFactory(tv -> {
+            TableRow<Employee> row = new TableRow<Employee>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == DOUBLE_CLICK && (!row.isEmpty())) {
+                    Employee employee = row.getItem();
+                    if (!addRentalDialog.isShowing()) {
+                        showEditEmployeeDialog(employee);
+                    }
+                }
+            });
+            return row;
+        });
+
         //  Rental table view mouse click handler
         //  When a rental is double-clicked use it in the edit rental dialog
         rentalsTableView.setRowFactory(tv -> {
@@ -363,12 +378,21 @@ public class MainController implements DatabaseListener, Initializable
     }
 
     /**
-     * Displays the dialog box used to edit an existing rental record.
+     * Displays the dialog box used to edit an existing customer record.
      */
     private void showEditCustomerDialog(Customer customer) {
         Dialog<Customer> dialog = new EditCustomerDialog(database, customer);
         dialog.showAndWait();
         refreshCustomers();
+    }
+
+    /**
+     * Displays the dialog box used to edit an existing employee record.
+     */
+    private void showEditEmployeeDialog(Employee employee) {
+        Dialog<Employee> dialog = new EditEmployeeDialog(database, employee);
+        dialog.showAndWait();
+        refreshEmployees();
     }
 
     /**
