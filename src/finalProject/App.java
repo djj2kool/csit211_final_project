@@ -8,7 +8,9 @@ package finalProject;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 public class App extends Application
@@ -19,6 +21,17 @@ public class App extends Application
      * if there are modeless dialogs active when closing the main window.
      */
     public static Stage primaryStage;
+
+    /**
+     * Displays an alert box for exceptions thrown during database operations.
+     */
+    public static void showDatabaseErrorAlert(Exception ex) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Database Connection Error");
+        alert.setContentText(ex.getMessage());
+        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+        alert.showAndWait();
+    }
 
     /**
      * The main entry point for all JavaFX applications. The start method is

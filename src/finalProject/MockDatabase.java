@@ -171,4 +171,29 @@ public class MockDatabase implements Database
             listener.onRecordAdded(record);
         }
     }
+
+    //  ------------------------------------------------------------------------
+    private void onRecordUpdated(Object record) {
+        for (DatabaseListener listener : listeners) {
+            listener.onRecordUpdated(record);
+        }
+    }
+
+    /**
+     * Updates a customer record.
+     * @param customer
+     * @throws Exception
+     */
+    public void updateCustomer(Customer customer) throws Exception {
+        onRecordUpdated(customer);
+    }
+
+    /**
+     * Updates a rental record.
+     * @param rental
+     * @throws Exception
+     */
+    public void updateRental(Rental rental) throws Exception {
+        onRecordUpdated(rental);
+    }
 }

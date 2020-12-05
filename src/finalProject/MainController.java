@@ -16,14 +16,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.Region;
 
 public class MainController implements DatabaseListener, Initializable
 {
@@ -50,7 +48,7 @@ public class MainController implements DatabaseListener, Initializable
     @FXML private Label vehicleCountLabel;
 
     //  Modeless dialog used to add new rentals
-    private AddRentalDialog addRentalDialog = null;
+    private RentalDialog rentalDialog = null;
 
     //  Application database
     private Database database;
@@ -83,8 +81,6 @@ public class MainController implements DatabaseListener, Initializable
 
         ObservableList<Filter<Rental>> rentalFilters = null;
 
-        addRentalDialog = new AddRentalDialog(database);
-
         //  Rental table view columns
         //  To access the customer and vehicle properties
         rentalCustomerTableColumn.setCellValueFactory(
@@ -115,8 +111,8 @@ public class MainController implements DatabaseListener, Initializable
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == DOUBLE_CLICK && (!row.isEmpty())) {
                     Customer customer = row.getItem();
-                    if (addRentalDialog.isShowing()) {
-                        addRentalDialog.setCustomer(customer);
+                    if (rentalDialogIsShowing()) {
+                        rentalDialog.setCustomer(customer);
                     } else {
                         showEditCustomerDialog(customer);
                     }
@@ -132,7 +128,7 @@ public class MainController implements DatabaseListener, Initializable
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == DOUBLE_CLICK && (!row.isEmpty())) {
                     Employee employee = row.getItem();
-                    if (!addRentalDialog.isShowing()) {
+                    if (!rentalDialogIsShowing()) {
                         showEditEmployeeDialog(employee);
                     }
                 }
@@ -160,8 +156,8 @@ public class MainController implements DatabaseListener, Initializable
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == DOUBLE_CLICK && (!row.isEmpty())) {
                     Vehicle vehicle = row.getItem();
-                    if (addRentalDialog.isShowing()) {
-                        addRentalDialog.setVehicle(vehicle);
+                    if (rentalDialogIsShowing()) {
+                        rentalDialog.setVehicle(vehicle);
                     } else {
                         showEditVehicleDialog(vehicle);
                     }
@@ -204,7 +200,7 @@ public class MainController implements DatabaseListener, Initializable
                 System.out.println(rental.getId());
             }
         } catch (Exception ex) {
-            showDatabaseErrorAlert(ex);
+            App.showDatabaseErrorAlert(ex);
         }
     }
 
@@ -223,6 +219,18 @@ public class MainController implements DatabaseListener, Initializable
         refreshTableViews();
 
         //  Focus on new rental
+        if (record instanceof Rental) {
+            focusItem((Rental)record, rentalsTableView, RENTAL_TAB_INDEX);
+        }
+    }
+
+    /**
+     * Refreshes all table views after a database record is updated.
+     */
+    public void onRecordUpdated(Object record) {
+        refreshTableViews();
+
+        //  Focus on updated rental
         if (record instanceof Rental) {
             focusItem((Rental)record, rentalsTableView, RENTAL_TAB_INDEX);
         }
@@ -256,7 +264,7 @@ public class MainController implements DatabaseListener, Initializable
                 customerCountLabel,
                 database.queryCustomers());
         } catch (Exception ex) {
-            showDatabaseErrorAlert(ex);
+            App.showDatabaseErrorAlert(ex);
         }
     }
 
@@ -271,7 +279,7 @@ public class MainController implements DatabaseListener, Initializable
                 employeeCountLabel,
                 database.queryEmployees());
         } catch (Exception ex) {
-            showDatabaseErrorAlert(ex);
+            App.showDatabaseErrorAlert(ex);
         }
     }
 
@@ -288,7 +296,7 @@ public class MainController implements DatabaseListener, Initializable
             rentals = rentals.filter(filter);
             populateTableView(rentalsTableView, rentalCountLabel, rentals);
         } catch (Exception ex) {
-            showDatabaseErrorAlert(ex);
+            App.showDatabaseErrorAlert(ex);
         }
     }
 
@@ -313,8 +321,16 @@ public class MainController implements DatabaseListener, Initializable
                 vehicleCountLabel,
                 database.queryVehicles());
         } catch (Exception ex) {
-            showDatabaseErrorAlert(ex);
+            App.showDatabaseErrorAlert(ex);
         }
+    }
+
+    /**
+     * Checks if either the add rental or edit rental dialog is showing.
+     * @return
+     */
+    private boolean rentalDialogIsShowing() {
+        return rentalDialog != null && rentalDialog.isShowing();
     }
 
     /**
@@ -358,7 +374,10 @@ public class MainController implements DatabaseListener, Initializable
      */
     @FXML
     private void showAddRentalDialog(ActionEvent event) throws Exception {
-        addRentalDialog.show();
+        if (!rentalDialogIsShowing()) {
+            rentalDialog = new AddRentalDialog(database);
+            rentalDialog.show();
+        }
     }
 
     /**
@@ -401,9 +420,10 @@ public class MainController implements DatabaseListener, Initializable
      * Displays the dialog box used to edit an existing rental record.
      */
     private void showEditRentalDialog(Rental rental) {
-        Dialog<Rental> dialog = new EditRentalDialog(database, rental);
-        dialog.showAndWait();
-        refreshRentals();
+        if (!rentalDialogIsShowing()) {
+            rentalDialog = new EditRentalDialog(database, rental);
+            rentalDialog.show();
+        }
     }
 
     /**
@@ -413,16 +433,5 @@ public class MainController implements DatabaseListener, Initializable
         Dialog<Vehicle> dialog = new EditVehicleDialog(database, vehicle);
         dialog.showAndWait();
         refreshVehicles();
-    }
-
-    /**
-     * Displays an alert box for exceptions thrown during database operations.
-     */
-    private void showDatabaseErrorAlert(Exception ex) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Database Connection Error");
-        alert.setContentText(ex.getMessage());
-        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
-        alert.showAndWait();
     }
 }

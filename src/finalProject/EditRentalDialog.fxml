@@ -50,7 +50,7 @@
             <HBox spacing="8.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.rowSpan="2" GridPane.valignment="BOTTOM">
                <children>
                   <Button mnemonicParsing="false" onAction="#onCancelButton" text="Cancel" />
-                  <Button fx:id="addButton" mnemonicParsing="false" onAction="#onSubmitButton" text="Submit" />
+                  <Button fx:id="addButton" mnemonicParsing="false" onAction="#onAddButton" text="Submit" />
                </children>
             </HBox>
          </children>

@@ -5,29 +5,13 @@
 
 package finalProject;
 
-public class AddRentalDialog extends Dialog<Rental>
+public class AddRentalDialog extends RentalDialog
 {
     /**
      * Constructs an AddRentalDialog instance.
      * @param database the database available to the dialog controller
      */
     public AddRentalDialog(Database database) {
-        super("Add New Rental", "AddRentalDialog.fxml", database, false);
-    }
-
-    /**
-     * Sets the customer for the new rental.
-     * @param customer
-     */
-    public void setCustomer(Customer customer) {
-        ((AddRentalDialogController)controller).setCustomer(customer);
-    }
-
-    /**
-     * Sets the vehicle for the new rental.
-     * @param vehicle
-     */
-    public void setVehicle(Vehicle vehicle) {
-        ((AddRentalDialogController)controller).setVehicle(vehicle);
+        super("Add New Rental", "AddRentalDialog.fxml", database);
     }
 }

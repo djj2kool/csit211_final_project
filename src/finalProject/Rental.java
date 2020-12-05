@@ -54,6 +54,18 @@ public class Rental
     }
 
     /**
+     * Constructs a Rental instance when the ID is not yet known (e.g. when
+     * creating an object that will be added to the database later)
+     */
+    public Rental() {
+        this.id = ID_UNASSIGNED;
+        this.mileage = 0;
+        this.customer = null;
+        this.status = RentalStatus.OPEN;
+        this.vehicle = null;
+    }
+
+    /**
      * Gets the unique ID (database key)
      * @return ID
      */
@@ -101,6 +113,10 @@ public class Rental
         return vehicle;
     }
 
+    /**
+     * Sets the customer.
+     * @param customer
+     */
     public void setCustomer(Customer customer) {
         this.customer = customer;
     }

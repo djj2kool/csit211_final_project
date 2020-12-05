@@ -57,7 +57,13 @@ public class CustomerDialogController extends DialogController<Customer>
         String phone = phoneField.getText();
         customer.setName(name);
         customer.setPhone(phone);
-        stage.close();
+
+        try {
+            database.updateCustomer(customer);
+            stage.close();
+        } catch (Exception ex) {
+            App.showDatabaseErrorAlert(ex);
+        }
     }
 
     /**

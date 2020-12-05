@@ -20,10 +20,13 @@ public abstract class RentalDialogController extends DialogController<Rental>
     @FXML private TextField priceField;
     @FXML private TextField vehicleField;
 
+    private Rental rental = new Rental();
+
     /**
      * Clears dialog fields.
      */
     protected void clear() {
+        this.rental = new Rental();
         mileageField.setText("");
         priceField.setText("");
         populateMileage(0);
@@ -37,6 +40,43 @@ public abstract class RentalDialogController extends DialogController<Rental>
     public void close() {
         clear();
         stage.close();
+    }
+
+    protected void createRental() {
+        int mileage;
+
+        try {
+            mileage = getMileage();
+
+            if (rental.getCustomer() != null &&
+                rental.getVehicle() != null &&
+                mileage >= 0
+            ) {
+                rental.setMileage(mileage);
+                database.addRental(rental);
+
+                close();
+            }
+        } catch (Exception ex) {
+        }
+    }
+
+    protected void editRental() {
+        int mileage;
+
+        try {
+            mileage = getMileage();
+
+            if (rental != null && mileage >= 0) {
+                rental.setMileage(mileage);
+                rental.setStatus(RentalStatus.CLOSED);
+
+                database.updateRental(rental);
+
+                close();
+            }
+        } catch (Exception ex) {
+        }
     }
 
     /**
@@ -55,12 +95,20 @@ public abstract class RentalDialogController extends DialogController<Rental>
     }
 
     /**
-     * Gets the current vehicle.
-     * This could be the selected vehicle in the add rental dialog, or the
-     * nested vehicle member of the rental being edited (in the edit dialog).
+     * Gets the rental instance being edited.
      * @return
      */
-    protected abstract Vehicle getVehicle();
+    public Rental getValue() {
+        return rental;
+    }
+
+    /**
+     * Gets the current vehicle.
+     * @return
+     */
+    protected Vehicle getVehicle() {
+        return rental != null ? rental.getVehicle() : null;
+    }
 
     /**
      * Called to initialize a controller after its root element has been
@@ -168,6 +216,37 @@ public abstract class RentalDialogController extends DialogController<Rental>
     }
 
     /**
+     * Sets the rental customer.
+     * @param customer
+     */
+    public void setCustomer(Customer customer) {
+        rental.setCustomer(customer);
+        populateCustomer(customer);
+    }
+
+    /**
+     * Sets the value this dialog should return.
+     * @param value
+     */
+    @Override
+    public void setValue(Rental rental) {
+        this.rental = rental;
+        populateRental(rental);
+    }
+
+    /**
+     * Sets the rental vehicle.
+     */
+    public void setVehicle(Vehicle vehicle) {
+        if (vehicle != null &&
+            vehicle.getStatus() == VehicleStatus.AVAILABLE
+        ) {
+            rental.setVehicle(vehicle);
+            populateVehicle(vehicle);
+        }
+    }
+
+    /**
      * Updates the estimated price based on mileage and vehicle tier.
      * @param vehicle
      */
@@ -192,5 +271,14 @@ public abstract class RentalDialogController extends DialogController<Rental>
         } catch (NumberFormatException ex) {
             priceField.setText("");
         }
+    }
+
+    /**
+     * Checks if all fields required to create a new database object are valid.
+     * @return true if fields are all valid, false if fields are invalid
+     */
+    @Override
+    protected boolean validateFields() {
+        return rental != null && getMileage() >= 0;
     }
 }

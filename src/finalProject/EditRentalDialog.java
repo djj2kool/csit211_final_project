@@ -5,11 +5,11 @@
 
 package finalProject;
 
-public class EditRentalDialog extends Dialog<Rental>
+public class EditRentalDialog extends RentalDialog
 {
     //  ------------------------------------------------------------------------
     public EditRentalDialog(Database database, Rental rental) {
-        super("Edit Rental", "EditRentalDialog.fxml", database, true);
+        super("Edit Rental", "EditRentalDialog.fxml", database);
         setValue(rental);
     }
 }

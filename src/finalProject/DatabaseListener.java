@@ -11,4 +11,9 @@ public interface DatabaseListener
      * Called after a database adds a new record.
      */
     void onRecordAdded(Object record);
+
+    /**
+     * Called after a database updates an existing record.
+     */
+    void onRecordUpdated(Object record);
 }
