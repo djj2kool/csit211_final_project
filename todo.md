@@ -31,13 +31,13 @@
 - [x] Add dialog for entering new customers.
 - [x] Add dialog for entering new employees.
 - [x] Add dialog for entering new vehicles.
-- [ ] Validate new objects before adding records to database.
+- [x] Validate new objects before adding records to database.
 - [ ] Restrict user access.
     * Associates can add rentals and add vehicles.
     * Executives can add new employees.
 - [x] Add status bar to bottom of GUI
     * Show record count (uses Query.size() which satisfies recursion requirement)
-- [ ] Complete menu bar (File, Help, etc.).
+- [x] Complete menu bar (File, Help, etc.).
 - [ ] Improve exception handling.
 
 ## Ideas
