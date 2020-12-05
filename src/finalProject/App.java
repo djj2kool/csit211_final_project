@@ -1,6 +1,6 @@
 //  Darren Jackson, Chintan Rami, Louis Slavotinek, Raymond Zegles
 //  App.java
-//  Application entry.
+//  Application class. JavaFX entry point.
 //  Eclipse, Visual Studio Code
 
 package finalProject;
@@ -20,12 +20,11 @@ public class App extends Application
      */
     public static Stage primaryStage;
 
-    //  ------------------------------------------------------------------------
-    //public static void main(String[] args) {
-    //    launch(args);
-    //}
-
-    //  ------------------------------------------------------------------------
+    /**
+     * The main entry point for all JavaFX applications. The start method is
+     * called after the init method has returned, and after the system is ready
+     * for the application to begin running.
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         Pane pane   = null;
@@ -34,7 +33,7 @@ public class App extends Application
         App.primaryStage = primaryStage;
 
         primaryStage.setTitle("CDLR Corporation - Vehicle Rentals");
-        pane = (Pane)FXMLLoader.load(getClass().getResource("Main.fxml"));
+        pane = (Pane)FXMLLoader.load(getClass().getResource("App.fxml"));
         scene = new Scene(pane);
         primaryStage.setScene(scene);
         primaryStage.show();
