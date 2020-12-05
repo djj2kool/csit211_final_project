@@ -1,5 +1,5 @@
 //  Darren Jackson, Chintan Rami, Louis Slavotinek, Raymond Zegles
-//  FinalProject.java
+//  App.java
 //  Application entry.
 //  Eclipse, Visual Studio Code
 
@@ -11,7 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class FinalProject extends Application
+public class App extends Application
 {
     /**
      * Application primary stage.
@@ -31,7 +31,7 @@ public class FinalProject extends Application
         Pane pane   = null;
         Scene scene = null;
 
-        FinalProject.primaryStage = primaryStage;
+        App.primaryStage = primaryStage;
 
         primaryStage.setTitle("CDLR Corporation - Vehicle Rentals");
         pane = (Pane)FXMLLoader.load(getClass().getResource("Main.fxml"));

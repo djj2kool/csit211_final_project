@@ -45,7 +45,7 @@ abstract class AddDialog<T>
             dialogStage.initModality(
                 modal ? Modality.APPLICATION_MODAL : Modality.NONE);
             dialogStage.initStyle(StageStyle.DECORATED);
-            dialogStage.initOwner(FinalProject.primaryStage);
+            dialogStage.initOwner(App.primaryStage);
             dialogStage.setScene(scene);
 
             controller = loader.getController();

@@ -15,6 +15,6 @@ public class Main {
 	public static void main(String[] args) {
 		//	Launching this way removes the need to use --module-path and
 		//	--add-module with JavaFX when running from an IDE.
-		Application.launch(FinalProject.class);
+		Application.launch(App.class);
 	}
 }
