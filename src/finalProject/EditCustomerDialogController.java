@@ -8,7 +8,7 @@ package finalProject;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-public class AddCustomerDialogController extends CustomerDialogController
+public class EditCustomerDialogController extends CustomerDialogController
 {
     /**
      * Called after the add button is activated.
@@ -16,6 +16,6 @@ public class AddCustomerDialogController extends CustomerDialogController
      */
     @FXML
     private void onAddButton(ActionEvent event) {
-        createCustomer();
+        editCustomer();
     }
 }

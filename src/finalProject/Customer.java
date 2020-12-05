@@ -63,4 +63,20 @@ public class Customer
     public String getPhone() {
         return phone;
     }
+
+    /**
+     * Sets the name of this customer.
+     * @param name
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Sets the phone number of this customer.
+     * @param phone
+     */
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 }

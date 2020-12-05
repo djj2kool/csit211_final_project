@@ -20,6 +20,10 @@ public abstract class DialogController<T>  implements Initializable
     protected Database database = null;
     protected Stage stage = null;
 
+    /**
+     * Add / Submit button
+     * Activated when user wants to add or update a record.
+     */
     @FXML protected Button addButton;
 
     /**

@@ -114,9 +114,11 @@ public class MainController implements DatabaseListener, Initializable
             TableRow<Customer> row = new TableRow<Customer>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == DOUBLE_CLICK && (!row.isEmpty())) {
+                    Customer customer = row.getItem();
                     if (addRentalDialog.isShowing()) {
-                        Customer customer = row.getItem();
                         addRentalDialog.setCustomer(customer);
+                    } else {
+                        showEditCustomerDialog(customer);
                     }
                 }
             });
@@ -358,6 +360,15 @@ public class MainController implements DatabaseListener, Initializable
             database.addVehicle(vehicle.get());
             refreshVehicles();
         }
+    }
+
+    /**
+     * Displays the dialog box used to edit an existing rental record.
+     */
+    private void showEditCustomerDialog(Customer customer) {
+        Dialog<Customer> dialog = new EditCustomerDialog(database, customer);
+        dialog.showAndWait();
+        refreshCustomers();
     }
 
     /**
