@@ -27,7 +27,7 @@ public class App extends Application
      */
     public static void showDatabaseErrorAlert(Exception ex) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Database Connection Error");
+        alert.setTitle("Database Transaction Error");
         alert.setContentText(ex.getMessage());
         alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
         alert.showAndWait();

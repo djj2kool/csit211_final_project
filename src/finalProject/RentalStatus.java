@@ -57,7 +57,8 @@ public enum RentalStatus
             case OPEN:
                 return OPEN_INT;
             case CLOSED:
-                return CLOSED_INT;        }
+                return CLOSED_INT;
+        }
     }
 
     /**

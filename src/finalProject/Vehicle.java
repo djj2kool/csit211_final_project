@@ -153,7 +153,7 @@ public class Vehicle
      * @param status new status of vehicle
      * @return  status
      */
-    void setStatus(VehicleStatus status) {
+    public void setStatus(VehicleStatus status) {
         this.status = status;
     }
 

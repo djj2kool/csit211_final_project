@@ -69,7 +69,6 @@ public abstract class RentalDialogController extends DialogController<Rental>
 
             if (rental != null && mileage >= 0) {
                 rental.setMileage(mileage);
-                rental.setStatus(RentalStatus.CLOSED);
 
                 database.updateRental(rental);
 
@@ -174,6 +173,13 @@ public abstract class RentalDialogController extends DialogController<Rental>
     }
 
     /**
+     * Populates the closed checkbox.
+     * @param customer
+     */
+    protected void populateClosed(Rental rental) {}
+
+
+    /**
      * Populates the mileage field.
      * @param mileage
      */
@@ -193,6 +199,7 @@ public abstract class RentalDialogController extends DialogController<Rental>
         populateCustomer(customer);
         populateMileage(mileage);
         populateVehicle(vehicle);
+        populateClosed(rental);
     }
 
     /**

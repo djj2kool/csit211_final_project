@@ -65,6 +65,17 @@ public class Rental
         this.vehicle = null;
     }
 
+    public void close() {
+        if (status == RentalStatus.OPEN) {
+            //  Closing the rental releases the vehicle
+            if (vehicle != null) {
+                vehicle.setStatus(VehicleStatus.AVAILABLE);
+            }
+
+            status = RentalStatus.CLOSED;
+        }
+    }
+
     /**
      * Gets the unique ID (database key)
      * @return ID
@@ -113,6 +124,29 @@ public class Rental
         return vehicle;
     }
 
+    public boolean isClosed() {
+        return status == RentalStatus.CLOSED;
+    }
+
+    public boolean isOpen() {
+        return status == RentalStatus.OPEN;
+    }
+
+    public void open() throws RentalException {
+        if (status == RentalStatus.CLOSED) {
+            //  Can only reopen a rental if the original vehicle is available
+            if (vehicle != null) {
+                if (!vehicle.canRent()) {
+                    throw new RentalException("Vehicle is not available for rental.");
+                }
+
+                vehicle.setStatus(VehicleStatus.CHECKED_OUT);
+            }
+
+            status = RentalStatus.OPEN;
+        }
+    }
+
     /**
      * Sets the customer.
      * @param customer
@@ -127,14 +161,6 @@ public class Rental
      */
     public void setMileage(int mileage) {
         this.mileage = mileage;
-    }
-
-    /**
-     * Sets the rental status.
-     * @param status
-     */
-    public void setStatus(RentalStatus status) {
-        this.status = status;
     }
 
     /**
