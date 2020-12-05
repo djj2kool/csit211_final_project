@@ -94,6 +94,18 @@ public class Rental
     }
 
     /**
+     *  Gets the vehicle.
+     *  @return Vehicle
+     */
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    /**
      * Sets the mileage driven during this rental.
      * @param mileage
      */
@@ -110,10 +122,10 @@ public class Rental
     }
 
     /**
-     *  Gets the vehicle.
-     *  @return Vehicle
+     * Sets the vehicle.
+     * @param vehicle
      */
-    public Vehicle getVehicle() {
-        return vehicle;
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 }
