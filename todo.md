@@ -38,7 +38,7 @@
 - [x] Add status bar to bottom of GUI
     * Show record count (uses Query.size() which satisfies recursion requirement)
 - [x] Complete menu bar (File, Help, etc.).
-- [ ] Improve exception handling.
+- [x] Improve exception handling.
 
 ## Ideas
 
