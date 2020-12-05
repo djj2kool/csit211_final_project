@@ -114,8 +114,10 @@ public class MainController implements DatabaseListener, Initializable
             TableRow<Customer> row = new TableRow<Customer>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == DOUBLE_CLICK && (!row.isEmpty())) {
-                    Customer customer = row.getItem();
-                    addRentalDialog.setCustomer(customer);
+                    if (addRentalDialog.isShowing()) {
+                        Customer customer = row.getItem();
+                        addRentalDialog.setCustomer(customer);
+                    }
                 }
             });
             return row;
@@ -140,8 +142,10 @@ public class MainController implements DatabaseListener, Initializable
             TableRow<Vehicle> row = new TableRow<Vehicle>();
             row.setOnMouseClicked(event -> {
                 if (event.getClickCount() == DOUBLE_CLICK && (!row.isEmpty())) {
-                    Vehicle vehicle = row.getItem();
-                    addRentalDialog.setVehicle(vehicle);
+                    if (addRentalDialog.isShowing()) {
+                        Vehicle vehicle = row.getItem();
+                        addRentalDialog.setVehicle(vehicle);
+                    }
                 }
             });
             return row;

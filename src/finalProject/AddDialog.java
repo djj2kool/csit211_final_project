@@ -57,6 +57,14 @@ abstract class AddDialog<T>
     }
 
     /**
+     * Whether or not this dialog is visible.
+     * @return
+     */
+    public boolean isShowing() {
+        return dialogStage.isShowing();
+    }
+
+    /**
      * Gets the optional database record this dialog added.
      * @return
      */
