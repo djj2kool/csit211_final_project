@@ -76,6 +76,14 @@ public class Vehicle
     }
 
     /**
+     * Checks if this vehicle is available for rental.
+     * @return
+     */
+    public boolean canRent() {
+        return status == VehicleStatus.AVAILABLE;
+    }
+
+    /**
      * Gets the ID (database key) of this vehicle.
      * @return  ID
      */
