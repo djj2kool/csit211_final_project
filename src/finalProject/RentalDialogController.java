@@ -279,6 +279,11 @@ public abstract class RentalDialogController extends DialogController<Rental>
      */
     @Override
     protected boolean validateFields() {
-        return rental != null && getMileage() >= 0;
+        return (
+            rental != null &&
+            rental.getCustomer() != null &&
+            rental.getVehicle() != null &&
+            getMileage() >= 0
+        );
     }
 }
