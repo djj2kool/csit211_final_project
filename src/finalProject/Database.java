@@ -77,9 +77,23 @@ public interface Database
     public void updateCustomer(Customer customer) throws Exception;
 
     /**
+     * Updates a employee record.
+     * @param employee
+     * @throws Exception
+     */
+    public void updateEmployee(Employee employee) throws Exception;
+
+    /**
      * Updates a rental record.
      * @param rental
      * @throws Exception
      */
     public void updateRental(Rental rental) throws Exception;
+
+    /**
+     * Updates a vehicle record.
+     * @param vehicle
+     * @throws Exception
+     */
+    public void updateVehicle(Vehicle vehicle) throws Exception;
 }

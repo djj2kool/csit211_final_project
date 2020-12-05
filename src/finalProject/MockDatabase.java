@@ -189,11 +189,29 @@ public class MockDatabase implements Database
     }
 
     /**
+     * Updates a employee record.
+     * @param employee
+     * @throws Exception
+     */
+    public void updateEmployee(Employee employee) throws Exception {
+        onRecordUpdated(employee);
+    }
+
+    /**
      * Updates a rental record.
      * @param rental
      * @throws Exception
      */
     public void updateRental(Rental rental) throws Exception {
         onRecordUpdated(rental);
+    }
+
+    /**
+     * Updates a vehicle record.
+     * @param vehicle
+     * @throws Exception
+     */
+    public void updateVehicle(Vehicle vehicle) throws Exception {
+        onRecordUpdated(vehicle);
     }
 }

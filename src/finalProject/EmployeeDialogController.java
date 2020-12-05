@@ -67,7 +67,13 @@ public class EmployeeDialogController extends DialogController<Employee>
         employee.setName(name);
         employee.setTitle(title);
         employee.setLevel(level);
-        stage.close();
+
+        try {
+            database.updateEmployee(employee);
+            stage.close();
+        } catch (Exception ex) {
+            App.showDatabaseErrorAlert(ex);
+        }
     }
 
     //  ------------------------------------------------------------------------

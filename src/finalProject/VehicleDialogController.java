@@ -80,7 +80,13 @@ public class VehicleDialogController extends DialogController<Vehicle>
         vehicle.setModel(model);
         vehicle.setVin(vin);
         vehicle.setTier(tier);
-        stage.close();
+
+        try {
+            database.updateVehicle(vehicle);
+            stage.close();
+        } catch (Exception ex) {
+            App.showDatabaseErrorAlert(ex);
+        }
     }
 
     //  ------------------------------------------------------------------------
