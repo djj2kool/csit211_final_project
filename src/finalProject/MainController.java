@@ -194,11 +194,7 @@ public class MainController implements DatabaseListener, Initializable
             RentalComparator comparator = new RentalComparator();
             Query<Rental> query = database.queryRentals();
             Rental[] sorted = Sort.mergeSort(Rental.class, query, comparator);
-
-            //  TODO: Export to report
-            for (Rental rental : sorted) {
-                System.out.println(rental.getId());
-            }
+            Report.generateRentalReport(sorted);
         } catch (Exception ex) {
             App.showErrorAlert(ex);
         }
