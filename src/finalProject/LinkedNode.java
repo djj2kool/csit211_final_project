@@ -11,50 +11,69 @@ public class LinkedNode<T>
     private LinkedNode<T> next;
     private LinkedNode<T> previous;
 
-    //  ------------------------------------------------------------------------
-    public LinkedNode(T elem)
-    {
-        element = elem;
+    /**
+     * Constructs a LinkedNode.
+     * @param element
+     */
+    public LinkedNode(T element) {
+        this.element = element;
         next = null;
         previous = null;
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Gets the element contained in this node.
+     * @return
+     */
     public T getElement() {
         return element;
     }
 
-    //  ------------------------------------------------------------------------
-    public LinkedNode<T> getNext()
-    {
+    /**
+     * Gets the next sibling node.
+     * @return
+     */
+    public LinkedNode<T> getNext() {
         return next;
     }
 
-    //  ------------------------------------------------------------------------
-    public LinkedNode<T> getPrevious()
-    {
+    /**
+     * Gets the previous sibling node.
+     * @return
+     */
+    public LinkedNode<T> getPrevious() {
         return previous;
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Checks if this node has a sibling node after it.
+     * @return
+     */
     public boolean hasNext() {
         return next != null;
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Checks if this node has a sibling node before it.
+     * @return
+     */
     public boolean hasPrevious() {
         return previous != null;
     }
 
-    //  ------------------------------------------------------------------------
-    public void setNext(LinkedNode<T> node)
-    {
+    /**
+     * Sets the next sibling node.
+     * @return
+     */
+    public void setNext(LinkedNode<T> node) {
         next = node;
     }
 
-    //  ------------------------------------------------------------------------
-    public void setPrevious(LinkedNode<T> node)
-    {
+    /**
+     * Sets the previous sibling node.
+     * @return
+     */
+    public void setPrevious(LinkedNode<T> node) {
         previous = node;
     }
 }

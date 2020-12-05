@@ -11,7 +11,7 @@ import javafx.fxml.FXML;
 public class AddRentalDialogController extends RentalDialogController
 {
     /**
-     * Called when the add button is activated.
+     * Called after the add button is activated.
      * @param event
      */
     @FXML

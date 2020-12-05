@@ -19,7 +19,10 @@ public class LinkedList<T> implements Iterable<T>, ListADT<T> {
         }
     }
 
-    // ------------------------------------------------------------------------
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void append(T element) {
         LinkedNode<T> node = new LinkedNode<>(element);
 
@@ -33,13 +36,21 @@ public class LinkedList<T> implements Iterable<T>, ListADT<T> {
         }
     }
 
-    // ------------------------------------------------------------------------
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void appendAll(Iterable<T> elements) {
         for (T element : elements) {
             append(element);
         }
     }
 
+    /**
+     * Recursive node counting function.
+     * @param node
+     * @return
+     */
     // ------------------------------------------------------------------------
     private int getCount(LinkedNode<T> node) {
         if (node == null) {
@@ -49,18 +60,26 @@ public class LinkedList<T> implements Iterable<T>, ListADT<T> {
         }
     }
 
-    // ------------------------------------------------------------------------
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public boolean isEmpty() {
         return head == null;
     }
 
-    // ------------------------------------------------------------------------
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Iterator<T> iterator() {
         return new LinkedNodeIterator<T>(head);
     }
 
-    // ------------------------------------------------------------------------
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public int size() {
         return getCount(head);
     }

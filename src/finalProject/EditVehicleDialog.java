@@ -7,7 +7,11 @@ package finalProject;
 
 public class EditVehicleDialog extends Dialog<Vehicle>
 {
-    //  ------------------------------------------------------------------------
+    /**
+     * Constructs an EditVehicleDialog.
+     * @param database
+     * @param vehicle
+     */
     public EditVehicleDialog(Database database, Vehicle vehicle) {
         super("Edit Vehicle", "EditVehicleDialog.fxml", database, true);
         setValue(vehicle);

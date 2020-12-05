@@ -42,6 +42,9 @@ public abstract class RentalDialogController extends DialogController<Rental>
         stage.close();
     }
 
+    /**
+     * Creates a new rental using data from dialog fields.
+     */
     protected void createRental() {
         int mileage;
 
@@ -61,6 +64,9 @@ public abstract class RentalDialogController extends DialogController<Rental>
         }
     }
 
+    /**
+     * Updates an existing rental using data from dialog fields.
+     */
     protected void editRental() {
         int mileage;
 
@@ -94,9 +100,9 @@ public abstract class RentalDialogController extends DialogController<Rental>
     }
 
     /**
-     * Gets the rental instance being edited.
-     * @return
+     * {@inheritDoc}
      */
+    @Override
     public Rental getValue() {
         return rental;
     }
@@ -110,8 +116,7 @@ public abstract class RentalDialogController extends DialogController<Rental>
     }
 
     /**
-     * Called to initialize a controller after its root element has been
-     * completely processed.
+     * {@inheritDoc}
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -143,7 +148,7 @@ public abstract class RentalDialogController extends DialogController<Rental>
     }
 
     /**
-     * Called after dialog is closed using window close button.
+     * {@inheritDoc}
      */
     @Override
     protected void onCloseRequest() {
@@ -232,8 +237,7 @@ public abstract class RentalDialogController extends DialogController<Rental>
     }
 
     /**
-     * Sets the value this dialog should return.
-     * @param value
+     * {@inheritDoc}
      */
     @Override
     public void setValue(Rental rental) {
@@ -281,8 +285,7 @@ public abstract class RentalDialogController extends DialogController<Rental>
     }
 
     /**
-     * Checks if all fields required to create a new database object are valid.
-     * @return true if fields are all valid, false if fields are invalid
+     * {@inheritDoc}
      */
     @Override
     protected boolean validateFields() {

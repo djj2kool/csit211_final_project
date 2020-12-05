@@ -20,17 +20,15 @@ public class CustomerDialogController extends DialogController<Customer>
     Customer customer = null;
 
     /**
-     * Gets the customer this dialog should return.
-     * @return
+     * {@inheritDoc}
      */
+    @Override
     public Customer getValue() {
         return customer;
     }
 
     /**
-     * Initializes the controller.
-     * @param location
-     * @param resources
+     * {@inheritDoc}
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -45,6 +43,9 @@ public class CustomerDialogController extends DialogController<Customer>
         });
     }
 
+    /**
+     * Creates a new customer using dialog field data.
+     */
     protected void createCustomer() {
         String name = nameField.getText();
         String phone = phoneField.getText();
@@ -52,6 +53,9 @@ public class CustomerDialogController extends DialogController<Customer>
         stage.close();
     }
 
+    /**
+     * Edits an existing customer using dialog field data.
+     */
     protected void editCustomer() {
         String name = nameField.getText();
         String phone = phoneField.getText();
@@ -91,8 +95,7 @@ public class CustomerDialogController extends DialogController<Customer>
     }
 
     /**
-     * Sets the value this dialog should return.
-     * @param value
+     * {@inheritDoc}
      */
     @Override
     public void setValue(Customer customer) {
@@ -101,7 +104,7 @@ public class CustomerDialogController extends DialogController<Customer>
     }
 
     /**
-     * Called after a field changes.
+     * {@inheritDoc}
      */
     @Override
     protected boolean validateFields() {

@@ -23,12 +23,17 @@ public class EmployeeDialogController extends DialogController<Employee>
 
     Employee employee = null;
 
-    //  ------------------------------------------------------------------------
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Employee getValue() {
         return employee;
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize(location, resources);
@@ -52,6 +57,9 @@ public class EmployeeDialogController extends DialogController<Employee>
         });
     }
 
+    /**
+     * Creates a new employee based on data from the dialog fields.
+     */
     protected void createEmployee() {
         String name = nameField.getText();
         String title = titleField.getText();
@@ -60,6 +68,9 @@ public class EmployeeDialogController extends DialogController<Employee>
         stage.close();
     }
 
+    /**
+     * Edits an existing employee based on data from the dialog fields.
+     */
     protected void editEmployee() {
         String name = nameField.getText();
         String title = titleField.getText();
@@ -76,13 +87,19 @@ public class EmployeeDialogController extends DialogController<Employee>
         }
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Called after the cancel button is activated
+     * @param event
+     */
     @FXML
     private void onCancelButton(ActionEvent event) {
         stage.close();
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Populates employee related dialog fields.
+     * @param employee
+     */
     protected void populateEmployee(Employee employee) {
         if (employee != null) {
             nameField.setText(employee.getName());
@@ -96,8 +113,7 @@ public class EmployeeDialogController extends DialogController<Employee>
     }
 
     /**
-     * Sets the value this dialog should return.
-     * @param value
+     * {@inheritDoc}
      */
     @Override
     public void setValue(Employee employee) {
@@ -105,7 +121,9 @@ public class EmployeeDialogController extends DialogController<Employee>
         populateEmployee(employee);
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected boolean validateFields() {
         return (

@@ -100,28 +100,40 @@ public class MockDatabase implements Database
 
     LinkedList<DatabaseListener> listeners = new LinkedList<DatabaseListener>();
 
-    //  ------------------------------------------------------------------------
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void addCustomer(Customer customer) throws Exception {
         customers.append(customer);
 
         onRecordAdded(customer);
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void addEmployee(Employee employee) throws Exception {
         employees.append(employee);
 
         onRecordAdded(employee);
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void addListener(DatabaseListener listener) {
         if (listener != null) {
             listeners.append(listener);
         }
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void addRental(Rental rental) throws Exception {
         if (rental.getStatus() != RentalStatus.OPEN) {
             throw new DatabaseException("Rental status is invalid.");
@@ -138,41 +150,62 @@ public class MockDatabase implements Database
         onRecordAdded(rental);
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void addVehicle(Vehicle vehicle) throws Exception {
         vehicles.append(vehicle);
 
         onRecordAdded(vehicle);
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Query<Customer> queryCustomers() throws Exception {
         return new Query<Customer>(customers);
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Query<Employee> queryEmployees() throws Exception {
         return new Query<Employee>(employees);
     }
 
-    //  ------------------------------------------------------------------------
+     /**
+     * {@inheritDoc}
+     */
+    @Override
     public Query<Rental> queryRentals() throws Exception {
         return new Query<Rental>(rentals);
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Query<Vehicle> queryVehicles() throws Exception {
         return new Query<Vehicle>(vehicles);
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Calls DatabaseListeners after a new record is added.
+     * @param record
+     */
     private void onRecordAdded(Object record) {
         for (DatabaseListener listener : listeners) {
             listener.onRecordAdded(record);
         }
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Calls DatabaseListeners after an existing record is updated.
+     * @param record
+     */
     private void onRecordUpdated(Object record) {
         for (DatabaseListener listener : listeners) {
             listener.onRecordUpdated(record);
@@ -180,37 +213,33 @@ public class MockDatabase implements Database
     }
 
     /**
-     * Updates a customer record.
-     * @param customer
-     * @throws Exception
+     * {@inheritDoc}
      */
+    @Override
     public void updateCustomer(Customer customer) throws Exception {
         onRecordUpdated(customer);
     }
 
     /**
-     * Updates a employee record.
-     * @param employee
-     * @throws Exception
+     * {@inheritDoc}
      */
+    @Override
     public void updateEmployee(Employee employee) throws Exception {
         onRecordUpdated(employee);
     }
 
     /**
-     * Updates a rental record.
-     * @param rental
-     * @throws Exception
+     * {@inheritDoc}
      */
+    @Override
     public void updateRental(Rental rental) throws Exception {
         onRecordUpdated(rental);
     }
 
     /**
-     * Updates a vehicle record.
-     * @param vehicle
-     * @throws Exception
+     * {@inheritDoc}
      */
+    @Override
     public void updateVehicle(Vehicle vehicle) throws Exception {
         onRecordUpdated(vehicle);
     }

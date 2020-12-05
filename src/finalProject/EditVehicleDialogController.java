@@ -10,6 +10,10 @@ import javafx.fxml.FXML;
 
 public class EditVehicleDialogController extends VehicleDialogController
 {
+    /**
+     * Called after the add buttons is activated.
+     * @param event
+     */
     @FXML
     private void onAddButton(ActionEvent event) {
         editVehicle();

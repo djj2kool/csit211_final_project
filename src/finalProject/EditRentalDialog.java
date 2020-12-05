@@ -7,7 +7,11 @@ package finalProject;
 
 public class EditRentalDialog extends RentalDialog
 {
-    //  ------------------------------------------------------------------------
+    /**
+     * Constructs an EditRentalDialog.
+     * @param database
+     * @param rental
+     */
     public EditRentalDialog(Database database, Rental rental) {
         super("Edit Rental", "EditRentalDialog.fxml", database);
         setValue(rental);

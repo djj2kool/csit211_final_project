@@ -65,6 +65,9 @@ public class Rental
         this.vehicle = null;
     }
 
+    /**
+     * Closes the rental and marks the vehicle as available.
+     */
     public void close() {
         if (status == RentalStatus.OPEN) {
             //  Closing the rental releases the vehicle
@@ -124,14 +127,26 @@ public class Rental
         return vehicle;
     }
 
+    /**
+     * Checks if the rental is closed (i.e. the customer returned the car)
+     * @return true if close, false otherwise
+     */
     public boolean isClosed() {
         return status == RentalStatus.CLOSED;
     }
 
+    /**
+     * Checks if the rental is open (i.e. a customer is renting the car).
+     * @return true if open, false otherwise
+     */
     public boolean isOpen() {
         return status == RentalStatus.OPEN;
     }
 
+    /**
+     * Opens the rental and marks the vehicle as unavailable.
+     * @throws RentalException if the vehicle is not available for rental
+     */
     public void open() throws RentalException {
         if (status == RentalStatus.CLOSED) {
             //  Can only reopen a rental if the original vehicle is available

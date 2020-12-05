@@ -213,8 +213,9 @@ public class MainController implements DatabaseListener, Initializable
     }
 
     /**
-     * Refreshes all table views after a new database record is added.
+     * {@inheritDoc}
      */
+    @Override
     public void onRecordAdded(Object record) {
         refreshTableViews();
 
@@ -225,8 +226,9 @@ public class MainController implements DatabaseListener, Initializable
     }
 
     /**
-     * Refreshes all table views after a database record is updated.
+     * {@inheritDoc}
      */
+    @Override
     public void onRecordUpdated(Object record) {
         refreshTableViews();
 

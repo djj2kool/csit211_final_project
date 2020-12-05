@@ -35,9 +35,7 @@ public abstract class DialogController<T>  implements Initializable
     public abstract T getValue();
 
     /**
-     * Initializes the controller.
-     * @param location
-     * @param resources
+     * {@inheritDoc}
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {

@@ -132,18 +132,34 @@ public class Vehicle
         return tier;
     }
 
+    /**
+     * Sets the vehicle make (manufacturer).
+     * @param make
+     */
     public void setMake(String make) {
         this.make = make;
     }
 
+    /**
+     * Sets the vehicle model.
+     * @param model
+     */
     public void setModel(String model) {
         this.model = model;
     }
 
+    /**
+     * Sets the vehicle tier. Determines price-per-mile.
+     * @param tier
+     */
     public void setTier(Tier tier) {
         this.tier = tier;
     }
 
+    /**
+     * Sets the Vehicle Identification Number.
+     * @param vin
+     */
     public void setVin(String vin) {
         this.vin = vin;
     }

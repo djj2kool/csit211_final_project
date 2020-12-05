@@ -24,26 +24,31 @@ public class VehicleDialogController extends DialogController<Vehicle>
 
     Vehicle vehicle = null;
 
-    //  ------------------------------------------------------------------------
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Vehicle getValue() {
         return vehicle;
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<Tier> tiers = null;
+
         super.initialize(location, resources);
 
         //  Populate tiers combobox
-        ObservableList<Tier> tiers =
-            FXCollections.observableArrayList(
-                Tier.ECONOMY,
-                Tier.COMPACT,
-                Tier.STANDARD,
-                Tier.FULL_SIZE,
-                Tier.PREMIUM,
-                Tier.LUXURY
-            );
+        tiers = FXCollections.observableArrayList(
+            Tier.ECONOMY,
+            Tier.COMPACT,
+            Tier.STANDARD,
+            Tier.FULL_SIZE,
+            Tier.PREMIUM,
+            Tier.LUXURY);
         tierComboBox.setItems(tiers);
         tierComboBox.setValue(tiers.get(0));
 
@@ -60,22 +65,28 @@ public class VehicleDialogController extends DialogController<Vehicle>
         });
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Creates a vehicle using dialog field values.
+     */
     protected void createVehicle() {
         String make = makeField.getText();
         String model = modelField.getText();
         String vin = vinField.getText();
         Tier tier = tierComboBox.getValue();
+
         vehicle = new Vehicle(make, model, vin, tier);
         stage.close();
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Updates a vehicle using dialog field values.
+     */
     protected void editVehicle() {
         String make = makeField.getText();
         String model = modelField.getText();
         String vin = vinField.getText();
         Tier tier = tierComboBox.getValue();
+
         vehicle.setMake(make);
         vehicle.setModel(model);
         vehicle.setVin(vin);
@@ -89,13 +100,19 @@ public class VehicleDialogController extends DialogController<Vehicle>
         }
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Called after the cancel button is activated.
+     * @param event
+     */
     @FXML
     private void onCancelButton(ActionEvent event) {
         stage.close();
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * Populates vehicle related fields.
+     * @param vehicle
+     */
     protected void populateVehicle(Vehicle vehicle) {
         if (vehicle != null) {
             makeField.setText(vehicle.getMake());
@@ -111,8 +128,7 @@ public class VehicleDialogController extends DialogController<Vehicle>
     }
 
     /**
-     * Sets the value this dialog should return.
-     * @param value
+     * {@inheritDoc}
      */
     @Override
     public void setValue(Vehicle vehicle) {
@@ -120,7 +136,9 @@ public class VehicleDialogController extends DialogController<Vehicle>
         populateVehicle(vehicle);
     }
 
-    //  ------------------------------------------------------------------------
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected boolean validateFields() {
         return (

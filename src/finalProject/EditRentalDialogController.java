@@ -17,8 +17,7 @@ public class EditRentalDialogController extends RentalDialogController
     @FXML private CheckBox closedCheckBox;
 
     /**
-     * Called to initialize a controller after its root element has been
-     * completely processed.
+     * {@inheritDoc}
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -42,14 +41,16 @@ public class EditRentalDialogController extends RentalDialogController
     }
 
     /**
-     * Populates the closed checkbox.
-     * @param customer
+     * {@inheritDoc}
      */
     @Override
     protected void populateClosed(Rental rental) {
         closedCheckBox.setSelected(rental.isClosed());
     }
 
+    /**
+     * Changes the rental status based on the closed checkbox.
+     */
     protected void changeRentalStatus() {
         boolean closed = closedCheckBox.isSelected();
         Rental rental = getValue();

@@ -77,14 +77,26 @@ public class Employee
         return title;
     }
 
+    /**
+     * Sets the employee's user level.
+     * @param level
+     */
     public void setLevel(UserLevel level) {
         this.level = level;
     }
 
+    /**
+     * Sets the employee's name.
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Sets the employee's title.
+     * @param title
+     */
     public void setTitle(String title) {
         this.title = title;
     }

@@ -7,7 +7,10 @@ package finalProject;
 
 public class RentalException extends RuntimeException
 {
-    //  ------------------------------------------------------------------------
+    /**
+     * Constructs a RentalException.
+     * @param error
+     */
     public RentalException(String error)
     {
         super(error);

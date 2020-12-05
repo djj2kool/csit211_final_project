@@ -10,6 +10,10 @@ import javafx.fxml.FXML;
 
 public class AddEmployeeDialogController extends EmployeeDialogController
 {
+    /**
+     * Called after the add button is activated.
+     * @param event
+     */
     @FXML
     private void onAddButton(ActionEvent event) {
         createEmployee();
