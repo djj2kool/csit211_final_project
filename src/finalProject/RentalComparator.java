@@ -13,7 +13,14 @@ public class RentalComparator implements Comparator<Rental> {
      */
     @Override
     public int compare(Rental a, Rental b) {
-        return a.getCustomer().getName().compareTo(
-            b.getCustomer().getName());
+        Customer customerA = a.getCustomer();
+        Customer customerB = b.getCustomer();
+        int last = customerA.getLastName().compareTo(customerB.getLastName());
+
+        if (last == 0) {
+            return customerA.getFirstName().compareTo(customerB.getFirstName());
+        }
+
+        return last;
     }
 }

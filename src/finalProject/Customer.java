@@ -12,32 +12,45 @@ public class Customer
 
     /** Unique ID (database key) */
     private int id;
-    private String name;
+    private String firstName;
+    private String lastName;
     private String phone;
 
     /**
      * Constructs a Customer instance when the ID is known (e.g. from a database
      * record)
      * @param id
-     * @param name
+     * @param firstName
+     * @param lastName
      * @param phone
      */
-    public Customer(int id, String name, String phone) {
+    public Customer(int id, String firstName, String lastName, String phone) {
         this.id = id;
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.phone = phone;
     }
 
     /**
      * Constructs a Customer instance when the ID is not yet known (e.g. when
      * creating an object that will be added to the database later)
-     * @param name
+     * @param firstName
+     * @param lastName
      * @param phone
      */
-    public Customer(String name, String phone) {
+    public Customer(String firstName, String lastName, String phone) {
         this.id = ID_UNASSIGNED;
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.phone = phone;
+    }
+
+    /**
+     * Gets the first name of this customer.
+     * @return firstName
+     */
+    public String getFirstName() {
+        return firstName;
     }
 
     /**
@@ -49,11 +62,19 @@ public class Customer
     }
 
     /**
+     * Gets the last name of this customer.
+     * @return lastName
+     */
+    public String getLastName() {
+        return lastName;
+    }
+
+    /**
      * Gets the full name of this customer.
      * @return name
      */
     public String getName() {
-        return name;
+        return firstName + " " + lastName;
     }
 
     /**
@@ -65,11 +86,19 @@ public class Customer
     }
 
     /**
-     * Sets the name of this customer.
-     * @param name
+     * Sets the first name of this customer.
+     * @param firstName
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    /**
+     * Sets the last name of this customer.
+     * @param lastName
+     */
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     /**

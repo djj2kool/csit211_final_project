@@ -14,7 +14,8 @@ import javafx.scene.control.TextField;
 
 public class CustomerDialogController extends DialogController<Customer>
 {
-    @FXML private TextField nameField;
+    @FXML private TextField firstNameField;
+    @FXML private TextField lastNameField;
     @FXML private TextField phoneField;
 
     Customer customer = null;
@@ -34,7 +35,11 @@ public class CustomerDialogController extends DialogController<Customer>
     public void initialize(URL location, ResourceBundle resources) {
         super.initialize(location, resources);
 
-        nameField.textProperty().addListener((observable, oldValue, newValue) -> {
+        firstNameField.textProperty().addListener((observable, oldValue, newValue) -> {
+            onFieldChanged();
+        });
+
+        lastNameField.textProperty().addListener((observable, oldValue, newValue) -> {
             onFieldChanged();
         });
 
@@ -47,9 +52,10 @@ public class CustomerDialogController extends DialogController<Customer>
      * Creates a new customer using dialog field data.
      */
     protected void createCustomer() {
-        String name = nameField.getText();
+        String firstName = firstNameField.getText();
+        String lastName = lastNameField.getText();
         String phone = phoneField.getText();
-        customer = new Customer(name, phone);
+        customer = new Customer(firstName, lastName, phone);
         stage.close();
     }
 
@@ -57,9 +63,11 @@ public class CustomerDialogController extends DialogController<Customer>
      * Edits an existing customer using dialog field data.
      */
     protected void editCustomer() {
-        String name = nameField.getText();
+        String firstName = firstNameField.getText();
+        String lastName = lastNameField.getText();
         String phone = phoneField.getText();
-        customer.setName(name);
+        customer.setFirstName(firstName);
+        customer.setLastName(lastName);
         customer.setPhone(phone);
 
         try {
@@ -85,11 +93,13 @@ public class CustomerDialogController extends DialogController<Customer>
      */
     protected void populateCustomer(Customer customer) {
         if (customer != null) {
-            nameField.setText(customer.getName());
+            firstNameField.setText(customer.getFirstName());
+            lastNameField.setText(customer.getLastName());
             phoneField.setText(customer.getPhone());
 
         } else {
-            nameField.clear();
+            firstNameField.clear();
+            lastNameField.clear();
             phoneField.clear();
         }
     }
@@ -109,7 +119,8 @@ public class CustomerDialogController extends DialogController<Customer>
     @Override
     protected boolean validateFields() {
         return (
-            !nameField.getText().isBlank() &&
+            !firstNameField.getText().isBlank() &&
+            !lastNameField.getText().isBlank() &&
             !phoneField.getText().isBlank()
         );
     }
