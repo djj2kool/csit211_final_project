@@ -12,7 +12,7 @@ public class EditRentalDialog extends RentalDialog
      * @param database
      * @param rental
      */
-    public EditRentalDialog(Database database, Rental rental) {
+    public EditRentalDialog(Database database, Rental rental) throws Exception {
         super("Edit Rental", "EditRentalDialog.fxml", database);
         setValue(rental);
     }

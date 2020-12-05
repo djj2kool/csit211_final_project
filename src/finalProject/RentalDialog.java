@@ -13,7 +13,8 @@ public class RentalDialog extends Dialog<Rental>
      * @param fxml FXML
      * @param database
      */
-    public RentalDialog(String title, String fxml, Database database) {
+    public RentalDialog(String title, String fxml, Database database)
+    throws Exception {
         super(title, fxml, database, false);
     }
 

@@ -61,7 +61,7 @@ public class EditRentalDialogController extends RentalDialogController
             try {
                 rental.open();
             } catch (RentalException ex) {
-                App.showDatabaseErrorAlert(ex);
+                App.showErrorAlert(ex);
                 populateClosed(rental);
             }
         }
@@ -69,7 +69,7 @@ public class EditRentalDialogController extends RentalDialogController
         try {
             database.updateRental(rental);
         } catch (Exception ex) {
-            App.showDatabaseErrorAlert(ex);
+            App.showErrorAlert(ex);
         }
     }
 }

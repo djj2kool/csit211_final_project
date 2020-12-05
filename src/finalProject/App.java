@@ -5,12 +5,17 @@
 
 package finalProject;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 public class App extends Application
@@ -23,15 +28,46 @@ public class App extends Application
     public static Stage primaryStage;
 
     /**
-     * Displays an alert box for exceptions thrown during database operations.
+     * Displays an alert box for exceptions thrown.
      */
-    public static void showDatabaseErrorAlert(Exception ex) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Database Transaction Error");
+	public static void showErrorAlert(Exception ex) {
+        Alert alert = null;
+        TextArea textArea = null;
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+
+        alert = new Alert(Alert.AlertType.ERROR);
+
+        //  Set title based on exception type
+        if (ex instanceof DatabaseException) {
+            alert.setTitle("Database Transaction Error");
+        } else {
+            alert.setTitle("Error");
+        }
+
+        alert.setHeaderText("An exception occurred.");
+
+        //  Exception message
         alert.setContentText(ex.getMessage());
-        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+
+        //  Exception stacktrace
+        ex.printStackTrace(pw);
+
+        //  Display exception stacktrace in text area
+        textArea = new TextArea(sw.toString());
+        textArea.setEditable(false);
+        textArea.setWrapText(true);
+        textArea.setMaxWidth(Double.MAX_VALUE);
+        textArea.setMaxHeight(Double.MAX_VALUE);
+
+        GridPane pane = new GridPane();
+        pane.setMaxWidth(Double.MAX_VALUE);
+        pane.add(textArea, 0, 0);
+
+        alert.getDialogPane().setExpandableContent(pane);
+
         alert.showAndWait();
-    }
+	}
 
     /**
      * {@inheritDoc}

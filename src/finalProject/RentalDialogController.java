@@ -61,6 +61,7 @@ public abstract class RentalDialogController extends DialogController<Rental>
                 close();
             }
         } catch (Exception ex) {
+            App.showErrorAlert(ex);
         }
     }
 
@@ -81,6 +82,7 @@ public abstract class RentalDialogController extends DialogController<Rental>
                 close();
             }
         } catch (Exception ex) {
+            App.showErrorAlert(ex);
         }
     }
 
@@ -94,6 +96,7 @@ public abstract class RentalDialogController extends DialogController<Rental>
         try {
             mileage = Integer.parseInt(mileageField.getText());
         } catch (Exception ex) {
+            //  Just use mileage value of zero when parsing fails
         }
 
         return Math.max(0, mileage);

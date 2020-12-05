@@ -12,7 +12,8 @@ public class EditVehicleDialog extends Dialog<Vehicle>
      * @param database
      * @param vehicle
      */
-    public EditVehicleDialog(Database database, Vehicle vehicle) {
+    public EditVehicleDialog(Database database, Vehicle vehicle)
+    throws Exception {
         super("Edit Vehicle", "EditVehicleDialog.fxml", database, true);
         setValue(vehicle);
     }

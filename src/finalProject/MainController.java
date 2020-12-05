@@ -200,7 +200,7 @@ public class MainController implements DatabaseListener, Initializable
                 System.out.println(rental.getId());
             }
         } catch (Exception ex) {
-            App.showDatabaseErrorAlert(ex);
+            App.showErrorAlert(ex);
         }
     }
 
@@ -266,7 +266,7 @@ public class MainController implements DatabaseListener, Initializable
                 customerCountLabel,
                 database.queryCustomers());
         } catch (Exception ex) {
-            App.showDatabaseErrorAlert(ex);
+            App.showErrorAlert(ex);
         }
     }
 
@@ -281,7 +281,7 @@ public class MainController implements DatabaseListener, Initializable
                 employeeCountLabel,
                 database.queryEmployees());
         } catch (Exception ex) {
-            App.showDatabaseErrorAlert(ex);
+            App.showErrorAlert(ex);
         }
     }
 
@@ -298,7 +298,7 @@ public class MainController implements DatabaseListener, Initializable
             rentals = rentals.filter(filter);
             populateTableView(rentalsTableView, rentalCountLabel, rentals);
         } catch (Exception ex) {
-            App.showDatabaseErrorAlert(ex);
+            App.showErrorAlert(ex);
         }
     }
 
@@ -323,7 +323,7 @@ public class MainController implements DatabaseListener, Initializable
                 vehicleCountLabel,
                 database.queryVehicles());
         } catch (Exception ex) {
-            App.showDatabaseErrorAlert(ex);
+            App.showErrorAlert(ex);
         }
     }
 
@@ -339,17 +339,21 @@ public class MainController implements DatabaseListener, Initializable
      * Displays the dialog box used to add a new customer record.
      */
     @FXML
-    private void showAddCustomerDialog(ActionEvent event) throws Exception {
+    private void showAddCustomerDialog(ActionEvent event) {
         Optional<Customer> customer = null;
         Dialog<Customer> dialog = null;
 
-        dialog = new AddCustomerDialog(database);
-        dialog.showAndWait();
+        try {
+            dialog = new AddCustomerDialog(database);
+            dialog.showAndWait();
 
-        customer = dialog.result();
-        if (customer.isPresent()) {
-            database.addCustomer(customer.get());
-            refreshCustomers();
+            customer = dialog.result();
+            if (customer.isPresent()) {
+                database.addCustomer(customer.get());
+                refreshCustomers();
+            }
+        } catch (Exception ex) {
+            App.showErrorAlert(ex);
         }
     }
 
@@ -357,17 +361,21 @@ public class MainController implements DatabaseListener, Initializable
      * Displays the dialog box used to add a new employee record.
      */
     @FXML
-    private void showAddEmployeeDialog(ActionEvent event) throws Exception {
+    private void showAddEmployeeDialog(ActionEvent event) {
         Optional<Employee> employee = null;
         Dialog<Employee> dialog = null;
 
-        dialog = new AddEmployeeDialog(database);
-        dialog.showAndWait();
+        try {
+            dialog = new AddEmployeeDialog(database);
+            dialog.showAndWait();
 
-        employee = dialog.result();
-        if (employee.isPresent()) {
-            database.addEmployee(employee.get());
-            refreshEmployees();
+            employee = dialog.result();
+            if (employee.isPresent()) {
+                database.addEmployee(employee.get());
+                refreshEmployees();
+            }
+        } catch (Exception ex) {
+            App.showErrorAlert(ex);
         }
     }
 
@@ -375,10 +383,14 @@ public class MainController implements DatabaseListener, Initializable
      * Displays the dialog box used to add a new rental record.
      */
     @FXML
-    private void showAddRentalDialog(ActionEvent event) throws Exception {
-        if (!rentalDialogIsShowing()) {
-            rentalDialog = new AddRentalDialog(database);
-            rentalDialog.show();
+    private void showAddRentalDialog(ActionEvent event) {
+        try {
+            if (!rentalDialogIsShowing()) {
+                rentalDialog = new AddRentalDialog(database);
+                rentalDialog.show();
+            }
+        } catch (Exception ex) {
+            App.showErrorAlert(ex);
         }
     }
 
@@ -386,17 +398,21 @@ public class MainController implements DatabaseListener, Initializable
      * Displays the dialog box used to add a new vehicle record.
      */
     @FXML
-    private void showAddVehicleDialog(ActionEvent event) throws Exception {
+    private void showAddVehicleDialog(ActionEvent event) {
         Dialog<Vehicle> dialog = null;
         Optional<Vehicle> vehicle = null;
 
-        dialog = new AddVehicleDialog(database);
-        dialog.showAndWait();
+        try {
+            dialog = new AddVehicleDialog(database);
+            dialog.showAndWait();
 
-        vehicle = dialog.result();
-        if (vehicle.isPresent()) {
-            database.addVehicle(vehicle.get());
-            refreshVehicles();
+            vehicle = dialog.result();
+            if (vehicle.isPresent()) {
+                database.addVehicle(vehicle.get());
+                refreshVehicles();
+            }
+        } catch (Exception ex) {
+            App.showErrorAlert(ex);
         }
     }
 
@@ -404,27 +420,39 @@ public class MainController implements DatabaseListener, Initializable
      * Displays the dialog box used to edit an existing customer record.
      */
     private void showEditCustomerDialog(Customer customer) {
-        Dialog<Customer> dialog = new EditCustomerDialog(database, customer);
-        dialog.showAndWait();
-        refreshCustomers();
+        try {
+            Dialog<Customer> dialog = new EditCustomerDialog(database, customer);
+            dialog.showAndWait();
+            refreshCustomers();
+        } catch (Exception ex) {
+            App.showErrorAlert(ex);
+        }
     }
 
     /**
      * Displays the dialog box used to edit an existing employee record.
      */
     private void showEditEmployeeDialog(Employee employee) {
-        Dialog<Employee> dialog = new EditEmployeeDialog(database, employee);
-        dialog.showAndWait();
-        refreshEmployees();
+        try {
+            Dialog<Employee> dialog = new EditEmployeeDialog(database, employee);
+            dialog.showAndWait();
+            refreshEmployees();
+        } catch (Exception ex) {
+            App.showErrorAlert(ex);
+        }
     }
 
     /**
      * Displays the dialog box used to edit an existing rental record.
      */
     private void showEditRentalDialog(Rental rental) {
-        if (!rentalDialogIsShowing()) {
-            rentalDialog = new EditRentalDialog(database, rental);
-            rentalDialog.show();
+        try {
+            if (!rentalDialogIsShowing()) {
+                rentalDialog = new EditRentalDialog(database, rental);
+                rentalDialog.show();
+            }
+        } catch (Exception ex) {
+            App.showErrorAlert(ex);
         }
     }
 
@@ -432,8 +460,12 @@ public class MainController implements DatabaseListener, Initializable
      * Displays the dialog box used to edit an existing vehicle record.
      */
     private void showEditVehicleDialog(Vehicle vehicle) {
-        Dialog<Vehicle> dialog = new EditVehicleDialog(database, vehicle);
-        dialog.showAndWait();
-        refreshVehicles();
+        try {
+            Dialog<Vehicle> dialog = new EditVehicleDialog(database, vehicle);
+            dialog.showAndWait();
+            refreshVehicles();
+        } catch (Exception ex) {
+            App.showErrorAlert(ex);
+        }
     }
 }

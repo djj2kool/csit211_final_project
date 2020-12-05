@@ -11,7 +11,8 @@ public class EditEmployeeDialog extends Dialog<Employee>
      * Constructs an EditEmployeeDialog instance.
      * @param database the database available to the dialog controller
      */
-    public EditEmployeeDialog(Database database, Employee employee) {
+    public EditEmployeeDialog(Database database, Employee employee)
+    throws Exception {
         super("Edit Employee", "EditEmployeeDialog.fxml", database, true);
         setValue(employee);
     }

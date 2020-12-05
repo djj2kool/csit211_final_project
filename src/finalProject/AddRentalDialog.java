@@ -11,7 +11,7 @@ public class AddRentalDialog extends RentalDialog
      * Constructs an AddRentalDialog instance.
      * @param database the database available to the dialog controller
      */
-    public AddRentalDialog(Database database) {
+    public AddRentalDialog(Database database) throws Exception {
         super("Add New Rental", "AddRentalDialog.fxml", database);
     }
 }

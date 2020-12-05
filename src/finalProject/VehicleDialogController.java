@@ -96,7 +96,7 @@ public class VehicleDialogController extends DialogController<Vehicle>
             database.updateVehicle(vehicle);
             stage.close();
         } catch (Exception ex) {
-            App.showDatabaseErrorAlert(ex);
+            App.showErrorAlert(ex);
         }
     }
 

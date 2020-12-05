@@ -74,7 +74,7 @@ public class CustomerDialogController extends DialogController<Customer>
             database.updateCustomer(customer);
             stage.close();
         } catch (Exception ex) {
-            App.showDatabaseErrorAlert(ex);
+            App.showErrorAlert(ex);
         }
     }
 

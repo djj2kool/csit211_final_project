@@ -83,7 +83,7 @@ public class EmployeeDialogController extends DialogController<Employee>
             database.updateEmployee(employee);
             stage.close();
         } catch (Exception ex) {
-            App.showDatabaseErrorAlert(ex);
+            App.showErrorAlert(ex);
         }
     }
 

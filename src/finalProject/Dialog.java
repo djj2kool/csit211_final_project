@@ -31,29 +31,25 @@ public class Dialog<T>
         String fxml,
         Database database,
         boolean modal
-    ) {
+    ) throws Exception {
         FXMLLoader loader = null;
         Parent root       = null;
         Scene scene       = null;
 
-        try {
-            loader = new FXMLLoader(getClass().getResource(fxml));
-            root = loader.load();
-            scene = new Scene(root);
+        loader = new FXMLLoader(getClass().getResource(fxml));
+        root = loader.load();
+        scene = new Scene(root);
 
-            dialogStage = new Stage();
-            dialogStage.setTitle(title);
-            dialogStage.initModality(
-                modal ? Modality.APPLICATION_MODAL : Modality.NONE);
-            dialogStage.initStyle(StageStyle.DECORATED);
-            dialogStage.setScene(scene);
+        dialogStage = new Stage();
+        dialogStage.setTitle(title);
+        dialogStage.initModality(
+            modal ? Modality.APPLICATION_MODAL : Modality.NONE);
+        dialogStage.initStyle(StageStyle.DECORATED);
+        dialogStage.setScene(scene);
 
-            controller = loader.getController();
-            controller.setDatabase(database);
-            controller.setStage(dialogStage);
-        }
-        catch (Exception ex) {
-        }
+        controller = loader.getController();
+        controller.setDatabase(database);
+        controller.setStage(dialogStage);
     }
 
     /**
