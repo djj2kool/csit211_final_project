@@ -12,12 +12,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
-public class AddEmployeeDialogController extends DialogController<Employee> implements Initializable
+public class AddEmployeeDialogController extends DialogController<Employee>
 {
     @FXML private TextField nameField;
     @FXML private TextField titleField;
